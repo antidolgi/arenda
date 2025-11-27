@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Арендыч — Внутренний портал</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         :root {
             --primary: #2563eb;
@@ -224,6 +223,24 @@
         .btn-calculate:hover {
             background: #0da271;
         }
+        .section-title {
+            font-weight: 600;
+            color: var(--secondary);
+            margin: 20px 0 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .addon-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .addon-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
         footer {
             text-align: center;
             margin-top: 40px;
@@ -231,6 +248,56 @@
             border-top: 1px solid #cbd5e1;
             color: #64748b;
             font-size: 0.9rem;
+        }
+        .tabs-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .sub-tab {
+            background: #e0e7ff;
+            border: 1px solid #cbd5e1;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .sub-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .mileage-warning {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 12px 15px;
+            border-radius: 0 4px 4px 0;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+        .scripts-section {
+            background: #f0f9ff;
+            border: 1px solid #dbeafe;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .script-item {
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        .script-title {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        .script-content {
+            font-style: italic;
+            color: #4b5563;
         }
     </style>
 </head>
@@ -305,36 +372,130 @@
             <h2>🧮 Калькулятор стоимости аренды</h2>
             <div class="calculator">
                 <div>
+                    <!-- Основные параметры -->
+                    <h3 class="section-title">Основные параметры</h3>
+                    
                     <div class="input-group">
                         <label for="car">Выберите автомобиль:</label>
                         <select id="car" onchange="calculate()">
-                            <option value="chery">Chery Tiggo 4 Pro (3800 ₽/сутки)</option>
-                            <option value="lada">Lada Granta (2200 ₽/сутки)</option>
-                            <option value="jeep">Jeep Cherokee (7000 ₽/сутки)</option>
-                            <option value="range">Range Rover Sport (6300 ₽/сутки)</option>
+                            <option value="chery">Chery Tiggo 4 Pro</option>
+                            <option value="lada">Lada Granta</option>
+                            <option value="jeep">Jeep Cherokee</option>
+                            <option value="voyah">Voyah Free</option>
+                            <option value="gazel">Газель Next</option>
+                            <option value="range">Range Rover Sport</option>
+                            <option value="geely">Geely Monjaro</option>
+                            <option value="lada-largus">Lada Largus фургон</option>
+                            <option value="vw">VW Caddy</option>
                         </select>
                     </div>
                     
                     <div class="input-group">
-                        <label for="days">Срок аренды (дней):</label>
-                        <input type="number" id="days" min="1" value="1" onchange="calculate()">
+                        <label for="rental-period">Срок аренды:</label>
+                        <select id="rental-period" onchange="calculate()">
+                            <option value="4-hours">4 часа</option>
+                            <option value="8-hours">8 часов</option>
+                            <option value="1-3-days">1-3 суток</option>
+                            <option value="4-7-days">4-7 суток</option>
+                            <option value="8-15-days">8-15 суток</option>
+                            <option value="16-30-days">16-30 суток</option>
+                        </select>
                     </div>
                     
                     <div class="input-group">
-                        <label for="km">Планируемый километраж в сутки:</label>
-                        <input type="number" id="km" min="50" value="200" onchange="calculate()">
+                        <label for="mileage-limit">Лимит пробега в сутки:</label>
+                        <select id="mileage-limit" onchange="calculate()">
+                            <option value="50">50 км</option>
+                            <option value="100">100 км</option>
+                            <option value="200">200 км</option>
+                            <option value="300">300 км</option>
+                            <option value="500">500 км</option>
+                        </select>
                     </div>
                     
                     <div class="input-group">
-                        <label>Особые условия:</label>
-                        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px;">
-                            <div>
-                                <input type="checkbox" id="debts" onchange="calculate()">
-                                <label for="debts" style="display: inline; margin-left: 5px;">Долги у приставов (+50%)</label>
+                        <label for="planned-mileage">Планируемый пробег в сутки (км):</label>
+                        <input type="number" id="planned-mileage" min="1" value="200" onchange="calculate()">
+                        <div class="mileage-warning">
+                            ⚠️ Если пробег превышает лимит — будет начислена доплата за каждый км сверх лимита
+                        </div>
+                    </div>
+
+                    <!-- Дополнительные услуги -->
+                    <h3 class="section-title">Дополнительные услуги</h3>
+                    
+                    <div class="input-group">
+                        <label>Страховка:</label>
+                        <div class="addon-group">
+                            <div class="addon-item">
+                                <input type="checkbox" id="insurance-base" onchange="calculate()">
+                                <label for="insurance-base">Базовый пакет (0 ₽/сутки)</label>
                             </div>
-                            <div>
+                            <div class="addon-item">
+                                <input type="checkbox" id="insurance-standard" onchange="calculate()">
+                                <label for="insurance-standard">Стандартный (500-1500 ₽/сутки)</label>
+                            </div>
+                            <div class="addon-item">
+                                <input type="checkbox" id="insurance-full" onchange="calculate()">
+                                <label for="insurance-full">Полное покрытие (1500-3000 ₽/сутки)</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Водитель:</label>
+                        <div class="addon-group">
+                            <div class="addon-item">
+                                <input type="checkbox" id="driver-1-4" onchange="calculate()">
+                                <label for="driver-1-4">1-4 часа (1200-3000 ₽/час)</label>
+                            </div>
+                            <div class="addon-item">
+                                <input type="checkbox" id="driver-4+" onchange="calculate()">
+                                <label for="driver-4+">От 4 часов (1000-2500 ₽/час)</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Доставка:</label>
+                        <div class="addon-group">
+                            <div class="addon-item">
+                                <input type="checkbox" id="delivery-city" onchange="calculate()">
+                                <label for="delivery-city">По городу (700 ₽)</label>
+                            </div>
+                            <div class="addon-item">
+                                <input type="checkbox" id="delivery-airport" onchange="calculate()">
+                                <label for="delivery-airport">В аэропорт (1500 ₽)</label>
+                            </div>
+                            <div class="addon-item">
+                                <input type="checkbox" id="delivery-outside" onchange="calculate()">
+                                <label for="delivery-outside">За город (80-35 ₽/км)</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Дополнительно:</label>
+                        <div class="addon-group">
+                            <div class="addon-item">
+                                <input type="checkbox" id="car-wash" onchange="calculate()">
+                                <label for="car-wash">Мойка машины (700-1000 ₽)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Особые условия -->
+                    <h3 class="section-title">Особые условия</h3>
+                    
+                    <div class="input-group">
+                        <div class="addon-group">
+                            <div class="addon-item">
+                                <input type="checkbox" id="debts" onchange="calculate()">
+                                <label for="debts">Долги у приставов (+50%)</label>
+                            </div>
+                            <div class="addon-item">
                                 <input type="checkbox" id="experience" onchange="calculate()">
-                                <label for="experience" style="display: inline; margin-left: 5px;">Стаж < 3 лет (+25%)</label>
+                                <label for="experience">Стаж < 3 лет (+25%)</label>
                             </div>
                         </div>
                     </div>
@@ -349,6 +510,16 @@
                         <div class="client-phrase" id="phrase">
                             <p>Здесь появится фраза для клиента...</p>
                         </div>
+                        
+                        <div class="section-title" style="margin-top: 25px;">Детализация</div>
+                        <div id="breakdown" style="text-align: left; margin-top: 10px;">
+                            <!-- Сюда будет вставляться детализация -->
+                        </div>
+                        
+                        <div class="section-title" style="margin-top: 25px;">Скрипты для клиента</div>
+                        <div class="scripts-section" id="scripts">
+                            <!-- Сюда будут вставляться скрипты -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -360,12 +531,177 @@
     </div>
 
     <script>
-        // Данные по тарифам
+        // Полная структура тарифов из скриншотов
         const tariffs = {
-            chery: { base: 3800, limit: 200, extraKm: 10 },
-            lada: { base: 2200, limit: 200, extraKm: 10 },
-            jeep: { base: 7000, limit: 200, extraKm: 25 },
-            range: { base: 6300, limit: 200, extraKm: 20 }
+            chery: {
+                "4-hours": {50: 2000, 100: 3000, 200: 3500, 300: 4300, 500: 5000},
+                "8-hours": {50: 3800, 100: 4150, 200: 4300, 300: 5350, 500: 5500},
+                "1-3-days": {50: 3650, 100: 4000, 200: 4150, 300: 5350, 500: 5500},
+                "4-7-days": {50: 3500, 100: 3850, 200: 4000, 300: 5200, 500: 5500},
+                "8-15-days": {50: 3350, 100: 3500, 200: 3850, 300: 5050, 500: 5500},
+                "16-30-days": {50: 3350, 100: 3500, 200: 3850, 300: 5050, 500: 5500}
+            },
+            lada: {
+                "4-hours": {50: 1400, 100: 1800, 200: 2000, 300: 2200, 500: 2500},
+                "8-hours": {50: 2000, 100: 2100, 200: 2200, 300: 2400, 500: 2500},
+                "1-3-days": {50: 2000, 100: 2100, 200: 2200, 300: 2300, 500: 2500},
+                "4-7-days": {50: 1900, 100: 2000, 200: 2200, 300: 2300, 500: 2500},
+                "8-15-days": {50: 1900, 100: 2000, 200: 2200, 300: 2300, 500: 2500},
+                "16-30-days": {50: 1900, 100: 2000, 200: 2200, 300: 2300, 500: 2500}
+            },
+            jeep: {
+                "4-hours": {50: 4000, 100: 5500, 200: 6000, 300: 7000, 500: 9000},
+                "8-hours": {50: 6850, 100: 7550, 200: 7700, 300: 8850, 500: 9000},
+                "1-3-days": {50: 6700, 100: 7200, 200: 7550, 300: 8600, 500: 9000},
+                "4-7-days": {50: 6500, 100: 7000, 200: 7200, 300: 8200, 500: 9000},
+                "8-15-days": {50: 6500, 100: 7000, 200: 7200, 300: 8200, 500: 9000},
+                "16-30-days": {50: 6500, 100: 7000, 200: 7200, 300: 8200, 500: 9000}
+            },
+            voyah: {
+                "4-hours": {50: 6000, 100: 8000, 200: 10000, 300: 12000, 500: 14500},
+                "8-hours": {50: 9500, 100: 10500, 200: 11000, 300: 12500, 500: 13500},
+                "1-3-days": {50: 8500, 100: 9500, 200: 10000, 300: 11000, 500: 12500},
+                "4-7-days": {50: 7500, 100: 8500, 200: 9000, 300: 10000, 500: 11500},
+                "8-15-days": {50: 7500, 100: 8500, 200: 9000, 300: 10000, 500: 11500},
+                "16-30-days": {50: 7500, 100: 8500, 200: 9000, 300: 10000, 500: 11500}
+            },
+            gazel: {
+                "4-hours": {50: 3000, 100: 4000, 200: 5000, 300: 6000, 500: 8000},
+                "8-hours": {50: 5300, 100: 5500, 200: 6300, 300: 6500, 500: 9000},
+                "1-3-days": {50: 5100, 100: 5300, 200: 6100, 300: 6300, 500: 8700},
+                "4-7-days": {50: 4900, 100: 5100, 200: 5900, 300: 6100, 500: 8500},
+                "8-15-days": {50: 4900, 100: 5100, 200: 5900, 300: 6100, 500: 8500},
+                "16-30-days": {50: 4900, 100: 5100, 200: 5900, 300: 6100, 500: 8500}
+            },
+            range: {
+                "4-hours": {50: 3000, 100: 4500, 200: 5000, 300: 6000, 500: 7000},
+                "8-hours": {50: 5300, 100: 5500, 200: 6300, 300: 6500, 500: 9000},
+                "1-3-days": {50: 5100, 100: 5300, 200: 6100, 300: 6300, 500: 6800},
+                "4-7-days": {50: 4800, 100: 5600, 200: 5900, 300: 6000, 500: 6600},
+                "8-15-days": {50: 4800, 100: 5600, 200: 5900, 300: 6000, 500: 6600},
+                "16-30-days": {50: 4800, 100: 5600, 200: 5900, 300: 6000, 500: 6600}
+            },
+            geely: {
+                "4-hours": {50: 5500, 100: 7000, 200: 7500, 300: 8000, 500: 10000},
+                "8-hours": {50: 7500, 100: 8000, 200: 8500, 300: 9000, 500: 9500},
+                "1-3-days": {50: 7000, 100: 7500, 200: 8000, 300: 8500, 500: 9000},
+                "4-7-days": {50: 6500, 100: 7500, 200: 7500, 300: 8500, 500: 8500},
+                "8-15-days": {50: 6500, 100: 7500, 200: 7500, 300: 8500, 500: 8500},
+                "16-30-days": {50: 6500, 100: 7500, 200: 7500, 300: 8500, 500: 8500}
+            },
+            "lada-largus": {
+                "4-hours": {50: 2200, 100: 2500, 200: 2700, 300: 3200, 500: 3700},
+                "8-hours": {50: 2900, 100: 3050, 200: 3200, 300: 3550, 500: 4550},
+                "1-3-days": {50: 2700, 100: 2900, 200: 3400, 300: 4400, 500: 5350},
+                "4-7-days": {50: 2700, 100: 3200, 200: 3200, 300: 4300, 500: 5200},
+                "8-15-days": {50: 2700, 100: 3200, 200: 3200, 300: 4300, 500: 5200},
+                "16-30-days": {50: 2700, 100: 3200, 200: 3200, 300: 4300, 500: 5200}
+            },
+            vw: {
+                "4-hours": {50: 2000, 100: 3000, 200: 3500, 300: 4000, 500: 5000},
+                "8-hours": {50: 3800, 100: 4300, 200: 4300, 300: 5350, 500: 5500},
+                "1-3-days": {50: 3650, 100: 4150, 200: 4300, 300: 5350, 500: 5500},
+                "4-7-days": {50: 3500, 100: 3850, 200: 4000, 300: 5200, 500: 5500},
+                "8-15-days": {50: 3350, 100: 3500, 200: 3850, 300: 5050, 500: 5500},
+                "16-30-days": {50: 3350, 100: 3500, 200: 3850, 300: 5050, 500: 5500}
+            }
+        };
+
+        // Дополнительные параметры
+        const extras = {
+            mileage: {
+                chery: 10,
+                lada: 10,
+                jeep: 15,
+                voyah: 25,
+                gazel: 15,
+                range: 15,
+                geely: 15,
+                "lada-largus": 10,
+                vw: 10
+            },
+            deposit: {
+                chery: 10000,
+                lada: 5000,
+                jeep: 15000,
+                voyah: 25000,
+                gazel: 10000,
+                range: 15000,
+                geely: 20000,
+                "lada-largus": 10000,
+                vw: 5000
+            },
+            driver: {
+                "1-4-hours": {
+                    chery: 1500,
+                    lada: 1500,
+                    jeep: 2000,
+                    voyah: 3000,
+                    gazel: 1800,
+                    range: 1800,
+                    geely: 2500,
+                    "lada-largus": 1500,
+                    vw: 1500
+                },
+                "4+": {
+                    chery: 1200,
+                    lada: 1200,
+                    jeep: 1800,
+                    voyah: 2500,
+                    gazel: 1500,
+                    range: 1500,
+                    geely: 2000,
+                    "lada-largus": 1200,
+                    vw: 1200
+                }
+            },
+            delivery: {
+                city: 700,
+                airport: 1500,
+                outside: {
+                    "0-30km": 80,
+                    "30-50km": 70,
+                    "50-100km": 60,
+                    "100-300km": 45,
+                    "300+km": 35
+                }
+            },
+            insurance: {
+                base: { cost: 0, coverage: 0 },
+                standard: {
+                    chery: { cost: 800, coverage: 150000 },
+                    lada: { cost: 300, coverage: 100000 },
+                    jeep: { cost: 1000, coverage: 200000 },
+                    voyah: { cost: 1500, coverage: 250000 },
+                    gazel: { cost: 800, coverage: 150000 },
+                    range: { cost: 1000, coverage: 200000 },
+                    geely: { cost: 1500, coverage: 250000 },
+                    "lada-largus": { cost: 500, coverage: 120000 },
+                    vw: { cost: 800, coverage: 150000 }
+                },
+                full: {
+                    chery: { cost: 1700, coverage: 250000 },
+                    lada: { cost: 1000, coverage: 200000 },
+                    jeep: { cost: 2000, coverage: 250000 },
+                    voyah: { cost: 3000, coverage: 300000 },
+                    gazel: { cost: 1700, coverage: 250000 },
+                    range: { cost: 2000, coverage: 250000 },
+                    geely: { cost: 3000, coverage: 300000 },
+                    "lada-largus": { cost: 1200, coverage: 150000 },
+                    vw: { cost: 1700, coverage: 250000 }
+                }
+            },
+            wash: {
+                chery: 700,
+                lada: 700,
+                jeep: 1000,
+                voyah: 1000,
+                gazel: 1000,
+                range: 1000,
+                geely: 1000,
+                "lada-largus": 700,
+                vw: 700
+            }
         };
 
         // Переключение вкладок
@@ -383,19 +719,60 @@
         // Расчет стоимости
         function calculate() {
             const car = document.getElementById('car').value;
-            const days = parseInt(document.getElementById('days').value) || 1;
-            const km = parseInt(document.getElementById('km').value) || 200;
+            const rentalPeriod = document.getElementById('rental-period').value;
+            const mileageLimit = parseInt(document.getElementById('mileage-limit').value);
+            const plannedMileage = parseInt(document.getElementById('planned-mileage').value) || 0;
             const hasDebts = document.getElementById('debts').checked;
             const hasLowExperience = document.getElementById('experience').checked;
-
-            const tariff = tariffs[car];
-            let baseCost = tariff.base * days;
+            
+            // Основная стоимость
+            const baseCost = tariffs[car][rentalPeriod][mileageLimit] || 0;
             
             // Доплата за перепробег
-            let extraCost = 0;
-            if (km > tariff.limit) {
-                const extraKm = km - tariff.limit;
-                extraCost = extraKm * tariff.extraKm * days;
+            let extraMileageCost = 0;
+            if (plannedMileage > mileageLimit) {
+                const extraKm = plannedMileage - mileageLimit;
+                extraMileageCost = extraKm * extras.mileage[car];
+            }
+            
+            // Дополнительные услуги
+            let insuranceCost = 0;
+            let insuranceCoverage = 0;
+            if (document.getElementById('insurance-base').checked) {
+                insuranceCost += extras.insurance.base.cost;
+                insuranceCoverage = extras.insurance.base.coverage;
+            }
+            if (document.getElementById('insurance-standard').checked) {
+                insuranceCost += extras.insurance.standard[car].cost;
+                insuranceCoverage = extras.insurance.standard[car].coverage;
+            }
+            if (document.getElementById('insurance-full').checked) {
+                insuranceCost += extras.insurance.full[car].cost;
+                insuranceCoverage = extras.insurance.full[car].coverage;
+            }
+            
+            let driverCost = 0;
+            if (document.getElementById('driver-1-4').checked) {
+                driverCost += extras.driver["1-4-hours"][car];
+            }
+            if (document.getElementById('driver-4+').checked) {
+                driverCost += extras.driver["4+"][car];
+            }
+            
+            let deliveryCost = 0;
+            if (document.getElementById('delivery-city').checked) {
+                deliveryCost += extras.delivery.city;
+            }
+            if (document.getElementById('delivery-airport').checked) {
+                deliveryCost += extras.delivery.airport;
+            }
+            if (document.getElementById('delivery-outside').checked) {
+                deliveryCost += 500; // Примерная стоимость для за город
+            }
+            
+            let washCost = 0;
+            if (document.getElementById('car-wash').checked) {
+                washCost += extras.wash[car];
             }
             
             // Коэффициенты за риски
@@ -403,29 +780,148 @@
             if (hasDebts) coef += 0.5;
             if (hasLowExperience) coef += 0.25;
             
-            const total = Math.round((baseCost + extraCost) * coef);
+            // Итоговая сумма
+            const total = Math.round((baseCost + extraMileageCost + insuranceCost + driverCost + deliveryCost + washCost) * coef);
             
             // Отображение результата
             document.getElementById('total').textContent = total.toLocaleString('ru') + ' ₽';
             
             // Генерация фразы для клиента
-            let phrase = `«Аренда ${getCarName(car)} на ${days} ${getDaysText(days)}: `;
+            let phrase = `«Аренда ${getCarName(car)} на ${getRentalPeriodText(rentalPeriod)}: `;
             phrase += `${baseCost.toLocaleString('ru')} ₽ за базовую стоимость`;
-            if (extraCost > 0) {
-                phrase += `, ${extraCost.toLocaleString('ru')} ₽ за перепробег (${km - tariff.limit} км/сутки сверх лимита)`;
+            
+            if (extraMileageCost > 0) {
+                phrase += `, ${extraMileageCost.toLocaleString('ru')} ₽ за перепробег (${plannedMileage - mileageLimit} км сверх лимита)`;
+            }
+            if (insuranceCost > 0) {
+                phrase += `, ${insuranceCost.toLocaleString('ru')} ₽ за страховку (покрытие до ${insuranceCoverage.toLocaleString('ru')} ₽)`;
+            }
+            if (driverCost > 0) {
+                phrase += `, ${driverCost.toLocaleString('ru')} ₽ за водителя`;
+            }
+            if (deliveryCost > 0) {
+                phrase += `, ${deliveryCost.toLocaleString('ru')} ₽ за доставку`;
+            }
+            if (washCost > 0) {
+                phrase += `, ${washCost.toLocaleString('ru')} ₽ за мойку`;
             }
             if (coef > 1) {
-                phrase += `, ${Math.round((baseCost + extraCost) * (coef - 1)).toLocaleString('ru')} ₽ за особые условия`;
+                phrase += `, ${Math.round((baseCost + extraMileageCost) * (coef - 1)).toLocaleString('ru')} ₽ за особые условия`;
             }
-            phrase += `. Итого: ${total.toLocaleString('ru')} ₽.`;
             
-            if (km > tariff.limit) {
-                phrase += ` Рекомендуем пакет с лимитом 500 км/сутки для экономии!»`;
-            } else {
-                phrase += ` Депозит ${getDeposit(car)} ₽ вернется через 3 дня при отсутствии повреждений»`;
-            }
+            phrase += `. Итого: ${total.toLocaleString('ru')} ₽. `;
+            phrase += `Депозит ${extras.deposit[car].toLocaleString('ru')} ₽ вернется через 3 дня при отсутствии повреждений»`;
             
             document.getElementById('phrase').innerHTML = `<p>${phrase}</p>`;
+            
+            // Детализация
+            const breakdown = document.getElementById('breakdown');
+            breakdown.innerHTML = `
+                <p>• Базовая стоимость: ${baseCost.toLocaleString('ru')} ₽</p>
+                <p>• Перепробег: ${extraMileageCost.toLocaleString('ru')} ₽</p>
+                <p>• Страховка: ${insuranceCost.toLocaleString('ru')} ₽ (покрытие до ${insuranceCoverage.toLocaleString('ru')} ₽)</p>
+                <p>• Водитель: ${driverCost.toLocaleString('ru')} ₽</p>
+                <p>• Доставка: ${deliveryCost.toLocaleString('ru')} ₽</p>
+                <p>• Мойка: ${washCost.toLocaleString('ru')} ₽</p>
+                <p>• Коэффициент: ${coef.toFixed(2)}x</p>
+                <p style="font-weight: bold; margin-top: 10px;">Итого: ${total.toLocaleString('ru')} ₽</p>
+            `;
+            
+            // Генерация скриптов
+            generateScripts(car, plannedMileage, mileageLimit, insuranceCost, insuranceCoverage, washCost);
+        }
+
+        // Генерация скриптов для клиента
+        function generateScripts(car, plannedMileage, mileageLimit, insuranceCost, insuranceCoverage, washCost) {
+            const scriptsContainer = document.getElementById('scripts');
+            let scripts = '';
+            
+            // Скрипт по страховке
+            if (insuranceCost === 0) {
+                const standard = extras.insurance.standard[car];
+                const full = extras.insurance.full[car];
+                scripts += `
+                    <div class="script-item">
+                        <div class="script-title">Предложение страховки</div>
+                        <div class="script-content">
+                            «Рекомендую оформить страховку. Это защитит вас от дополнительных расходов до ${full.coverage.toLocaleString('ru')} рублей при ДТП. 
+                            Стандартный пакет стоит ${standard.cost.toLocaleString('ru')} ₽/сутки, полное покрытие — ${full.cost.toLocaleString('ru')} ₽/сутки»
+                        </div>
+                    </div>
+                `;
+            } else {
+                scripts += `
+                    <div class="script-item">
+                        <div class="script-title">Подтверждение страховки</div>
+                        <div class="script-content">
+                            «Вы оформили страховку с покрытием до ${insuranceCoverage.toLocaleString('ru')} рублей. Это защитит вас от дополнительных расходов при ДТП»
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Скрипт по перепробегу
+            if (plannedMileage > mileageLimit) {
+                const extraKm = plannedMileage - mileageLimit;
+                const extraCost = extraKm * extras.mileage[car];
+                scripts += `
+                    <div class="script-item">
+                        <div class="script-title">Предложение увеличения лимита</div>
+                        <div class="script-content">
+                            «Вы планируете проехать ${extraKm} км сверх лимита. Рекомендую увеличить лимит пробега до ${plannedMileage} км за дополнительную плату ${extraCost.toLocaleString('ru')} ₽. 
+                            Это сэкономит вам до ${Math.round(extraCost * 1.5).toLocaleString('ru')} ₽ при возврате»
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Скрипт по мойке
+            if (washCost === 0) {
+                const washPrice = extras.wash[car];
+                scripts += `
+                    <div class="script-item">
+                        <div class="script-title">Предложение мойки</div>
+                        <div class="script-content">
+                            «После возврата автомобиля требуется мойка. Оформите сейчас за ${washPrice.toLocaleString('ru')} ₽, чтобы избежать задержек при возврате»
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Скрипт по депозиту
+            scripts += `
+                <div class="script-item">
+                    <div class="script-title">Объяснение депозита</div>
+                    <div class="script-content">
+                        «Депозит в размере ${extras.deposit[car].toLocaleString('ru')} ₽ будет возвращен через 3 дня после проверки авто. 
+                        Если будут обнаружены повреждения или перепробег, сумма удерживается в размере фактических затрат»
+                    </div>
+                </div>
+            `;
+            
+            // Скрипт по осмотру авто
+            scripts += `
+                <div class="script-item">
+                    <div class="script-title">Важно перед выдачей</div>
+                    <div class="script-content">
+                        «Перед выдачей зафиксируем состояние авто на видео. Это защитит вас от споров при возврате. 
+                        Проверим уровень бензина, наличие незамерзайки и общее состояние»
+                    </div>
+                </div>
+            `;
+            
+            // Скрипт по возврату
+            scripts += `
+                <div class="script-item">
+                    <div class="script-title">Что проверить при возврате</div>
+                    <div class="script-content">
+                        «При возврате проверим: пробег, уровень бензина, наличие штрафов, чистоту салона. 
+                        Если все в порядке — депозит вернем в течение 24 часов»
+                    </div>
+                </div>
+            `;
+            
+            scriptsContainer.innerHTML = scripts || '<p>Нет рекомендаций</p>';
         }
 
         // Вспомогательные функции
@@ -434,25 +930,26 @@
                 chery: 'Chery Tiggo 4 Pro',
                 lada: 'Lada Granta',
                 jeep: 'Jeep Cherokee',
-                range: 'Range Rover Sport'
+                voyah: 'Voyah Free',
+                gazel: 'Газель Next',
+                range: 'Range Rover Sport',
+                geely: 'Geely Monjaro',
+                "lada-largus": 'Lada Largus фургон',
+                vw: 'VW Caddy'
             };
             return names[car];
         }
 
-        function getDeposit(car) {
-            const deposits = {
-                chery: '10 000',
-                lada: '5 000',
-                jeep: '15 000',
-                range: '15 000'
+        function getRentalPeriodText(period) {
+            const periods = {
+                "4-hours": "4 часа",
+                "8-hours": "8 часов",
+                "1-3-days": "1-3 суток",
+                "4-7-days": "4-7 суток",
+                "8-15-days": "8-15 суток",
+                "16-30-days": "16-30 суток"
             };
-            return deposits[car];
-        }
-
-        function getDaysText(days) {
-            if (days % 10 === 1 && days % 100 !== 11) return 'день';
-            if ([2,3,4].includes(days % 10) && ![12,13,14].includes(days % 100)) return 'дня';
-            return 'дней';
+            return periods[period];
         }
 
         // Инициализация
