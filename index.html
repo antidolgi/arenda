@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Арендыч — Внутренний портал</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --light: #f8fafc;
+            --dark: #1e293b;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--primary);
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #4b5563;
+        }
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 200px;
+        }
+        .tab-btn:hover {
+            background: var(--secondary);
+        }
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            animation: fadeIn 0.4s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .checklist-item {
+            background: #f1f5f9;
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+        .checklist-item::before {
+            content: "✅";
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .warning {
+            background: #fffbeb;
+            border-left-color: var(--warning);
+        }
+        .warning::before {
+            content: "⚠️";
+            color: var(--warning);
+        }
+        .critical {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        .critical::before {
+            content: "🔥";
+            color: var(--danger);
+        }
+        h2 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        ul {
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .highlight {
+            background: #dbeafe;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .phrase {
+            background: #dbeafe;
+            border-left: 3px solid var(--primary);
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+            font-style: italic;
+        }
+        .calculator {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .calculator {
+                grid-template-columns: 1fr;
+            }
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        select, input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        .result-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .total-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 15px 0;
+        }
+        .client-phrase {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid #cbd5e1;
+            text-align: left;
+            min-height: 120px;
+        }
+        .client-phrase p {
+            margin-bottom: 8px;
+        }
+        .btn-calculate {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        .btn-calculate:hover {
+            background: #0da271;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #cbd5e1;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚗 Арендыч</h1>
+            <p class="subtitle">Внутренний портал для сотрудников</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn" onclick="openTab('checklist')">Чек-лист процессов</button>
+            <button class="tab-btn" onclick="openTab('calculator')">Калькулятор стоимости</button>
+        </div>
+
+        <!-- Чек-лист -->
+        <div id="checklist" class="tab-content active">
+            <h2>📋 Полный чек-лист аренды</h2>
+            
+            <div class="checklist-item">
+                <h3>1. Прием заявки</h3>
+                <ul>
+                    <li>Если заявка не по телефону — уточнить номер для связи и внести в Chat2desk</li>
+                    <li>Собрать данные: модель авто, срок аренды, маршрут (для расчета км)</li>
+                </ul>
+                <div class="phrase">
+                    💬 <span class="highlight">"Для точного расчета тарифа уточните, куда вы планируете ехать. Это поможет избежать переплат за перепробег!"</span>
+                </div>
+            </div>
+
+            <div class="checklist-item warning">
+                <h3>2. Проверка клиента</h3>
+                <ul>
+                    <li>Проверить на сайте судебных приставов по паспорту</li>
+                    <li>Стаж вождения: менее 3 лет → <span class="highlight">+25% к тарифу</span></li>
+                    <li>Долги у приставов → <span class="highlight">+50% к тарифу</span></li>
+                    <li>Возраст менее 21 года → <span class="highlight">отказ в аренде</span></li>
+                </ul>
+                <div class="phrase">
+                    ⚠️ <span class="highlight">"Без проверки приставов и стажа аренда невозможна"</span>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <h3>3. Выдача автомобиля</h3>
+                <ul>
+                    <li>Сделать видео осмотра авто + фото пробега и уровня бензина</li>
+                    <li>Проверить наличие незамерзайки (зимой)</li>
+                    <li>Зафиксировать данные в программе "ОКНА"</li>
+                </ul>
+                <div class="phrase">
+                    💬 <span class="highlight">"Перед выдачей зафиксируем состояние авто на видео — это защитит вас от споров при возврате"</span>
+                </div>
+            </div>
+
+            <div class="checklist-item critical">
+                <h3>4. Возврат автомобиля</h3>
+                <ul>
+                    <li>Сделать видео осмотра + фото пробега и бензина</li>
+                    <li>Проверить штрафы в ГИБДД</li>
+                    <li>Проверить чистоту салона (если грязный → +700 ₽ за мойку)</li>
+                    <li>Вернуть депозит в течение 24 часов</li>
+                </ul>
+                <div class="phrase">
+                    🔥 <span class="highlight">"Без фото пробега и топлива возврат депозита невозможен!"</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Калькулятор -->
+        <div id="calculator" class="tab-content">
+            <h2>🧮 Калькулятор стоимости аренды</h2>
+            <div class="calculator">
+                <div>
+                    <div class="input-group">
+                        <label for="car">Выберите автомобиль:</label>
+                        <select id="car" onchange="calculate()">
+                            <option value="chery">Chery Tiggo 4 Pro (3800 ₽/сутки)</option>
+                            <option value="lada">Lada Granta (2200 ₽/сутки)</option>
+                            <option value="jeep">Jeep Cherokee (7000 ₽/сутки)</option>
+                            <option value="range">Range Rover Sport (6300 ₽/сутки)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="days">Срок аренды (дней):</label>
+                        <input type="number" id="days" min="1" value="1" onchange="calculate()">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="km">Планируемый километраж в сутки:</label>
+                        <input type="number" id="km" min="50" value="200" onchange="calculate()">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Особые условия:</label>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px;">
+                            <div>
+                                <input type="checkbox" id="debts" onchange="calculate()">
+                                <label for="debts" style="display: inline; margin-left: 5px;">Долги у приставов (+50%)</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="experience" onchange="calculate()">
+                                <label for="experience" style="display: inline; margin-left: 5px;">Стаж < 3 лет (+25%)</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-calculate" onclick="calculate()">Рассчитать стоимость</button>
+                </div>
+                
+                <div>
+                    <div class="result-box">
+                        <h3>Итоговая стоимость:</h3>
+                        <div class="total-amount" id="total">0 ₽</div>
+                        <div class="client-phrase" id="phrase">
+                            <p>Здесь появится фраза для клиента...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Внутренний портал компании "Арендыч" • Версия 1.0 • Обновлено: 27.11.2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // Данные по тарифам
+        const tariffs = {
+            chery: { base: 3800, limit: 200, extraKm: 10 },
+            lada: { base: 2200, limit: 200, extraKm: 10 },
+            jeep: { base: 7000, limit: 200, extraKm: 25 },
+            range: { base: 6300, limit: 200, extraKm: 20 }
+        };
+
+        // Переключение вкладок
+        function openTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.style.background = '';
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.style.background = '#1e40af';
+        }
+
+        // Расчет стоимости
+        function calculate() {
+            const car = document.getElementById('car').value;
+            const days = parseInt(document.getElementById('days').value) || 1;
+            const km = parseInt(document.getElementById('km').value) || 200;
+            const hasDebts = document.getElementById('debts').checked;
+            const hasLowExperience = document.getElementById('experience').checked;
+
+            const tariff = tariffs[car];
+            let baseCost = tariff.base * days;
+            
+            // Доплата за перепробег
+            let extraCost = 0;
+            if (km > tariff.limit) {
+                const extraKm = km - tariff.limit;
+                extraCost = extraKm * tariff.extraKm * days;
+            }
+            
+            // Коэффициенты за риски
+            let coef = 1;
+            if (hasDebts) coef += 0.5;
+            if (hasLowExperience) coef += 0.25;
+            
+            const total = Math.round((baseCost + extraCost) * coef);
+            
+            // Отображение результата
+            document.getElementById('total').textContent = total.toLocaleString('ru') + ' ₽';
+            
+            // Генерация фразы для клиента
+            let phrase = `«Аренда ${getCarName(car)} на ${days} ${getDaysText(days)}: `;
+            phrase += `${baseCost.toLocaleString('ru')} ₽ за базовую стоимость`;
+            if (extraCost > 0) {
+                phrase += `, ${extraCost.toLocaleString('ru')} ₽ за перепробег (${km - tariff.limit} км/сутки сверх лимита)`;
+            }
+            if (coef > 1) {
+                phrase += `, ${Math.round((baseCost + extraCost) * (coef - 1)).toLocaleString('ru')} ₽ за особые условия`;
+            }
+            phrase += `. Итого: ${total.toLocaleString('ru')} ₽.`;
+            
+            if (km > tariff.limit) {
+                phrase += ` Рекомендуем пакет с лимитом 500 км/сутки для экономии!»`;
+            } else {
+                phrase += ` Депозит ${getDeposit(car)} ₽ вернется через 3 дня при отсутствии повреждений»`;
+            }
+            
+            document.getElementById('phrase').innerHTML = `<p>${phrase}</p>`;
+        }
+
+        // Вспомогательные функции
+        function getCarName(car) {
+            const names = {
+                chery: 'Chery Tiggo 4 Pro',
+                lada: 'Lada Granta',
+                jeep: 'Jeep Cherokee',
+                range: 'Range Rover Sport'
+            };
+            return names[car];
+        }
+
+        function getDeposit(car) {
+            const deposits = {
+                chery: '10 000',
+                lada: '5 000',
+                jeep: '15 000',
+                range: '15 000'
+            };
+            return deposits[car];
+        }
+
+        function getDaysText(days) {
+            if (days % 10 === 1 && days % 100 !== 11) return 'день';
+            if ([2,3,4].includes(days % 10) && ![12,13,14].includes(days % 100)) return 'дня';
+            return 'дней';
+        }
+
+        // Инициализация
+        calculate();
+    </script>
+</body>
+</html>
