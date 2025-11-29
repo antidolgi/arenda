@@ -129,8 +129,13 @@
         }
         h3 {
             color: var(--secondary);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-size: 1.4rem;
+        }
+        h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
         }
         ul {
             padding-left: 25px;
@@ -394,6 +399,25 @@
             color: var(--danger);
             font-weight: bold;
         }
+        .extension-section {
+            background: #f0f9ff;
+            border: 1px solid #dbeafe;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .extension-input {
+            display: none;
+            margin-top: 10px;
+        }
+        .extension-input.active {
+            display: block;
+        }
+        #extension-info {
+            margin-top: 10px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -628,6 +652,23 @@
                         <input type="number" id="days" min="1" value="1" onchange="calculate()">
                     </div>
                     
+                    <!-- Новое поле для продления аренды -->
+                    <div class="extension-section">
+                        <div class="addon-item">
+                            <input type="checkbox" id="extend-rental" onchange="toggleExtensionInput(); calculate()">
+                            <label for="extend-rental">Продление аренды</label>
+                        </div>
+                        <div class="extension-input" id="extension-input">
+                            <div class="input-group">
+                                <label for="extension-days">Дополнительные сутки:</label>
+                                <input type="number" id="extension-days" min="1" value="1" onchange="calculate()">
+                            </div>
+                            <p class="mileage-warning">
+                                💡 Продление рассчитывается по тарифу следующего периода (например, продление 3+1 суток считается по тарифу 4-7 суток)
+                            </p>
+                        </div>
+                    </div>
+                    
                     <div class="input-group">
                         <label for="mileage-limit">Лимит пробега в сутки:</label>
                         <select id="mileage-limit" onchange="calculate()">
@@ -746,6 +787,7 @@
                         <div id="breakdown" style="text-align: left; margin-top: 10px;">
                             <!-- Сюда будет вставляться детализация -->
                         </div>
+                        <div id="extension-info"></div>
                         
                         <div class="section-title" style="margin-top: 25px;">Скрипты для клиента</div>
                         <div class="scripts-section" id="scripts">
@@ -798,12 +840,179 @@
     </div>
 
     <script>
-        // ... (тот же JavaScript код с расчетами, что и в предыдущей версии)
-        // Полный код JavaScript можно поместить сюда
-        
-        // Для краткости здесь не приведен полный JS код, но он должен быть тот же самый,
-        // что и в предыдущей версии, с функциями calculate(), toggleDaysInput(), toggleDistanceInput() и т.д.
-        
+        // Полная структура тарифов из скриншотов
+        const tariffs = {
+            chery: {
+                "4-hours": {50: 2000, 100: 3000, 200: 3500, 300: 4300, 500: 5000},
+                "8-hours": {50: 3800, 100: 4150, 200: 4300, 300: 5350, 500: 5500},
+                "1-3-days": {50: 3650, 100: 4000, 200: 4150, 300: 5350, 500: 5500},
+                "4-7-days": {50: 3500, 100: 3850, 200: 4000, 300: 5200, 500: 5500},
+                "8-15-days": {50: 3350, 100: 3500, 200: 3850, 300: 5050, 500: 5500},
+                "16-30-days": {50: 3350, 100: 3500, 200: 3850, 300: 5050, 500: 5500}
+            },
+            lada: {
+                "4-hours": {50: 1400, 100: 1800, 200: 2000, 300: 2200, 500: 2500},
+                "8-hours": {50: 2000, 100: 2100, 200: 2200, 300: 2400, 500: 2500},
+                "1-3-days": {50: 2000, 100: 2100, 200: 2200, 300: 2300, 500: 2500},
+                "4-7-days": {50: 1900, 100: 2000, 200: 2200, 300: 2300, 500: 2500},
+                "8-15-days": {50: 1900, 100: 2000, 200: 2200, 300: 2300, 500: 2500},
+                "16-30-days": {50: 1900, 100: 2000, 200: 2200, 300: 2300, 500: 2500}
+            },
+            jeep: {
+                "4-hours": {50: 4000, 100: 5500, 200: 6000, 300: 7000, 500: 9000},
+                "8-hours": {50: 6850, 100: 7550, 200: 7700, 300: 8850, 500: 9000},
+                "1-3-days": {50: 6700, 100: 7200, 200: 7550, 300: 8600, 500: 9000},
+                "4-7-days": {50: 6500, 100: 7000, 200: 7200, 300: 8200, 500: 9000},
+                "8-15-days": {50: 6500, 100: 7000, 200: 7200, 300: 8200, 500: 9000},
+                "16-30-days": {50: 6500, 100: 7000, 200: 7200, 300: 8200, 500: 9000}
+            },
+            voyah: {
+                "4-hours": {50: 6000, 100: 8000, 200: 10000, 300: 12000, 500: 14500},
+                "8-hours": {50: 9500, 100: 10500, 200: 11000, 300: 12500, 500: 13500},
+                "1-3-days": {50: 8500, 100: 9500, 200: 10000, 300: 11000, 500: 12500},
+                "4-7-days": {50: 7500, 100: 8500, 200: 9000, 300: 10000, 500: 11500},
+                "8-15-days": {50: 7500, 100: 8500, 200: 9000, 300: 10000, 500: 11500},
+                "16-30-days": {50: 7500, 100: 8500, 200: 9000, 300: 10000, 500: 11500}
+            },
+            gazel: {
+                "4-hours": {50: 3000, 100: 4000, 200: 5000, 300: 6000, 500: 8000},
+                "8-hours": {50: 5300, 100: 5500, 200: 6300, 300: 6500, 500: 9000},
+                "1-3-days": {50: 5100, 100: 5300, 200: 6100, 300: 6300, 500: 8700},
+                "4-7-days": {50: 4900, 100: 5100, 200: 5900, 300: 6100, 500: 8500},
+                "8-15-days": {50: 4900, 100: 5100, 200: 5900, 300: 6100, 500: 8500},
+                "16-30-days": {50: 4900, 100: 5100, 200: 5900, 300: 6100, 500: 8500}
+            },
+            range: {
+                "4-hours": {50: 3000, 100: 4500, 200: 5000, 300: 6000, 500: 7000},
+                "8-hours": {50: 5300, 100: 5500, 200: 6300, 300: 6500, 500: 9000},
+                "1-3-days": {50: 5100, 100: 5300, 200: 6100, 300: 6300, 500: 6800},
+                "4-7-days": {50: 4800, 100: 5600, 200: 5900, 300: 6000, 500: 6600},
+                "8-15-days": {50: 4800, 100: 5600, 200: 5900, 300: 6000, 500: 6600},
+                "16-30-days": {50: 4800, 100: 5600, 200: 5900, 300: 6000, 500: 6600}
+            },
+            geely: {
+                "4-hours": {50: 5500, 100: 7000, 200: 7500, 300: 8000, 500: 10000},
+                "8-hours": {50: 7500, 100: 8000, 200: 8500, 300: 9000, 500: 9500},
+                "1-3-days": {50: 7000, 100: 7500, 200: 8000, 300: 8500, 500: 9000},
+                "4-7-days": {50: 6500, 100: 7500, 200: 7500, 300: 8500, 500: 8500},
+                "8-15-days": {50: 6500, 100: 7500, 200: 7500, 300: 8500, 500: 8500},
+                "16-30-days": {50: 6500, 100: 7500, 200: 7500, 300: 8500, 500: 8500}
+            },
+            "lada-largus": {
+                "4-hours": {50: 2200, 100: 2500, 200: 2700, 300: 3200, 500: 3700},
+                "8-hours": {50: 2900, 100: 3050, 200: 3200, 300: 3550, 500: 4550},
+                "1-3-days": {50: 2700, 100: 2900, 200: 3400, 300: 4400, 500: 5350},
+                "4-7-days": {50: 2700, 100: 3200, 200: 3200, 300: 4300, 500: 5200},
+                "8-15-days": {50: 2700, 100: 3200, 200: 3200, 300: 4300, 500: 5200},
+                "16-30-days": {50: 2700, 100: 3200, 200: 3200, 300: 4300, 500: 5200}
+            },
+            vw: {
+                "4-hours": {50: 2000, 100: 3000, 200: 3500, 300: 4000, 500: 5000},
+                "8-hours": {50: 3800, 100: 4300, 200: 4300, 300: 5350, 500: 5500},
+                "1-3-days": {50: 3650, 100: 4150, 200: 4300, 300: 5350, 500: 5500},
+                "4-7-days": {50: 3500, 100: 3850, 200: 4000, 300: 5200, 500: 5500},
+                "8-15-days": {50: 3350, 100: 3500, 200: 3850, 300: 5050, 500: 5500},
+                "16-30-days": {50: 3350, 100: 3500, 200: 3850, 300: 5050, 500: 5500}
+            }
+        };
+
+        // Дополнительные параметры
+        const extras = {
+            mileage: {
+                chery: 10,
+                lada: 10,
+                jeep: 15,
+                voyah: 25,
+                gazel: 15,
+                range: 15,
+                geely: 15,
+                "lada-largus": 10,
+                vw: 10
+            },
+            deposit: {
+                chery: 10000,
+                lada: 5000,
+                jeep: 15000,
+                voyah: 25000,
+                gazel: 10000,
+                range: 15000,
+                geely: 20000,
+                "lada-largus": 10000,
+                vw: 5000
+            },
+            driver: {
+                "1-4-hours": {
+                    chery: 1500,
+                    lada: 1500,
+                    jeep: 2000,
+                    voyah: 3000,
+                    gazel: 1800,
+                    range: 1800,
+                    geely: 2500,
+                    "lada-largus": 1500,
+                    vw: 1500
+                },
+                "4+": {
+                    chery: 1200,
+                    lada: 1200,
+                    jeep: 1800,
+                    voyah: 2500,
+                    gazel: 1500,
+                    range: 1500,
+                    geely: 2000,
+                    "lada-largus": 1200,
+                    vw: 1200
+                }
+            },
+            delivery: {
+                city: 700,
+                airport: 1500,
+                outside: {
+                    "0-30km": 80,
+                    "30-50km": 70,
+                    "50-100km": 60,
+                    "100-300km": 45,
+                    "300+km": 35
+                }
+            },
+            insurance: {
+                base: { cost: 0, coverage: 0 },
+                standard: {
+                    chery: { cost: 800, coverage: 150000 },
+                    lada: { cost: 300, coverage: 100000 },
+                    jeep: { cost: 1000, coverage: 200000 },
+                    voyah: { cost: 1500, coverage: 250000 },
+                    gazel: { cost: 800, coverage: 150000 },
+                    range: { cost: 1000, coverage: 200000 },
+                    geely: { cost: 1500, coverage: 250000 },
+                    "lada-largus": { cost: 500, coverage: 120000 },
+                    vw: { cost: 800, coverage: 150000 }
+                },
+                full: {
+                    chery: { cost: 1700, coverage: 250000 },
+                    lada: { cost: 1000, coverage: 200000 },
+                    jeep: { cost: 2000, coverage: 250000 },
+                    voyah: { cost: 3000, coverage: 300000 },
+                    gazel: { cost: 1700, coverage: 250000 },
+                    range: { cost: 2000, coverage: 250000 },
+                    geely: { cost: 3000, coverage: 300000 },
+                    "lada-largus": { cost: 1200, coverage: 150000 },
+                    vw: { cost: 1700, coverage: 250000 }
+                }
+            },
+            wash: {
+                chery: 700,
+                lada: 700,
+                jeep: 1000,
+                voyah: 1000,
+                gazel: 1000,
+                range: 1000,
+                geely: 1000,
+                "lada-largus": 700,
+                vw: 700
+            }
+        };
+
         // Переключение вкладок
         function openTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(el => {
@@ -815,8 +1024,363 @@
             document.getElementById(tabName).classList.add('active');
             event.target.style.background = '#1e40af';
         }
-        
-        // ... (остальной JavaScript код)
+
+        // Показать/скрыть поле "Количество дней"
+        function toggleDaysInput() {
+            const period = document.getElementById('rental-period').value;
+            const daysInput = document.getElementById('days-input');
+            
+            if (period.includes('days')) {
+                daysInput.classList.add('active');
+                const minDays = parseInt(period.split('-')[0]);
+                const maxDays = parseInt(period.split('-')[1].replace('days', ''));
+                document.getElementById('days').min = minDays;
+                document.getElementById('days').max = maxDays;
+                document.getElementById('days').value = minDays;
+            } else {
+                daysInput.classList.remove('active');
+            }
+            calculate();
+        }
+
+        // Показать/скрыть поле "Расстояние"
+        function toggleDistanceInput() {
+            const deliveryOutside = document.getElementById('delivery-outside').checked;
+            document.getElementById('distance-input').classList.toggle('active', deliveryOutside);
+            calculate();
+        }
+
+        // Показать/скрыть поле "Продление аренды"
+        function toggleExtensionInput() {
+            const extendChecked = document.getElementById('extend-rental').checked;
+            document.getElementById('extension-input').classList.toggle('active', extendChecked);
+            calculate();
+        }
+
+        // Расчет стоимости
+        function calculate() {
+            const car = document.getElementById('car').value;
+            const rentalPeriod = document.getElementById('rental-period').value;
+            const mileageLimit = parseInt(document.getElementById('mileage-limit').value);
+            const plannedMileage = parseInt(document.getElementById('planned-mileage').value) || 0;
+            const hasDebts = document.getElementById('debts').checked;
+            const hasLowExperience = document.getElementById('experience').checked;
+            let days = parseInt(document.getElementById('days').value) || 1;
+            const deliveryDistance = parseInt(document.getElementById('delivery-distance').value) || 0;
+            const isExtended = document.getElementById('extend-rental').checked;
+            let extensionDays = isExtended ? parseInt(document.getElementById('extension-days').value) || 1 : 0;
+            
+            // Основная стоимость
+            let baseCost = tariffs[car][rentalPeriod][mileageLimit] || 0;
+            
+            // Учет количества дней
+            if (rentalPeriod.includes('days')) {
+                baseCost = baseCost * days;
+            }
+            
+            // Доплата за перепробег
+            let extraMileageCost = 0;
+            if (plannedMileage > mileageLimit) {
+                const extraKm = plannedMileage - mileageLimit;
+                if (extraKm <= 100) {
+                    extraMileageCost = 0;
+                } else {
+                    extraMileageCost = (extraKm - 100) * extras.mileage[car];
+                }
+            }
+            
+            // Дополнительные услуги
+            let insuranceCost = 0;
+            let insuranceCoverage = 0;
+            if (document.getElementById('insurance-base').checked) {
+                insuranceCost += extras.insurance.base.cost;
+                insuranceCoverage = extras.insurance.base.coverage;
+            }
+            if (document.getElementById('insurance-standard').checked) {
+                insuranceCost += extras.insurance.standard[car].cost;
+                insuranceCoverage = extras.insurance.standard[car].coverage;
+            }
+            if (document.getElementById('insurance-full').checked) {
+                insuranceCost += extras.insurance.full[car].cost;
+                insuranceCoverage = extras.insurance.full[car].coverage;
+            }
+            
+            let driverCost = 0;
+            if (document.getElementById('driver-1-4').checked) {
+                driverCost += extras.driver["1-4-hours"][car];
+            }
+            if (document.getElementById('driver-4+').checked) {
+                driverCost += extras.driver["4+"][car];
+            }
+            
+            let deliveryCost = 0;
+            if (document.getElementById('delivery-city').checked) {
+                deliveryCost += extras.delivery.city;
+            }
+            if (document.getElementById('delivery-airport').checked) {
+                deliveryCost += extras.delivery.airport;
+            }
+            if (document.getElementById('delivery-outside').checked) {
+                deliveryCost += calculateDeliveryCost(deliveryDistance);
+            }
+            
+            let washCost = 0;
+            if (document.getElementById('car-wash').checked) {
+                washCost += extras.wash[car];
+            }
+            
+            // Коэффициенты за риски
+            let coef = 1;
+            if (hasDebts) coef += 0.5;
+            if (hasLowExperience) coef += 0.25;
+            
+            // Запоминаем основную стоимость без коэффициентов для расчета продления
+            const baseCostWithoutCoef = baseCost + extraMileageCost + insuranceCost + driverCost + deliveryCost + washCost;
+            
+            // Стоимость продления аренды
+            let extensionCost = 0;
+            if (isExtended && rentalPeriod.includes('days')) {
+                // Определяем новый период для продления
+                const totalDays = days + extensionDays;
+                let extensionPeriod = '';
+                
+                if (totalDays <= 3) extensionPeriod = "1-3-days";
+                else if (totalDays <= 7) extensionPeriod = "4-7-days";
+                else if (totalDays <= 15) extensionPeriod = "8-15-days";
+                else extensionPeriod = "16-30-days";
+                
+                // Стоимость продления по новому тарифу
+                const extensionRate = tariffs[car][extensionPeriod][mileageLimit] || 0;
+                extensionCost = extensionRate * extensionDays;
+                
+                // Добавляем стоимость продления к основной
+                baseCost += extensionCost;
+            }
+            
+            // Итоговая сумма с учетом коэффициентов
+            const total = Math.round((baseCost + extraMileageCost + insuranceCost + driverCost + deliveryCost + washCost) * coef);
+            
+            // Отображение результата
+            document.getElementById('total').textContent = total.toLocaleString('ru') + ' ₽';
+            
+            // Генерация фразы для клиента
+            let phrase = `«Аренда ${getCarName(car)} на ${getRentalPeriodText(rentalPeriod)}`;
+            if (rentalPeriod.includes('days')) {
+                phrase += ` (${days} ${getDaysText(days)}`;
+                if (isExtended && extensionDays > 0) {
+                    phrase += ` + ${extensionDays} ${getDaysText(extensionDays)} продления`;
+                }
+                phrase += `)`;
+            }
+            phrase += `: `;
+            phrase += `${baseCost.toLocaleString('ru')} ₽ за базовую стоимость`;
+            
+            if (extraMileageCost > 0) {
+                phrase += `, ${extraMileageCost.toLocaleString('ru')} ₽ за перепробег (${plannedMileage - mileageLimit} км сверх лимита)`;
+            }
+            if (insuranceCost > 0) {
+                phrase += `, ${insuranceCost.toLocaleString('ru')} ₽ за страховку (покрытие до ${insuranceCoverage.toLocaleString('ru')} ₽)`;
+            }
+            if (driverCost > 0) {
+                phrase += `, ${driverCost.toLocaleString('ru')} ₽ за водителя`;
+            }
+            if (deliveryCost > 0) {
+                phrase += `, ${deliveryCost.toLocaleString('ru')} ₽ за доставку`;
+            }
+            if (washCost > 0) {
+                phrase += `, ${washCost.toLocaleString('ru')} ₽ за мойку`;
+            }
+            if (isExtended && extensionCost > 0) {
+                phrase += `, ${extensionCost.toLocaleString('ru')} ₽ за продление на ${extensionDays} ${getDaysText(extensionDays)}`;
+            }
+            if (coef > 1) {
+                const riskCost = Math.round((baseCostWithoutCoef * (coef - 1)));
+                phrase += `, ${riskCost.toLocaleString('ru')} ₽ за особые условия`;
+            }
+            
+            phrase += `. Итого: ${total.toLocaleString('ru')} ₽. `;
+            phrase += `Депозит ${extras.deposit[car].toLocaleString('ru')} ₽ вернется через 3 дня при отсутствии повреждений»`;
+            
+            document.getElementById('phrase').innerHTML = `<p>${phrase}</p>`;
+            
+            // Детализация
+            const breakdown = document.getElementById('breakdown');
+            let breakdownHTML = `
+                <p>• Базовая стоимость: ${baseCost.toLocaleString('ru')} ₽</p>
+                <p>• Перепробег: ${extraMileageCost.toLocaleString('ru')} ₽</p>
+                <p>• Страховка: ${insuranceCost.toLocaleString('ru')} ₽ (покрытие до ${insuranceCoverage.toLocaleString('ru')} ₽)</p>
+                <p>• Водитель: ${driverCost.toLocaleString('ru')} ₽</p>
+                <p>• Доставка: ${deliveryCost.toLocaleString('ru')} ₽</p>
+                <p>• Мойка: ${washCost.toLocaleString('ru')} ₽</p>`;
+            
+            if (isExtended && extensionCost > 0) {
+                breakdownHTML += `<p>• Продление на ${extensionDays} ${getDaysText(extensionDays)}: ${extensionCost.toLocaleString('ru')} ₽</p>`;
+            }
+            
+            breakdownHTML += `<p>• Коэффициент: ${coef.toFixed(2)}x</p>`;
+            breakdownHTML += `<p style="font-weight: bold; margin-top: 10px;">Итого: ${total.toLocaleString('ru')} ₽</p>`;
+            
+            breakdown.innerHTML = breakdownHTML;
+            
+            // Генерация скриптов
+            generateScripts(car, plannedMileage, mileageLimit, insuranceCost, insuranceCoverage, washCost, isExtended, extensionDays);
+        }
+
+        // Расчет доставки за город
+        function calculateDeliveryCost(distance) {
+            if (distance <= 30) return distance * 80;
+            if (distance <= 50) return 30*80 + (distance-30)*70;
+            if (distance <= 100) return 30*80 + 20*70 + (distance-50)*60;
+            if (distance <= 300) return 30*80 + 20*70 + 50*60 + (distance-100)*45;
+            return 30*80 + 20*70 + 50*60 + 200*45 + (distance-300)*35;
+        }
+
+        // Генерация скриптов для клиента
+        function generateScripts(car, plannedMileage, mileageLimit, insuranceCost, insuranceCoverage, washCost, isExtended, extensionDays) {
+            const scriptsContainer = document.getElementById('scripts');
+            let scripts = '';
+            
+            // Скрипт по страховке
+            if (insuranceCost === 0) {
+                const standard = extras.insurance.standard[car];
+                const full = extras.insurance.full[car];
+                scripts += `
+                    <div class="script-item">
+                        <div class="script-title">Предложение страховки</div>
+                        <div class="script-content">
+                            «Рекомендую оформить страховку. Это защитит вас от дополнительных расходов до ${full.coverage.toLocaleString('ru')} рублей при ДТП. 
+                            Стандартный пакет стоит ${standard.cost.toLocaleString('ru')} ₽/сутки, полное покрытие — ${full.cost.toLocaleString('ru')} ₽/сутки»
+                        </div>
+                    </div>
+                `;
+            } else {
+                scripts += `
+                    <div class="script-item">
+                        <div class="script-title">Подтверждение страховки</div>
+                        <div class="script-content">
+                            «Вы оформили страховку с покрытием до ${insuranceCoverage.toLocaleString('ru')} рублей. Это защитит вас от дополнительных расходов при ДТП»
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Скрипт по перепробегу
+            if (plannedMileage > mileageLimit) {
+                const extraKm = plannedMileage - mileageLimit;
+                const extraCost = extraKm > 100 ? (extraKm - 100) * extras.mileage[car] : 0;
+                scripts += `
+                    <div class="script-item">
+                        <div class="script-title">Предложение увеличения лимита</div>
+                        <div class="script-content">
+                            «Вы планируете проехать ${extraKm} км сверх лимита. 
+                            ${extraKm <= 100 ? 'Первые 100 км перепробега бесплатны' : `Рекомендую увеличить лимит пробега до ${plannedMileage} км за дополнительную плату ${extraCost.toLocaleString('ru')} ₽`}»
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Скрипт по мойке
+            if (washCost === 0) {
+                const washPrice = extras.wash[car];
+                scripts += `
+                    <div class="script-item">
+                        <div class="script-title">Предложение мойки</div>
+                        <div class="script-content">
+                            «После возврата автомобиля требуется мойка. Оформите сейчас за ${washPrice.toLocaleString('ru')} ₽, чтобы избежать задержек при возврате»
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Скрипт по продлению аренды
+            if (isExtended && extensionDays > 0) {
+                scripts += `
+                    <div class="script-item">
+                        <div class="script-title">Информация о продлении</div>
+                        <div class="script-content">
+                            «Продление аренды рассчитано по тарифу следующего периода. Например, если основной период был 1-3 суток, а с продлением стало 4 суток — расчет ведется по тарифу 4-7 суток»
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Скрипт по депозиту
+            scripts += `
+                <div class="script-item">
+                    <div class="script-title">Объяснение депозита</div>
+                    <div class="script-content">
+                        «Депозит в размере ${extras.deposit[car].toLocaleString('ru')} ₽ будет возвращен через 3 дня после проверки авто. 
+                        Если будут обнаружены повреждения или перепробег, сумма удерживается в размере фактических затрат»
+                    </div>
+                </div>
+            `;
+            
+            // Скрипт по осмотру авто
+            scripts += `
+                <div class="script-item">
+                    <div class="script-title">Важно перед выдачей</div>
+                    <div class="script-content">
+                        «Перед выдачей зафиксируем состояние авто на видео. Это защитит вас от споров при возврате. 
+                        Проверим уровень бензина, наличие незамерзайки и общее состояние»
+                    </div>
+                </div>
+            `;
+            
+            // Скрипт по возврату
+            scripts += `
+                <div class="script-item">
+                    <div class="script-title">Что проверить при возврате</div>
+                    <div class="script-content">
+                        «При возврате проверим: пробег, уровень бензина, наличие штрафов, чистоту салона. 
+                        Если все в порядке — депозит вернем в течение 24 часов»
+                    </div>
+                </div>
+            `;
+            
+            scriptsContainer.innerHTML = scripts || '<p>Нет рекомендаций</p>';
+        }
+
+        // Вспомогательные функции
+        function getCarName(car) {
+            const names = {
+                chery: 'Chery Tiggo 4 Pro',
+                lada: 'Lada Granta',
+                jeep: 'Jeep Cherokee',
+                voyah: 'Voyah Free',
+                gazel: 'Газель Next',
+                range: 'Range Rover Sport',
+                geely: 'Geely Monjaro',
+                "lada-largus": 'Lada Largus фургон',
+                vw: 'VW Caddy'
+            };
+            return names[car];
+        }
+
+        function getRentalPeriodText(period) {
+            const periods = {
+                "4-hours": "4 часа",
+                "8-hours": "8 часов",
+                "1-3-days": "1-3 суток",
+                "4-7-days": "4-7 суток",
+                "8-15-days": "8-15 суток",
+                "16-30-days": "16-30 суток"
+            };
+            return periods[period];
+        }
+
+        function getDaysText(days) {
+            if (days % 10 === 1 && days % 100 !== 11) return 'день';
+            if ([2,3,4].includes(days % 10) && ![12,13,14].includes(days % 100)) return 'дня';
+            return 'дней';
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleDaysInput();
+            toggleDistanceInput();
+            toggleExtensionInput();
+            calculate();
+        });
     </script>
 </body>
 </html>
