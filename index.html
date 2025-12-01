@@ -25,44 +25,46 @@
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
             color: var(--dark);
             line-height: 1.6;
+            padding-bottom: 60px;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
         }
         header {
             text-align: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
+            padding: 15px 0;
+            margin-bottom: 20px;
             border-bottom: 2px solid var(--primary);
         }
         h1 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: var(--secondary);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #4b5563;
         }
         .tabs {
             display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 5px;
         }
         .tab-btn {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 10px 15px;
+            border-radius: 6px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
-            flex: 1;
-            min-width: 200px;
+            min-width: 120px;
+            white-space: nowrap;
         }
         .tab-btn:hover {
             background: var(--secondary);
@@ -71,8 +73,8 @@
             display: none;
             background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 20px;
             animation: fadeIn 0.4s ease;
         }
         .tab-content.active {
@@ -85,26 +87,27 @@
         .checklist-item {
             background: #f1f5f9;
             border-left: 4px solid var(--primary);
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 15px;
+            margin-bottom: 15px;
             border-radius: 0 8px 8px 0;
             position: relative;
         }
         .checklist-item::before {
             content: "✅";
             position: absolute;
-            left: -25px;
+            left: -22px;
             top: 50%;
             transform: translateY(-50%);
             background: white;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .warning {
             background: #fffbeb;
@@ -124,64 +127,67 @@
         }
         h2 {
             color: var(--secondary);
-            margin-bottom: 15px;
-            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-size: 1.5rem;
         }
         h3 {
             color: var(--secondary);
-            margin-bottom: 15px;
-            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
         h4 {
             color: var(--secondary);
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
         }
         ul {
-            padding-left: 25px;
-            margin: 10px 0;
+            padding-left: 22px;
+            margin: 8px 0;
         }
         li {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
         }
         .highlight {
             background: #dbeafe;
-            padding: 2px 6px;
-            border-radius: 4px;
+            padding: 2px 5px;
+            border-radius: 3px;
             font-weight: 500;
         }
         .phrase {
             background: #dbeafe;
             border-left: 3px solid var(--primary);
-            padding: 12px 15px;
-            margin: 15px 0;
+            padding: 10px 12px;
+            margin: 12px 0;
             border-radius: 0 6px 6px 0;
             font-style: italic;
+            font-size: 0.95rem;
         }
         .calculator {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .calculator {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
         }
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 500;
             color: var(--dark);
+            font-size: 0.95rem;
         }
         select, input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 10px 12px;
             border: 2px solid #cbd5e1;
-            border-radius: 8px;
+            border-radius: 6px;
             font-size: 1rem;
             transition: border-color 0.3s;
         }
@@ -192,7 +198,7 @@
         }
         .result-box {
             background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
             text-align: center;
             height: 100%;
@@ -201,222 +207,148 @@
             justify-content: center;
         }
         .total-amount {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--secondary);
-            margin: 15px 0;
+            margin: 12px 0;
         }
         .client-phrase {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
             border: 1px solid #cbd5e1;
             text-align: left;
-            min-height: 120px;
-        }
-        .client-phrase p {
-            margin-bottom: 8px;
+            min-height: 100px;
+            font-size: 0.95rem;
         }
         .btn-calculate {
             background: var(--success);
             color: white;
             border: none;
-            padding: 14px 20px;
+            padding: 12px 15px;
             border-radius: 8px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
             width: 100%;
             transition: background 0.3s;
+            margin-top: 10px;
         }
         .btn-calculate:hover {
             background: #0da271;
         }
+        .btn-fssp {
+            display: inline-block;
+            background: #8b5cf6;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin: 10px 0;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .btn-fssp:hover {
+            background: #7c3aed;
+        }
         .section-title {
             font-weight: 600;
             color: var(--secondary);
-            margin: 20px 0 10px;
-            padding-bottom: 5px;
+            margin: 15px 0 8px;
+            padding-bottom: 4px;
             border-bottom: 1px solid #e2e8f0;
+            font-size: 1.2rem;
         }
         .addon-group {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-top: 10px;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 8px;
         }
         .addon-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            font-size: 0.9rem;
         }
         footer {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
+            margin-top: 25px;
+            padding-top: 15px;
             border-top: 1px solid #cbd5e1;
             color: #64748b;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
-        .tabs-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        .sub-tab {
-            background: #e0e7ff;
-            border: 1px solid #cbd5e1;
-            padding: 8px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        .sub-tab.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        .mileage-warning {
-            background: #fffbeb;
-            border-left: 4px solid var(--warning);
-            padding: 12px 15px;
-            border-radius: 0 4px 4px 0;
-            margin: 10px 0;
-            font-size: 0.9rem;
-        }
-        .scripts-section {
-            background: #f0f9ff;
-            border: 1px solid #dbeafe;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 20px;
-        }
-        .script-item {
-            background: white;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 10px;
-        }
-        .script-title {
-            font-weight: 600;
-            color: var(--secondary);
-            margin-bottom: 5px;
-        }
-        .script-content {
-            font-style: italic;
-            color: #4b5563;
-        }
-        .checklist-note {
-            background: #dbeafe;
-            border-left: 4px solid var(--primary);
-            padding: 12px 15px;
-            margin: 15px 0;
-            border-radius: 0 6px 6px 0;
-            font-style: italic;
-        }
-        .critical-note {
-            background: #fee2e2;
-            border-left: 4px solid var(--danger);
-            padding: 12px 15px;
-            margin: 15px 0;
-            border-radius: 0 6px 6px 0;
-            font-weight: 500;
-        }
-        .warning-note {
-            background: #fef3c7;
-            border-left: 4px solid var(--warning);
-            padding: 12px 15px;
-            margin: 15px 0;
-            border-radius: 0 6px 6px 0;
-        }
-        .days-input {
-            display: none;
-        }
-        .days-input.active {
-            display: block;
-        }
-        .process-step {
-            margin-bottom: 15px;
-            padding: 15px;
-            background: #f8fafc;
-            border-radius: 8px;
-            border-left: 3px solid var(--primary);
-        }
-        .process-step h4 {
-            color: var(--secondary);
-            margin-bottom: 8px;
-        }
-        .step-highlight {
-            background: #bfdbfe;
-            padding: 2px 4px;
-            border-radius: 3px;
-            font-weight: 500;
-        }
-        .reminder {
-            background: #fff9db;
-            border-left: 4px solid #f59e0b;
-            padding: 10px 15px;
-            margin: 10px 0;
-            border-radius: 0 4px 4px 0;
-        }
-        .process-checklist {
-            background: #f1f5f9;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        .process-checklist h3 {
-            margin-bottom: 15px;
-            color: var(--secondary);
-        }
-        .checklist-columns {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .checklist-column {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .step-number {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 24px;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-        .important {
-            color: var(--danger);
-            font-weight: bold;
-        }
-        .extension-section {
+        .save-section {
             background: #f0f9ff;
             border: 1px solid #dbeafe;
             border-radius: 8px;
             padding: 15px;
             margin-top: 15px;
         }
-        .extension-input {
+        .hidden-field {
             display: none;
-            margin-top: 10px;
         }
-        .extension-input.active {
-            display: block;
+        .step-number {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 22px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-right: 6px;
         }
-        #extension-info {
-            margin-top: 10px;
-            color: var(--secondary);
+        .important {
+            color: var(--danger);
+            font-weight: bold;
+        }
+        .process-step {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+        .reminder {
+            background: #fff9db;
+            border-left: 4px solid #f59e0b;
+            padding: 8px 12px;
+            margin: 8px 0;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 480px) {
+            .addon-group {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .tabs {
+                flex-wrap: nowrap;
+            }
+        }
+        .google-btn {
+            background: white;
+            color: #333;
+            border: 1px solid #dadce0;
+            padding: 10px 15px;
+            border-radius: 4px;
             font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 0;
+            text-decoration: none;
+        }
+        .google-btn img {
+            height: 20px;
         }
     </style>
 </head>
@@ -430,11 +362,12 @@
         <div class="tabs">
             <button class="tab-btn" onclick="openTab('checklist')">Чек-лист процессов</button>
             <button class="tab-btn" onclick="openTab('calculator')">Калькулятор стоимости</button>
+            <button class="tab-btn" onclick="openTab('google')">Google Таблица</button>
         </div>
 
         <!-- Чек-лист -->
         <div id="checklist" class="tab-content active">
-            <h2>📋 Полный чек-лист аренды (точное следование этапам)</h2>
+            <h2>📋 Полный чек-лист аренды</h2>
             
             <div class="process-step">
                 <h4><span class="step-number">1</span> Заявка</h4>
@@ -466,6 +399,9 @@
                     <li>Если стаж менее 3х лет → еще <span class="important">+25%</span></li>
                     <li><strong>Важно:</strong> Если какой-то один из факторов, проценты применяются по отдельности</li>
                 </ul>
+                <a href="https://fssp.gov.ru/iss/ip" target="_blank" class="btn-fssp">
+                    🔍 Проверить клиента на сайте ФССП (обязательно!)
+                </a>
             </div>
 
             <div class="process-step">
@@ -496,7 +432,7 @@
                     <li><strong>6.f.</strong> ПОСЛЕ ТОГО КАК КЛИЕНТ ОПЛАТИТ БРОНИРОВАНИЕ В СЧЕТЕ ДОБАВЛЯЕМ «ОПЛАТА БРОНИРОВАНИЯ»</li>
                     <li><strong>6.g.</strong> ПРОСТАВЛЯЕМ ЭТАП КПИ</li>
                     <li><strong>6.h.</strong> МЕНЯЕМ СТАТУС НА ЗАБРОНИРОВАН</li>
-                    <li><strong>6.i.</strong> ВНОСИМ ОПЛАТУ БРОНИ В ЭКСЕЛЬ</li>
+                    <li><strong>6.i.</strong> ВНОСИМ ОПЛАТУ БРОНИ В <span class="highlight">Гугл таблицу</span></li>
                     <li><strong>6.j.</strong> Открываем счета</li>
                     <li><strong>6.k.</strong> Ставим его в расписание (забронирован), указываем номер счета</li>
                     <li><strong>6.l.</strong> Вносим услуги, количество дней/часов, км, доп услуги</li>
@@ -507,7 +443,7 @@
                     <li><strong>6.q.</strong> Распечатываем договор</li>
                     <li><strong>6.r.</strong> Ставим подписи, печати, выдаем документы и ключи</li>
                     <li><strong>6.s.</strong> Этапы KPI (3 варианта: Сделана и опл бронь, Прием ТС, Заключен Договор), проставляем какой вариант, сумму</li>
-                    <li><strong>6.t.</strong> Далее проставляем в гугл таблице внос задатка, оплату, как была оплата осуществлена</li>
+                    <li><strong>6.t.</strong> Далее проставляем в <span class="highlight">Гугл таблицу</span> внос задатка, оплату, как была оплата осуществлена</li>
                 </ul>
                 <div class="reminder">
                     🔔 <strong>Примечание:</strong> При выдаче авто проверяем незамерзайку, количество бензина, чистоту автомобиля
@@ -539,7 +475,7 @@
                     <li><strong>8.g.</strong> Проверяем чистоту автомобиля</li>
                     <li><strong>8.h.</strong> Вносим в услуги</li>
                     <li><strong>8.i.</strong> Просим клиента оплатить</li>
-                    <li><strong>8.j.</strong> <span class="important">ВСЕ ОПЛАТЫ СРАЗУ ВНОСЯТСЯ В ЭКСЕЛЬ И ПРОГРАММУ В ТОТ ЖЕ МОМЕНТ КОГДА ПРОИЗВОДИЛАСЬ ОПЛАТА</span></li>
+                    <li><strong>8.j.</strong> <span class="important">ВСЕ ОПЛАТЫ СРАЗУ ВНОСЯТСЯ В <span class="highlight">Гугл таблицу</span> И ПРОГРАММУ В ТОТ ЖЕ МОМЕНТ КОГДА ПРОИЗВОДИЛАСЬ ОПЛАТА</span></li>
                     <li><strong>8.k.</strong> Сообщаем, что возврат задатка будет осуществлен <span class="important">ПО ИСТЕЧЕНИИ 24 часов</span> (ВОЗВРАТ ДЕПОЗИТА ОСУЩЕСТВЛЯЕТСЯ ТЕМ ЖЕ СПОСОБОМ, КОТОРЫМ БЫЛ ВНЕСЕН)</li>
                 </ul>
                 <div class="reminder">
@@ -553,7 +489,7 @@
             <div class="process-step">
                 <h4><span class="step-number">9</span> Фиксация оплат</h4>
                 <ul>
-                    <li>Вносим в гугл таблицу если были какие то оплаты</li>
+                    <li>Вносим в <span class="highlight">Гугл таблицу</span> если были какие то оплаты</li>
                 </ul>
             </div>
 
@@ -578,38 +514,6 @@
                     <li><strong>11.e.</strong> При клиенте делаем видеообзор (+пробег)</li>
                 </ul>
             </div>
-
-            <div class="process-checklist">
-                <h3>🔑 Ключевые моменты, на которые обязательно обратить внимание</h3>
-                <div class="checklist-columns">
-                    <div class="checklist-column">
-                        <h4>При приеме заявки:</h4>
-                        <ul>
-                            <li>Всегда уточняйте ИМЯ клиента</li>
-                            <li>Спрашивайте ДЛЯ КАКИХ ЦЕЛЕЙ нужен автомобиль</li>
-                            <li>Проверяйте данные на сайте приставов</li>
-                        </ul>
-                    </div>
-                    <div class="checklist-column">
-                        <h4>При выдаче авто:</h4>
-                        <ul>
-                            <li>Делайте видеообзор с пробегом</li>
-                            <li>Проверяйте наличие незамерзайки</li>
-                            <li>Фиксируйте уровень бензина</li>
-                            <li>Проверяйте чистоту автомобиля</li>
-                        </ul>
-                    </div>
-                    <div class="checklist-column">
-                        <h4>При возврате авто:</h4>
-                        <ul>
-                            <li><span class="important">ВСЕ ОПЛАТЫ СРАЗУ ВНОСЯТСЯ В ЭКСЕЛЬ И ПРОГРАММУ</span></li>
-                            <li>Проверяйте штрафы по базе ГИБДД</li>
-                            <li>Делайте фото пробега и уровня бензина</li>
-                            <li><span class="important">ВОЗВРАТ ДЕПОЗИТА ТОЛЬКО ПОСЛЕ УВЕДОМЛЕНИЯ ОТ СИСТЕМЫ</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- Калькулятор -->
@@ -618,161 +522,67 @@
             <div class="calculator">
                 <div>
                     <!-- Основные параметры -->
-                    <h3 class="section-title">Основные параметры</h3>
+                    <div class="input-group">
+                        <label for="client-name">Имя клиента:</label>
+                        <input type="text" id="client-name" placeholder="Введите имя клиента">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="client-phone">Телефон клиента:</label>
+                        <input type="tel" id="client-phone" placeholder="+7 ...">
+                    </div>
                     
                     <div class="input-group">
                         <label for="car">Выберите автомобиль:</label>
                         <select id="car" onchange="calculate()">
-                            <option value="chery">Chery Tiggo 4 Pro</option>
-                            <option value="lada">Lada Granta</option>
-                            <option value="jeep">Jeep Cherokee</option>
-                            <option value="voyah">Voyah Free</option>
-                            <option value="gazel">Газель Next</option>
-                            <option value="range">Range Rover Sport</option>
-                            <option value="geely">Geely Monjaro</option>
-                            <option value="lada-largus">Lada Largus фургон</option>
-                            <option value="vw">VW Caddy</option>
+                            <option value="chery">Chery Tiggo 4 Pro (200 км/сут: 4150 ₽, 300 км/сут: 5350 ₽)</option>
+                            <option value="lada">Lada Granta (200 км/сут: 2200 ₽, 300 км/сут: 2300 ₽)</option>
+                            <option value="jeep">Jeep Cherokee (200 км/сут: 7550 ₽, 300 км/сут: 8600 ₽)</option>
+                            <option value="vw">VW Caddy (200 км/сут: 4300 ₽, 300 км/сут: 5350 ₽)</option>
                         </select>
                     </div>
                     
                     <div class="input-group">
-                        <label for="rental-period">Срок аренды:</label>
-                        <select id="rental-period" onchange="toggleDaysInput(); calculate()">
-                            <option value="4-hours">4 часа</option>
-                            <option value="8-hours">8 часов</option>
-                            <option value="1-3-days">1-3 суток</option>
-                            <option value="4-7-days">4-7 суток</option>
-                            <option value="8-15-days">8-15 суток</option>
-                            <option value="16-30-days">16-30 суток</option>
+                        <label for="rental-type">Тип аренды:</label>
+                        <select id="rental-type" onchange="toggleDurationInput(); calculate()">
+                            <option value="hours">Часы</option>
+                            <option value="days" selected>Сутки</option>
                         </select>
                     </div>
                     
-                    <div class="input-group days-input" id="days-input">
-                        <label for="days">Количество дней:</label>
+                    <div class="input-group" id="hours-input" style="display: none;">
+                        <label for="hours">Количество часов:</label>
+                        <select id="hours" onchange="calculate()">
+                            <option value="4">4 часа</option>
+                            <option value="8">8 часов</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group" id="days-input">
+                        <label for="days">Количество суток:</label>
                         <input type="number" id="days" min="1" value="1" onchange="calculate()">
-                    </div>
-                    
-                    <!-- Новое поле для продления аренды -->
-                    <div class="extension-section">
-                        <div class="addon-item">
-                            <input type="checkbox" id="extend-rental" onchange="toggleExtensionInput(); calculate()">
-                            <label for="extend-rental">Продление аренды</label>
-                        </div>
-                        <div class="extension-input" id="extension-input">
-                            <div class="input-group">
-                                <label for="extension-days">Дополнительные сутки:</label>
-                                <input type="number" id="extension-days" min="1" value="1" onchange="calculate()">
-                            </div>
-                            <p class="mileage-warning">
-                                💡 Продление рассчитывается по тарифу следующего периода (например, продление 3+1 суток считается по тарифу 4-7 суток)
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="mileage-limit">Лимит пробега в сутки:</label>
-                        <select id="mileage-limit" onchange="calculate()">
-                            <option value="50">50 км</option>
-                            <option value="100">100 км</option>
-                            <option value="200">200 км</option>
-                            <option value="300">300 км</option>
-                            <option value="500">500 км</option>
-                        </select>
                     </div>
                     
                     <div class="input-group">
                         <label for="planned-mileage">Планируемый пробег в сутки (км):</label>
                         <input type="number" id="planned-mileage" min="1" value="200" onchange="calculate()">
-                        <div class="mileage-warning">
-                            ⚠️ Если пробег превышает лимит — будет начислена доплата за каждый км сверх лимита (первые 100 км бесплатно)
-                        </div>
                     </div>
 
-                    <!-- Дополнительные услуги -->
-                    <h3 class="section-title">Дополнительные услуги</h3>
-                    
                     <div class="input-group">
-                        <label>Страховка:</label>
-                        <div class="addon-group">
-                            <div class="addon-item">
-                                <input type="checkbox" id="insurance-base" onchange="calculate()">
-                                <label for="insurance-base">Базовый пакет (0 ₽/сутки)</label>
-                            </div>
-                            <div class="addon-item">
-                                <input type="checkbox" id="insurance-standard" onchange="calculate()">
-                                <label for="insurance-standard">Стандартный (500-1500 ₽/сутки)</label>
-                            </div>
-                            <div class="addon-item">
-                                <input type="checkbox" id="insurance-full" onchange="calculate()">
-                                <label for="insurance-full">Полное покрытие (1500-3000 ₽/сутки)</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label>Водитель:</label>
-                        <div class="addon-group">
-                            <div class="addon-item">
-                                <input type="checkbox" id="driver-1-4" onchange="calculate()">
-                                <label for="driver-1-4">1-4 часа (1200-3000 ₽/час)</label>
-                            </div>
-                            <div class="addon-item">
-                                <input type="checkbox" id="driver-4+" onchange="calculate()">
-                                <label for="driver-4+">От 4 часов (1000-2500 ₽/час)</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label>Доставка:</label>
-                        <div class="addon-group">
-                            <div class="addon-item">
-                                <input type="checkbox" id="delivery-city" onchange="calculate()">
-                                <label for="delivery-city">По городу (700 ₽)</label>
-                            </div>
-                            <div class="addon-item">
-                                <input type="checkbox" id="delivery-airport" onchange="calculate()">
-                                <label for="delivery-airport">В аэропорт (1500 ₽)</label>
-                            </div>
-                            <div class="addon-item">
-                                <input type="checkbox" id="delivery-outside" onchange="toggleDistanceInput(); calculate()">
-                                <label for="delivery-outside">За город (80-35 ₽/км)</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="input-group days-input" id="distance-input">
-                        <label for="delivery-distance">Расстояние (км):</label>
-                        <input type="number" id="delivery-distance" min="1" value="30" onchange="calculate()">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label>Дополнительно:</label>
-                        <div class="addon-group">
-                            <div class="addon-item">
-                                <input type="checkbox" id="car-wash" onchange="calculate()">
-                                <label for="car-wash">Мойка машины (700-1000 ₽)</label>
-                            </div>
-                        </div>
+                        <label for="region">Регион поездки:</label>
+                        <select id="region" onchange="calculate()">
+                            <option value="vologda">Вологда и область</option>
+                            <option value="other">Другой регион</option>
+                        </select>
                     </div>
 
-                    <!-- Особые условия -->
-                    <h3 class="section-title">Особые условия</h3>
-                    
-                    <div class="input-group">
-                        <div class="addon-group">
-                            <div class="addon-item">
-                                <input type="checkbox" id="debts" onchange="calculate()">
-                                <label for="debts">Долги у приставов (+50%)</label>
-                            </div>
-                            <div class="addon-item">
-                                <input type="checkbox" id="experience" onchange="calculate()">
-                                <label for="experience">Стаж &lt; 3 лет (+25%)</label>
-                            </div>
-                        </div>
+                    <div class="input-group hidden-field">
+                        <label for="account-number">Номер счета из программы "ОКНА":</label>
+                        <input type="text" id="account-number" placeholder="Только цифры">
+                        <p class="reminder" style="margin-top: 5px; font-size: 0.9rem;">
+                            💡 Номер счета нужен для связи расчета с программой. Не указывайте ФИО клиента здесь.
+                        </p>
                     </div>
-                    
-                    <button class="btn-calculate" onclick="calculate()">Рассчитать стоимость</button>
                 </div>
                 
                 <div>
@@ -783,236 +593,114 @@
                             <p>Здесь появится фраза для клиента...</p>
                         </div>
                         
-                        <div class="section-title" style="margin-top: 25px;">Детализация</div>
-                        <div id="breakdown" style="text-align: left; margin-top: 10px;">
-                            <!-- Сюда будет вставляться детализация -->
-                        </div>
-                        <div id="extension-info"></div>
-                        
-                        <div class="section-title" style="margin-top: 25px;">Скрипты для клиента</div>
-                        <div class="scripts-section" id="scripts">
-                            <!-- Сюда будут вставляться скрипты -->
-                        </div>
-                        
-                        <div class="section-title" style="margin-top: 25px;">Краткая памятка по этапам</div>
-                        <div class="process-checklist" style="margin-top: 15px;">
-                            <div class="checklist-column">
-                                <h4>1. Прием заявки</h4>
-                                <ul>
-                                    <li>Уточнить ИМЯ и номер телефона</li>
-                                    <li>Спросить ДЛЯ КАКИХ ЦЕЛЕЙ нужен авто</li>
-                                    <li>Проверить на приставах</li>
-                                </ul>
-                                
-                                <h4>2. Работа с программой «ОКНА»</h4>
-                                <ul>
-                                    <li>Новый клиент: добавить через «+»</li>
-                                    <li>Старый клиент: найти по фамилии</li>
-                                    <li>Внести ФИО, номер телефона</li>
-                                </ul>
+                        <div class="save-section">
+                            <h4>💾 Сохранить в Google Таблицу</h4>
+                            <div class="input-group">
+                                <label for="employee-name">Ваше имя (для идентификации):</label>
+                                <input type="text" id="employee-name" placeholder="Ваше имя или фамилия">
                             </div>
-                            <div class="checklist-column">
-                                <h4>3. Выдача автомобиля</h4>
-                                <ul>
-                                    <li>Сделать видеообзор с пробегом</li>
-                                    <li>Проверить незамерзайку, бензин</li>
-                                    <li>Проверить чистоту салона</li>
-                                    <li>Подписать договор</li>
-                                </ul>
-                                
-                                <h4>4. Возврат автомобиля</h4>
-                                <ul>
-                                    <li>Сделать видео и фото пробега</li>
-                                    <li>Проверить штрафы, бензин</li>
-                                    <li>Внести оплату сразу в Excel</li>
-                                    <li>Возврат депозита через 24 часа</li>
-                                </ul>
-                            </div>
+                            <button id="save-btn" onclick="saveToGoogleSheets()" class="btn-calculate">
+                                Сохранить расчет в таблицу
+                            </button>
+                            <p id="save-status" style="margin-top: 8px; font-size: 0.9rem; color: var(--success); display: none;">
+                                ✅ Успешно сохранено!
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Google Таблица -->
+        <div id="google" class="tab-content">
+            <h2>📊 Google Таблица</h2>
+            <p>Для настройки сохранения расчетов в Google Таблицу:</p>
+            
+            <ol style="margin: 15px 0; padding-left: 20px;">
+                <li style="margin-bottom: 10px;">Создайте новую <a href="https://sheets.google.com" target="_blank" class="google-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Google_Sheets_logo_%282020%29.svg/768px-Google_Sheets_logo_%282020%29.svg.png" alt="Google Sheets" style="height: 20px;">
+                    Google Таблицу
+                </a></li>
+                <li style="margin-bottom: 10px;">В первой строке создайте колонки: <strong>Дата | Сотрудник | Клиент | Телефон | Авто | Стоимость | Статус | Номер счета</strong></li>
+                <li style="margin-bottom: 10px;">Нажмите <strong>Extensions → Apps Script</strong></li>
+                <li style="margin-bottom: 10px;">Вставьте <strong>этот код</strong> в редактор:</li>
+            </ol>
+            
+            <div style="background: #f1f5f9; border-radius: 8px; padding: 15px; margin: 15px 0; overflow-x: auto;">
+                <pre style="font-family: monospace; font-size: 0.9rem; line-height: 1.4;">
+function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Лист1");
+  var data = JSON.parse(e.postData.contents);
+  
+  sheet.appendRow([
+    new Date(),
+    data.employee,
+    data.clientName,
+    data.phone,
+    data.car,
+    data.total,
+    "Новый",
+    data.accountNumber
+  ]);
+  
+  return ContentService.createTextOutput(JSON.stringify({result: "success"}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+                </pre>
+            </div>
+            
+            <ol start="5" style="margin: 15px 0; padding-left: 20px;">
+                <li style="margin-bottom: 10px;">Нажмите <strong>Deploy → New deployment</strong></li>
+                <li style="margin-bottom: 10px;">Выберите <strong>Web app</strong> и установите доступ <strong>Anyone</strong></li>
+                <li style="margin-bottom: 10px;">Скопируйте полученный URL и вставьте его в поле ниже:</li>
+            </ol>
+            
+            <div class="input-group">
+                <label for="script-url">URL вашего Google Apps Script:</label>
+                <input type="text" id="script-url" placeholder="https://script.google.com/macros/s/.../exec">
+                <button onclick="saveScriptURL()" class="btn-calculate" style="margin-top: 8px;">
+                    Сохранить URL
+                </button>
+            </div>
+            
+            <div class="reminder" style="margin-top: 20px;">
+                💡 <strong>Важно:</strong> Все расчеты будут сохраняться в вашу Google Таблицу и доступны с любого устройства. 
+                Данные хранятся только в вашем аккаунте Google.
+            </div>
+        </div>
+
         <footer>
-            <p>Внутренний портал компании "Арендыч" • Версия 2.1 • Обновлено: 27.11.2025</p>
+            <p>Внутренний портал компании "Арендыч" • Версия 1.0 • Обновлено: 27.11.2025</p>
+            <p style="margin-top: 5px; font-size: 0.8rem; color: var(--warning);">
+                ⚠️ Для работы сохранения в Google Таблицу необходимо настроить Apps Script (вкладка "Google Таблица")
+            </p>
         </footer>
     </div>
 
     <script>
-        // Полная структура тарифов из скриншотов
+        // Глобальные переменные
+        let googleScriptURL = localStorage.getItem('googleScriptURL') || '';
+        
+        // Тарифы для расчета
         const tariffs = {
             chery: {
-                "4-hours": {50: 2000, 100: 3000, 200: 3500, 300: 4300, 500: 5000},
-                "8-hours": {50: 3800, 100: 4150, 200: 4300, 300: 5350, 500: 5500},
-                "1-3-days": {50: 3650, 100: 4000, 200: 4150, 300: 5350, 500: 5500},
-                "4-7-days": {50: 3500, 100: 3850, 200: 4000, 300: 5200, 500: 5500},
-                "8-15-days": {50: 3350, 100: 3500, 200: 3850, 300: 5050, 500: 5500},
-                "16-30-days": {50: 3350, 100: 3500, 200: 3850, 300: 5050, 500: 5500}
+                hours: {4: 2000, 8: 3800},
+                days: {1: 4150, 2: 8300, 3: 12450, 4: 14000, 5: 17500, 6: 21000, 7: 24500}
             },
             lada: {
-                "4-hours": {50: 1400, 100: 1800, 200: 2000, 300: 2200, 500: 2500},
-                "8-hours": {50: 2000, 100: 2100, 200: 2200, 300: 2400, 500: 2500},
-                "1-3-days": {50: 2000, 100: 2100, 200: 2200, 300: 2300, 500: 2500},
-                "4-7-days": {50: 1900, 100: 2000, 200: 2200, 300: 2300, 500: 2500},
-                "8-15-days": {50: 1900, 100: 2000, 200: 2200, 300: 2300, 500: 2500},
-                "16-30-days": {50: 1900, 100: 2000, 200: 2200, 300: 2300, 500: 2500}
+                hours: {4: 1400, 8: 2000},
+                days: {1: 2200, 2: 4400, 3: 6600, 4: 7600, 5: 9500, 6: 11400, 7: 13300}
             },
             jeep: {
-                "4-hours": {50: 4000, 100: 5500, 200: 6000, 300: 7000, 500: 9000},
-                "8-hours": {50: 6850, 100: 7550, 200: 7700, 300: 8850, 500: 9000},
-                "1-3-days": {50: 6700, 100: 7200, 200: 7550, 300: 8600, 500: 9000},
-                "4-7-days": {50: 6500, 100: 7000, 200: 7200, 300: 8200, 500: 9000},
-                "8-15-days": {50: 6500, 100: 7000, 200: 7200, 300: 8200, 500: 9000},
-                "16-30-days": {50: 6500, 100: 7000, 200: 7200, 300: 8200, 500: 9000}
-            },
-            voyah: {
-                "4-hours": {50: 6000, 100: 8000, 200: 10000, 300: 12000, 500: 14500},
-                "8-hours": {50: 9500, 100: 10500, 200: 11000, 300: 12500, 500: 13500},
-                "1-3-days": {50: 8500, 100: 9500, 200: 10000, 300: 11000, 500: 12500},
-                "4-7-days": {50: 7500, 100: 8500, 200: 9000, 300: 10000, 500: 11500},
-                "8-15-days": {50: 7500, 100: 8500, 200: 9000, 300: 10000, 500: 11500},
-                "16-30-days": {50: 7500, 100: 8500, 200: 9000, 300: 10000, 500: 11500}
-            },
-            gazel: {
-                "4-hours": {50: 3000, 100: 4000, 200: 5000, 300: 6000, 500: 8000},
-                "8-hours": {50: 5300, 100: 5500, 200: 6300, 300: 6500, 500: 9000},
-                "1-3-days": {50: 5100, 100: 5300, 200: 6100, 300: 6300, 500: 8700},
-                "4-7-days": {50: 4900, 100: 5100, 200: 5900, 300: 6100, 500: 8500},
-                "8-15-days": {50: 4900, 100: 5100, 200: 5900, 300: 6100, 500: 8500},
-                "16-30-days": {50: 4900, 100: 5100, 200: 5900, 300: 6100, 500: 8500}
-            },
-            range: {
-                "4-hours": {50: 3000, 100: 4500, 200: 5000, 300: 6000, 500: 7000},
-                "8-hours": {50: 5300, 100: 5500, 200: 6300, 300: 6500, 500: 9000},
-                "1-3-days": {50: 5100, 100: 5300, 200: 6100, 300: 6300, 500: 6800},
-                "4-7-days": {50: 4800, 100: 5600, 200: 5900, 300: 6000, 500: 6600},
-                "8-15-days": {50: 4800, 100: 5600, 200: 5900, 300: 6000, 500: 6600},
-                "16-30-days": {50: 4800, 100: 5600, 200: 5900, 300: 6000, 500: 6600}
-            },
-            geely: {
-                "4-hours": {50: 5500, 100: 7000, 200: 7500, 300: 8000, 500: 10000},
-                "8-hours": {50: 7500, 100: 8000, 200: 8500, 300: 9000, 500: 9500},
-                "1-3-days": {50: 7000, 100: 7500, 200: 8000, 300: 8500, 500: 9000},
-                "4-7-days": {50: 6500, 100: 7500, 200: 7500, 300: 8500, 500: 8500},
-                "8-15-days": {50: 6500, 100: 7500, 200: 7500, 300: 8500, 500: 8500},
-                "16-30-days": {50: 6500, 100: 7500, 200: 7500, 300: 8500, 500: 8500}
-            },
-            "lada-largus": {
-                "4-hours": {50: 2200, 100: 2500, 200: 2700, 300: 3200, 500: 3700},
-                "8-hours": {50: 2900, 100: 3050, 200: 3200, 300: 3550, 500: 4550},
-                "1-3-days": {50: 2700, 100: 2900, 200: 3400, 300: 4400, 500: 5350},
-                "4-7-days": {50: 2700, 100: 3200, 200: 3200, 300: 4300, 500: 5200},
-                "8-15-days": {50: 2700, 100: 3200, 200: 3200, 300: 4300, 500: 5200},
-                "16-30-days": {50: 2700, 100: 3200, 200: 3200, 300: 4300, 500: 5200}
+                hours: {4: 4000, 8: 6850},
+                days: {1: 7550, 2: 15100, 3: 22650, 4: 26000, 5: 32500, 6: 39000, 7: 45500}
             },
             vw: {
-                "4-hours": {50: 2000, 100: 3000, 200: 3500, 300: 4000, 500: 5000},
-                "8-hours": {50: 3800, 100: 4300, 200: 4300, 300: 5350, 500: 5500},
-                "1-3-days": {50: 3650, 100: 4150, 200: 4300, 300: 5350, 500: 5500},
-                "4-7-days": {50: 3500, 100: 3850, 200: 4000, 300: 5200, 500: 5500},
-                "8-15-days": {50: 3350, 100: 3500, 200: 3850, 300: 5050, 500: 5500},
-                "16-30-days": {50: 3350, 100: 3500, 200: 3850, 300: 5050, 500: 5500}
+                hours: {4: 2000, 8: 3800},
+                days: {1: 4300, 2: 8600, 3: 12900, 4: 14400, 5: 18000, 6: 21600, 7: 25200}
             }
         };
-
-        // Дополнительные параметры
-        const extras = {
-            mileage: {
-                chery: 10,
-                lada: 10,
-                jeep: 15,
-                voyah: 25,
-                gazel: 15,
-                range: 15,
-                geely: 15,
-                "lada-largus": 10,
-                vw: 10
-            },
-            deposit: {
-                chery: 10000,
-                lada: 5000,
-                jeep: 15000,
-                voyah: 25000,
-                gazel: 10000,
-                range: 15000,
-                geely: 20000,
-                "lada-largus": 10000,
-                vw: 5000
-            },
-            driver: {
-                "1-4-hours": {
-                    chery: 1500,
-                    lada: 1500,
-                    jeep: 2000,
-                    voyah: 3000,
-                    gazel: 1800,
-                    range: 1800,
-                    geely: 2500,
-                    "lada-largus": 1500,
-                    vw: 1500
-                },
-                "4+": {
-                    chery: 1200,
-                    lada: 1200,
-                    jeep: 1800,
-                    voyah: 2500,
-                    gazel: 1500,
-                    range: 1500,
-                    geely: 2000,
-                    "lada-largus": 1200,
-                    vw: 1200
-                }
-            },
-            delivery: {
-                city: 700,
-                airport: 1500,
-                outside: {
-                    "0-30km": 80,
-                    "30-50km": 70,
-                    "50-100km": 60,
-                    "100-300km": 45,
-                    "300+km": 35
-                }
-            },
-            insurance: {
-                base: { cost: 0, coverage: 0 },
-                standard: {
-                    chery: { cost: 800, coverage: 150000 },
-                    lada: { cost: 300, coverage: 100000 },
-                    jeep: { cost: 1000, coverage: 200000 },
-                    voyah: { cost: 1500, coverage: 250000 },
-                    gazel: { cost: 800, coverage: 150000 },
-                    range: { cost: 1000, coverage: 200000 },
-                    geely: { cost: 1500, coverage: 250000 },
-                    "lada-largus": { cost: 500, coverage: 120000 },
-                    vw: { cost: 800, coverage: 150000 }
-                },
-                full: {
-                    chery: { cost: 1700, coverage: 250000 },
-                    lada: { cost: 1000, coverage: 200000 },
-                    jeep: { cost: 2000, coverage: 250000 },
-                    voyah: { cost: 3000, coverage: 300000 },
-                    gazel: { cost: 1700, coverage: 250000 },
-                    range: { cost: 2000, coverage: 250000 },
-                    geely: { cost: 3000, coverage: 300000 },
-                    "lada-largus": { cost: 1200, coverage: 150000 },
-                    vw: { cost: 1700, coverage: 250000 }
-                }
-            },
-            wash: {
-                chery: 700,
-                lada: 700,
-                jeep: 1000,
-                voyah: 1000,
-                gazel: 1000,
-                range: 1000,
-                geely: 1000,
-                "lada-largus": 700,
-                vw: 700
-            }
-        };
-
+        
         // Переключение вкладок
         function openTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(el => {
@@ -1020,366 +708,240 @@
             });
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.style.background = '';
+                btn.style.color = '';
             });
+            
             document.getElementById(tabName).classList.add('active');
-            event.target.style.background = '#1e40af';
+            
+            const activeBtn = Array.from(document.querySelectorAll('.tab-btn'))
+                .find(btn => btn.textContent.includes(tabName === 'checklist' ? 'Чек-лист' : 
+                                    tabName === 'calculator' ? 'Калькулятор' : 'Google'));
+            if (activeBtn) {
+                activeBtn.style.background = '#1e40af';
+                activeBtn.style.color = 'white';
+            }
+            
+            if (tabName === 'google' && googleScriptURL) {
+                document.getElementById('script-url').value = googleScriptURL;
+            }
         }
-
-        // Показать/скрыть поле "Количество дней"
-        function toggleDaysInput() {
-            const period = document.getElementById('rental-period').value;
+        
+        // Показать/скрыть поля в зависимости от типа аренды
+        function toggleDurationInput() {
+            const rentalType = document.getElementById('rental-type').value;
+            const hoursInput = document.getElementById('hours-input');
             const daysInput = document.getElementById('days-input');
             
-            if (period.includes('days')) {
-                daysInput.classList.add('active');
-                const minDays = parseInt(period.split('-')[0]);
-                const maxDays = parseInt(period.split('-')[1].replace('days', ''));
-                document.getElementById('days').min = minDays;
-                document.getElementById('days').max = maxDays;
-                document.getElementById('days').value = minDays;
+            if (rentalType === 'hours') {
+                hoursInput.style.display = 'block';
+                daysInput.style.display = 'none';
             } else {
-                daysInput.classList.remove('active');
+                hoursInput.style.display = 'none';
+                daysInput.style.display = 'block';
             }
+            
             calculate();
         }
-
-        // Показать/скрыть поле "Расстояние"
-        function toggleDistanceInput() {
-            const deliveryOutside = document.getElementById('delivery-outside').checked;
-            document.getElementById('distance-input').classList.toggle('active', deliveryOutside);
-            calculate();
-        }
-
-        // Показать/скрыть поле "Продление аренды"
-        function toggleExtensionInput() {
-            const extendChecked = document.getElementById('extend-rental').checked;
-            document.getElementById('extension-input').classList.toggle('active', extendChecked);
-            calculate();
-        }
-
+        
         // Расчет стоимости
         function calculate() {
             const car = document.getElementById('car').value;
-            const rentalPeriod = document.getElementById('rental-period').value;
-            const mileageLimit = parseInt(document.getElementById('mileage-limit').value);
-            const plannedMileage = parseInt(document.getElementById('planned-mileage').value) || 0;
-            const hasDebts = document.getElementById('debts').checked;
-            const hasLowExperience = document.getElementById('experience').checked;
-            let days = parseInt(document.getElementById('days').value) || 1;
-            const deliveryDistance = parseInt(document.getElementById('delivery-distance').value) || 0;
-            const isExtended = document.getElementById('extend-rental').checked;
-            let extensionDays = isExtended ? parseInt(document.getElementById('extension-days').value) || 1 : 0;
+            const rentalType = document.getElementById('rental-type').value;
+            const days = parseInt(document.getElementById('days').value) || 1;
+            const hours = document.getElementById('hours').value || '4';
+            const plannedMileage = parseInt(document.getElementById('planned-mileage').value) || 200;
+            const region = document.getElementById('region').value;
             
-            // Основная стоимость
-            let baseCost = tariffs[car][rentalPeriod][mileageLimit] || 0;
+            let baseCost = 0;
             
-            // Учет количества дней
-            if (rentalPeriod.includes('days')) {
-                baseCost = baseCost * days;
-            }
-            
-            // Доплата за перепробег
-            let extraMileageCost = 0;
-            if (plannedMileage > mileageLimit) {
-                const extraKm = plannedMileage - mileageLimit;
-                if (extraKm <= 100) {
-                    extraMileageCost = 0;
+            if (rentalType === 'days') {
+                // Определение стоимости в зависимости от количества дней
+                if (days <= 3) {
+                    baseCost = tariffs[car].days[days] || (tariffs[car].days[1] * days);
+                } else if (days <= 7) {
+                    // Для 4-7 дней используем среднюю стоимость
+                    const dailyRate = tariffs[car].days[7] / 7;
+                    baseCost = Math.round(dailyRate * days);
                 } else {
-                    extraMileageCost = (extraKm - 100) * extras.mileage[car];
+                    // Для более 7 дней используем стоимость 7 дней + доплата
+                    const dailyRate = tariffs[car].days[7] / 7;
+                    baseCost = Math.round(dailyRate * days);
+                }
+                
+                // Доплата за перепробег (первые 100 км бесплатны)
+                if (plannedMileage > 200) {
+                    const extraKm = plannedMileage - 200;
+                    if (extraKm > 100) {
+                        baseCost += (extraKm - 100) * 10; // 10 ₽ за км для большинства авто
+                    }
+                }
+                
+                // Доплата за другой регион
+                if (region === 'other') {
+                    baseCost *= 1.1; // +10% за другой регион
+                }
+            } else {
+                // Почасовая аренда
+                baseCost = tariffs[car].hours[hours] || tariffs[car].hours[4];
+                
+                // Доплата за другой регион
+                if (region === 'other') {
+                    baseCost *= 1.15; // +15% за другой регион при почасовой аренде
                 }
             }
-            
-            // Дополнительные услуги
-            let insuranceCost = 0;
-            let insuranceCoverage = 0;
-            if (document.getElementById('insurance-base').checked) {
-                insuranceCost += extras.insurance.base.cost;
-                insuranceCoverage = extras.insurance.base.coverage;
-            }
-            if (document.getElementById('insurance-standard').checked) {
-                insuranceCost += extras.insurance.standard[car].cost;
-                insuranceCoverage = extras.insurance.standard[car].coverage;
-            }
-            if (document.getElementById('insurance-full').checked) {
-                insuranceCost += extras.insurance.full[car].cost;
-                insuranceCoverage = extras.insurance.full[car].coverage;
-            }
-            
-            let driverCost = 0;
-            if (document.getElementById('driver-1-4').checked) {
-                driverCost += extras.driver["1-4-hours"][car];
-            }
-            if (document.getElementById('driver-4+').checked) {
-                driverCost += extras.driver["4+"][car];
-            }
-            
-            let deliveryCost = 0;
-            if (document.getElementById('delivery-city').checked) {
-                deliveryCost += extras.delivery.city;
-            }
-            if (document.getElementById('delivery-airport').checked) {
-                deliveryCost += extras.delivery.airport;
-            }
-            if (document.getElementById('delivery-outside').checked) {
-                deliveryCost += calculateDeliveryCost(deliveryDistance);
-            }
-            
-            let washCost = 0;
-            if (document.getElementById('car-wash').checked) {
-                washCost += extras.wash[car];
-            }
-            
-            // Коэффициенты за риски
-            let coef = 1;
-            if (hasDebts) coef += 0.5;
-            if (hasLowExperience) coef += 0.25;
-            
-            // Запоминаем основную стоимость без коэффициентов для расчета продления
-            const baseCostWithoutCoef = baseCost + extraMileageCost + insuranceCost + driverCost + deliveryCost + washCost;
-            
-            // Стоимость продления аренды
-            let extensionCost = 0;
-            if (isExtended && rentalPeriod.includes('days')) {
-                // Определяем новый период для продления
-                const totalDays = days + extensionDays;
-                let extensionPeriod = '';
-                
-                if (totalDays <= 3) extensionPeriod = "1-3-days";
-                else if (totalDays <= 7) extensionPeriod = "4-7-days";
-                else if (totalDays <= 15) extensionPeriod = "8-15-days";
-                else extensionPeriod = "16-30-days";
-                
-                // Стоимость продления по новому тарифу
-                const extensionRate = tariffs[car][extensionPeriod][mileageLimit] || 0;
-                extensionCost = extensionRate * extensionDays;
-                
-                // Добавляем стоимость продления к основной
-                baseCost += extensionCost;
-            }
-            
-            // Итоговая сумма с учетом коэффициентов
-            const total = Math.round((baseCost + extraMileageCost + insuranceCost + driverCost + deliveryCost + washCost) * coef);
             
             // Отображение результата
-            document.getElementById('total').textContent = total.toLocaleString('ru') + ' ₽';
+            document.getElementById('total').textContent = Math.round(baseCost).toLocaleString('ru') + ' ₽';
             
             // Генерация фразы для клиента
-            let phrase = `«Аренда ${getCarName(car)} на ${getRentalPeriodText(rentalPeriod)}`;
-            if (rentalPeriod.includes('days')) {
-                phrase += ` (${days} ${getDaysText(days)}`;
-                if (isExtended && extensionDays > 0) {
-                    phrase += ` + ${extensionDays} ${getDaysText(extensionDays)} продления`;
-                }
-                phrase += `)`;
-            }
-            phrase += `: `;
-            phrase += `${baseCost.toLocaleString('ru')} ₽ за базовую стоимость`;
+            const clientName = document.getElementById('client-name').value || 'Клиент';
+            const carName = document.getElementById('car').options[document.getElementById('car').selectedIndex].text.split('(')[0].trim();
             
-            if (extraMileageCost > 0) {
-                phrase += `, ${extraMileageCost.toLocaleString('ru')} ₽ за перепробег (${plannedMileage - mileageLimit} км сверх лимита)`;
-            }
-            if (insuranceCost > 0) {
-                phrase += `, ${insuranceCost.toLocaleString('ru')} ₽ за страховку (покрытие до ${insuranceCoverage.toLocaleString('ru')} ₽)`;
-            }
-            if (driverCost > 0) {
-                phrase += `, ${driverCost.toLocaleString('ru')} ₽ за водителя`;
-            }
-            if (deliveryCost > 0) {
-                phrase += `, ${deliveryCost.toLocaleString('ru')} ₽ за доставку`;
-            }
-            if (washCost > 0) {
-                phrase += `, ${washCost.toLocaleString('ru')} ₽ за мойку`;
-            }
-            if (isExtended && extensionCost > 0) {
-                phrase += `, ${extensionCost.toLocaleString('ru')} ₽ за продление на ${extensionDays} ${getDaysText(extensionDays)}`;
-            }
-            if (coef > 1) {
-                const riskCost = Math.round((baseCostWithoutCoef * (coef - 1)));
-                phrase += `, ${riskCost.toLocaleString('ru')} ₽ за особые условия`;
+            let phrase = `«${clientName}, аренда ${carName.toLowerCase()} на `;
+            
+            if (rentalType === 'days') {
+                phrase += `${days} ${getDaysText(days)}`;
+            } else {
+                phrase += `${hours} часов`;
             }
             
-            phrase += `. Итого: ${total.toLocaleString('ru')} ₽. `;
-            phrase += `Депозит ${extras.deposit[car].toLocaleString('ru')} ₽ вернется через 3 дня при отсутствии повреждений»`;
+            phrase += ` будет стоить ${Math.round(baseCost).toLocaleString('ru')} ₽. `;
+            phrase += `Депозит в размере 10000 ₽ возвращается после проверки автомобиля»`;
             
             document.getElementById('phrase').innerHTML = `<p>${phrase}</p>`;
-            
-            // Детализация
-            const breakdown = document.getElementById('breakdown');
-            let breakdownHTML = `
-                <p>• Базовая стоимость: ${baseCost.toLocaleString('ru')} ₽</p>
-                <p>• Перепробег: ${extraMileageCost.toLocaleString('ru')} ₽</p>
-                <p>• Страховка: ${insuranceCost.toLocaleString('ru')} ₽ (покрытие до ${insuranceCoverage.toLocaleString('ru')} ₽)</p>
-                <p>• Водитель: ${driverCost.toLocaleString('ru')} ₽</p>
-                <p>• Доставка: ${deliveryCost.toLocaleString('ru')} ₽</p>
-                <p>• Мойка: ${washCost.toLocaleString('ru')} ₽</p>`;
-            
-            if (isExtended && extensionCost > 0) {
-                breakdownHTML += `<p>• Продление на ${extensionDays} ${getDaysText(extensionDays)}: ${extensionCost.toLocaleString('ru')} ₽</p>`;
-            }
-            
-            breakdownHTML += `<p>• Коэффициент: ${coef.toFixed(2)}x</p>`;
-            breakdownHTML += `<p style="font-weight: bold; margin-top: 10px;">Итого: ${total.toLocaleString('ru')} ₽</p>`;
-            
-            breakdown.innerHTML = breakdownHTML;
-            
-            // Генерация скриптов
-            generateScripts(car, plannedMileage, mileageLimit, insuranceCost, insuranceCoverage, washCost, isExtended, extensionDays);
         }
-
-        // Расчет доставки за город
-        function calculateDeliveryCost(distance) {
-            if (distance <= 30) return distance * 80;
-            if (distance <= 50) return 30*80 + (distance-30)*70;
-            if (distance <= 100) return 30*80 + 20*70 + (distance-50)*60;
-            if (distance <= 300) return 30*80 + 20*70 + 50*60 + (distance-100)*45;
-            return 30*80 + 20*70 + 50*60 + 200*45 + (distance-300)*35;
-        }
-
-        // Генерация скриптов для клиента
-        function generateScripts(car, plannedMileage, mileageLimit, insuranceCost, insuranceCoverage, washCost, isExtended, extensionDays) {
-            const scriptsContainer = document.getElementById('scripts');
-            let scripts = '';
-            
-            // Скрипт по страховке
-            if (insuranceCost === 0) {
-                const standard = extras.insurance.standard[car];
-                const full = extras.insurance.full[car];
-                scripts += `
-                    <div class="script-item">
-                        <div class="script-title">Предложение страховки</div>
-                        <div class="script-content">
-                            «Рекомендую оформить страховку. Это защитит вас от дополнительных расходов до ${full.coverage.toLocaleString('ru')} рублей при ДТП. 
-                            Стандартный пакет стоит ${standard.cost.toLocaleString('ru')} ₽/сутки, полное покрытие — ${full.cost.toLocaleString('ru')} ₽/сутки»
-                        </div>
-                    </div>
-                `;
-            } else {
-                scripts += `
-                    <div class="script-item">
-                        <div class="script-title">Подтверждение страховки</div>
-                        <div class="script-content">
-                            «Вы оформили страховку с покрытием до ${insuranceCoverage.toLocaleString('ru')} рублей. Это защитит вас от дополнительных расходов при ДТП»
-                        </div>
-                    </div>
-                `;
-            }
-            
-            // Скрипт по перепробегу
-            if (plannedMileage > mileageLimit) {
-                const extraKm = plannedMileage - mileageLimit;
-                const extraCost = extraKm > 100 ? (extraKm - 100) * extras.mileage[car] : 0;
-                scripts += `
-                    <div class="script-item">
-                        <div class="script-title">Предложение увеличения лимита</div>
-                        <div class="script-content">
-                            «Вы планируете проехать ${extraKm} км сверх лимита. 
-                            ${extraKm <= 100 ? 'Первые 100 км перепробега бесплатны' : `Рекомендую увеличить лимит пробега до ${plannedMileage} км за дополнительную плату ${extraCost.toLocaleString('ru')} ₽`}»
-                        </div>
-                    </div>
-                `;
-            }
-            
-            // Скрипт по мойке
-            if (washCost === 0) {
-                const washPrice = extras.wash[car];
-                scripts += `
-                    <div class="script-item">
-                        <div class="script-title">Предложение мойки</div>
-                        <div class="script-content">
-                            «После возврата автомобиля требуется мойка. Оформите сейчас за ${washPrice.toLocaleString('ru')} ₽, чтобы избежать задержек при возврате»
-                        </div>
-                    </div>
-                `;
-            }
-            
-            // Скрипт по продлению аренды
-            if (isExtended && extensionDays > 0) {
-                scripts += `
-                    <div class="script-item">
-                        <div class="script-title">Информация о продлении</div>
-                        <div class="script-content">
-                            «Продление аренды рассчитано по тарифу следующего периода. Например, если основной период был 1-3 суток, а с продлением стало 4 суток — расчет ведется по тарифу 4-7 суток»
-                        </div>
-                    </div>
-                `;
-            }
-            
-            // Скрипт по депозиту
-            scripts += `
-                <div class="script-item">
-                    <div class="script-title">Объяснение депозита</div>
-                    <div class="script-content">
-                        «Депозит в размере ${extras.deposit[car].toLocaleString('ru')} ₽ будет возвращен через 3 дня после проверки авто. 
-                        Если будут обнаружены повреждения или перепробег, сумма удерживается в размере фактических затрат»
-                    </div>
-                </div>
-            `;
-            
-            // Скрипт по осмотру авто
-            scripts += `
-                <div class="script-item">
-                    <div class="script-title">Важно перед выдачей</div>
-                    <div class="script-content">
-                        «Перед выдачей зафиксируем состояние авто на видео. Это защитит вас от споров при возврате. 
-                        Проверим уровень бензина, наличие незамерзайки и общее состояние»
-                    </div>
-                </div>
-            `;
-            
-            // Скрипт по возврату
-            scripts += `
-                <div class="script-item">
-                    <div class="script-title">Что проверить при возврате</div>
-                    <div class="script-content">
-                        «При возврате проверим: пробег, уровень бензина, наличие штрафов, чистоту салона. 
-                        Если все в порядке — депозит вернем в течение 24 часов»
-                    </div>
-                </div>
-            `;
-            
-            scriptsContainer.innerHTML = scripts || '<p>Нет рекомендаций</p>';
-        }
-
-        // Вспомогательные функции
-        function getCarName(car) {
-            const names = {
-                chery: 'Chery Tiggo 4 Pro',
-                lada: 'Lada Granta',
-                jeep: 'Jeep Cherokee',
-                voyah: 'Voyah Free',
-                gazel: 'Газель Next',
-                range: 'Range Rover Sport',
-                geely: 'Geely Monjaro',
-                "lada-largus": 'Lada Largus фургон',
-                vw: 'VW Caddy'
-            };
-            return names[car];
-        }
-
-        function getRentalPeriodText(period) {
-            const periods = {
-                "4-hours": "4 часа",
-                "8-hours": "8 часов",
-                "1-3-days": "1-3 суток",
-                "4-7-days": "4-7 суток",
-                "8-15-days": "8-15 суток",
-                "16-30-days": "16-30 суток"
-            };
-            return periods[period];
-        }
-
+        
+        // Получение правильного окончания для дней
         function getDaysText(days) {
             if (days % 10 === 1 && days % 100 !== 11) return 'день';
             if ([2,3,4].includes(days % 10) && ![12,13,14].includes(days % 100)) return 'дня';
             return 'дней';
         }
-
+        
+        // Сохранение в Google Таблицу
+        function saveToGoogleSheets() {
+  if (!googleScriptURL) {
+    alert('⚠️ Не настроен URL Google Apps Script!\nПерейдите во вкладку "Google Таблица" и настройте интеграцию.');
+    openTab('google');
+    return;
+  }
+  
+  const clientName = document.getElementById('client-name').value;
+  const phone = document.getElementById('client-phone').value;
+  const car = document.getElementById('car').options[document.getElementById('car').selectedIndex].text;
+  const total = document.getElementById('total').textContent.replace(/\D/g, '');
+  const employee = document.getElementById('employee-name').value || 'Не указано';
+  const accountNumber = document.getElementById('account-number').value || 'Не указан';
+  
+  if (!clientName || !phone) {
+    alert('⚠️ Заполните имя клиента и телефон!');
+    return;
+  }
+  
+  const orderData = {
+    employee: employee,
+    clientName: clientName,
+    phone: phone,
+    car: car,
+    total: total,
+    accountNumber: accountNumber
+  };
+  
+  document.getElementById('save-btn').disabled = true;
+  document.getElementById('save-btn').textContent = 'Сохранение...';
+  
+  // Используем proxy для обхода CORS при локальном открытии
+  const proxyUrl = 'https://corsproxy.io/?';
+  const targetUrl = googleScriptURL;
+  
+  fetch(proxyUrl + encodeURIComponent(targetUrl), {
+    method: 'POST',
+    body: JSON.stringify(orderData),
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    mode: 'cors'
+  })
+  .then(response => {
+    if (!response.ok) {
+      return response.text().then(text => {
+        throw new Error(`HTTP error! status: ${response.status}, response: ${text}`);
+      });
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Успешный ответ:', data);
+    document.getElementById('save-btn').disabled = false;
+    document.getElementById('save-btn').textContent = '✅ Сохранено!';
+    document.getElementById('save-status').style.display = 'block';
+    
+    // Сброс кнопки через 3 секунды
+    setTimeout(() => {
+      document.getElementById('save-btn').textContent = 'Сохранить расчет в таблицу';
+    }, 3000);
+    
+    alert('✅ Данные успешно сохранены в Google Таблицу!');
+  })
+  .catch(error => {
+    console.error('Подробная ошибка:', error);
+    document.getElementById('save-btn').disabled = false;
+    document.getElementById('save-btn').textContent = '❌ Ошибка сохранения';
+    
+    let errorMessage = '❌ Ошибка сохранения в Google Таблицу!\n';
+    
+    if (error.message.includes('Failed to fetch')) {
+      errorMessage += 'Проблема с подключением к интернету или CORS.\n';
+      errorMessage += 'Рекомендуется разместить файл на GitHub Pages.';
+    } else if (error.message.includes('Invalid JSON')) {
+      errorMessage += 'Неверный формат данных. Проверьте ввод.';
+    } else {
+      errorMessage += `Детали ошибки: ${error.message}`;
+    }
+    
+    alert(errorMessage);
+    
+    // Сброс кнопки через 3 секунды
+    setTimeout(() => {
+      document.getElementById('save-btn').textContent = 'Сохранить расчет в таблицу';
+    }, 3000);
+  });
+}
+        
+        // Сохранение URL Apps Script
+        function saveScriptURL() {
+            const url = document.getElementById('script-url').value.trim();
+            if (url && url.startsWith('https://script.google.com/macros/s/')) {
+                localStorage.setItem('googleScriptURL', url);
+                googleScriptURL = url;
+                alert('✅ URL успешно сохранен!');
+                openTab('calculator');
+            } else {
+                alert('❌ Неверный формат URL!\nURL должен начинаться с "https://script.google.com/macros/s/"');
+            }
+        }
+        
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
-            toggleDaysInput();
-            toggleDistanceInput();
-            toggleExtensionInput();
             calculate();
+            
+            // Автозагрузка сохраненного URL
+            if (googleScriptURL) {
+                document.getElementById('script-url').value = googleScriptURL;
+            }
+            
+            // Загрузка сохраненного имени сотрудника
+            const savedEmployee = localStorage.getItem('currentEmployee');
+            if (savedEmployee) {
+                document.getElementById('employee-name').value = savedEmployee;
+            }
+            
+            // Сохранение имени сотрудника при потере фокуса
+            document.getElementById('employee-name').addEventListener('blur', function() {
+                if (this.value) {
+                    localStorage.setItem('currentEmployee', this.value);
+                }
+            });
         });
     </script>
 </body>
