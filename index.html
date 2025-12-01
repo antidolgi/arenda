@@ -819,12 +819,8 @@ function doPost(e) {
         }
         
         // Сохранение в Google Таблицу
-        function saveToGoogleSheets() {
-  if (!googleScriptURL) {
-    alert('⚠️ Не настроен URL Google Apps Script!\nПерейдите во вкладку "Google Таблица" и настройте интеграцию.');
-    openTab('google');
-    return;
-  }
+      function saveToGoogleSheets() {
+  const scriptURL = 'ВАШ_НОВЫЙ_URL_ИЗ_ШАГА_2'; // Замените на ваш новый URL
   
   const clientName = document.getElementById('client-name').value;
   const phone = document.getElementById('client-phone').value;
@@ -850,17 +846,14 @@ function doPost(e) {
   document.getElementById('save-btn').disabled = true;
   document.getElementById('save-btn').textContent = 'Сохранение...';
   
-  // Используем proxy для обхода CORS при локальном открытии
-  const proxyUrl = 'https://corsproxy.io/?';
-  const targetUrl = googleScriptURL;
-  
-  fetch(proxyUrl + encodeURIComponent(targetUrl), {
+  // Отправляем данные с правильными заголовками
+  fetch(scriptURL, {
     method: 'POST',
     body: JSON.stringify(orderData),
-    headers: { 
-      'Content-Type': 'application/json'
-    },
-    mode: 'cors'
+    headers: {
+      'Content-Type': 'application/json',
+      'Origin': 'https://antidolgi.github.io'
+    }
   })
   .then(response => {
     if (!response.ok) {
@@ -871,12 +864,9 @@ function doPost(e) {
     return response.json();
   })
   .then(data => {
-    console.log('Успешный ответ:', data);
     document.getElementById('save-btn').disabled = false;
     document.getElementById('save-btn').textContent = '✅ Сохранено!';
-    document.getElementById('save-status').style.display = 'block';
     
-    // Сброс кнопки через 3 секунды
     setTimeout(() => {
       document.getElementById('save-btn').textContent = 'Сохранить расчет в таблицу';
     }, 3000);
@@ -884,27 +874,22 @@ function doPost(e) {
     alert('✅ Данные успешно сохранены в Google Таблицу!');
   })
   .catch(error => {
-    console.error('Подробная ошибка:', error);
     document.getElementById('save-btn').disabled = false;
-    document.getElementById('save-btn').textContent = '❌ Ошибка сохранения';
+    document.getElementById('save-btn').textContent = '❌ Ошибка';
     
     let errorMessage = '❌ Ошибка сохранения в Google Таблицу!\n';
-    
-    if (error.message.includes('Failed to fetch')) {
-      errorMessage += 'Проблема с подключением к интернету или CORS.\n';
-      errorMessage += 'Рекомендуется разместить файл на GitHub Pages.';
-    } else if (error.message.includes('Invalid JSON')) {
-      errorMessage += 'Неверный формат данных. Проверьте ввод.';
+    if (error.message.includes('CORS')) {
+      errorMessage += 'Проблема с настройкой CORS.\n';
+      errorMessage += 'Проверьте код Apps Script и развертывание.';
     } else {
       errorMessage += `Детали ошибки: ${error.message}`;
     }
     
-    alert(errorMessage);
-    
-    // Сброс кнопки через 3 секунды
     setTimeout(() => {
       document.getElementById('save-btn').textContent = 'Сохранить расчет в таблицу';
     }, 3000);
+    
+    alert(errorMessage);
   });
 }
         
