@@ -28,7 +28,7 @@
             padding-bottom: 60px;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 15px;
         }
@@ -90,6 +90,356 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        .process-step {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            position: relative;
+        }
+        .step-number {
+            display: inline-block;
+            width: 26px;
+            height: 26px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 26px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+        .warning {
+            border-left-color: var(--warning);
+            background: #fffbeb;
+        }
+        .critical {
+            border-left-color: var(--danger);
+            background: #fef2f2;
+        }
+        h2 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        h4 {
+            color: var(--secondary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        ul {
+            padding-left: 22px;
+            margin: 10px 0;
+        }
+        li {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        .important {
+            color: var(--danger);
+            font-weight: bold;
+            background: #fee2e2;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .reminder {
+            background: #fff9db;
+            border-left: 4px solid #f59e0b;
+            padding: 10px 12px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.9rem;
+        }
+        .reminder strong {
+            color: var(--warning);
+        }
+        .highlight {
+            background: #dbeafe;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        .program-step {
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 8px 0;
+            border-left: 3px solid #94a3b8;
+        }
+        .calculator {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        @media (min-width: 768px) {
+            .calculator {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        .result-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .total-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 12px 0;
+        }
+        .client-phrase {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid #cbd5e1;
+            text-align: left;
+            min-height: 120px;
+            font-size: 0.95rem;
+        }
+        .btn-calculate {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        .btn-calculate:hover {
+            background: #0da271;
+        }
+        .btn-fssp {
+            display: inline-block;
+            background: #8b5cf6;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin: 10px 0;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .btn-fssp:hover {
+            background: #7c3aed;
+        }
+        .section-title {
+            font-weight: 600;
+            color: var(--secondary);
+            margin: 15px 0 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 1.2rem;
+        }
+        .addon-group {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        @media (min-width: 480px) {
+            .addon-group {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .addon-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            padding: 8px;
+            background: #f8fafc;
+            border-radius: 6px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #cbd5e1;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+        .save-section {
+            background: #f0f9ff;
+            border: 1px solid #dbeafe;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .hidden-field {
+            display: none;
+        }
+        .info-box {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .script-instructions {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .script-instructions pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin: 10px 0;
+        }
+        .deposit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .deposit-item {
+            background: #e0f2fe;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .status-planned { background: #94a3b8; }
+        .status-booked { background: #f59e0b; }
+        .status-rented { background: #10b981; }
+        .status-completed { background: #3b82f6; }
+        .status-cancelled { background: #ef4444; }
+        
+        /* Тарифы стили */
+        .tariffs-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .tariffs-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+        .tariffs-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 500;
+            border: 1px solid #cbd5e1;
+        }
+        .tariffs-table td {
+            padding: 10px 8px;
+            border: 1px solid #cbd5e1;
+            text-align: center;
+        }
+        .tariffs-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        .tariffs-table tr:hover {
+            background: #e0f2fe;
+        }
+        .car-price {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        .mileage-header {
+            background: var(--secondary) !important;
+        }
+        .car-header {
+            background: #1e293b !important;
+            font-size: 1.1rem;
+        }
+        .period-row {
+            font-weight: 600;
+            background: #f1f5f9 !important;
+        }
+        .note-cell {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-align: left !important;
+            padding: 8px 12px;
+        }
+        .car-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .car-option {
+            padding: 12px;
+            background: #f8fafc;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .car-option:hover {
+            border-color: var(--primary);
+            background: #e0f2fe;
+        }
+        .car-option.active {
+            border-color: var(--primary);
+            background: #dbeafe;
+            font-weight: 600;
+        }
+        .car-icon {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
         }
         
         /* FAQ стили */
@@ -228,11 +578,6 @@
             font-size: 0.9rem;
             color: var(--dark);
         }
-        
-        /* Остальные стили остаются как были */
-        .process-step, .program-step, .reminder, .info-box, .result-box, .save-section {
-            /* Сохраняем предыдущие стили */
-        }
     </style>
 </head>
 <body>
@@ -246,30 +591,528 @@
             <button class="tab-btn" onclick="openTab('checklist')">📋 Чек-лист</button>
             <button class="tab-btn" onclick="openTab('program')">💻 Программа</button>
             <button class="tab-btn" onclick="openTab('calculator')">🧮 Калькулятор</button>
+            <button class="tab-btn" onclick="openTab('tariffs')">💰 Тарифы</button>
             <button class="tab-btn" onclick="openTab('faq')">❓ FAQ</button>
             <button class="tab-btn" onclick="openTab('templates')">📄 Шаблоны</button>
         </div>
 
-        <!-- Существующие вкладки остаются без изменений -->
+        <!-- Чек-лист процессов -->
         <div id="checklist" class="tab-content active">
-            <!-- Содержимое чек-листа -->
             <h2>📋 Полный чек-лист аренды</h2>
-            <!-- ... остальной контент ... -->
+            
+            <!-- ЭТАП 1: Заявка -->
+            <div class="process-step">
+                <h4><span class="step-number">1</span> Заявка</h4>
+                <ul>
+                    <li><strong>а.</strong> Заявка по телефону</li>
+                    <li><strong>b.</strong> Заявка с сайта/авито/другие источники (все заявки приходят в Chat2Desk)</li>
+                    <li><strong>Важно:</strong> Если заявка не по телефону, нужно уточнить у клиента номер для связи и <span class="important">ИМЯ</span>, внести его в Chat2Desk</li>
+                    <li><strong>c.</strong> <span class="important">ЕСЛИ ЗАЯВКА С БУКИНГ КАР:</span>
+                        <ul>
+                            <li>Создаем номер счета</li>
+                            <li>Вносим данные клиента</li>
+                            <li>Добавляем в оплату строку <span class="important">0 рублей</span>, пишем «Бронирование Букинг Кар»</li>
+                            <li>В расписании ставим статус <span class="highlight">ЗАПЛАНИРОВАН</span> (сообщение уходит клиенту)</li>
+                            <li>После подтверждения ставим статус <span class="highlight">ЗАБРОНИРОВАН</span></li>
+                            <li><span class="important">На сайте Букинг Кар подтверждаем бронирование</span></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- ЭТАП 2: Сбор информации -->
+            <div class="process-step">
+                <h4><span class="step-number">2</span> Сбор информации</h4>
+                <ul>
+                    <li>Спросить клиента <span class="important">ДЛЯ КАКИХ ЦЕЛЕЙ?</span></li>
+                    <li>Какой автомобиль ему нужен</li>
+                    <li>На какое количество времени</li>
+                    <li>Куда поедет (чтобы понять сколько километров)</li>
+                    <li><strong>Если клиент в офисе, то:</strong>
+                        <ul>
+                            <li>Озвучить тарифы</li>
+                            <li>Попросить паспорт и водительское удостоверение</li>
+                        </ul>
+                    </li>
+                    <li><span class="important">ЗАРАНЕЕ ДОКУМЕНТЫ НЕ ПРОСИМ, ТАРИФЫ НЕ ОЗВУЧИВАЕМ</span></li>
+                </ul>
+            </div>
+
+            <!-- ЭТАП 3: Проверка клиента -->
+            <div class="process-step warning">
+                <h4><span class="step-number">3</span> Проверка клиента (ОБЯЗАТЕЛЬНО!)</h4>
+                <ul>
+                    <li>Проверить клиента на сайте судебных приставов по паспорту</li>
+                    <li>Если долгов нет, и стаж вождения от 3 лет и более и возраст от 21 года, то стандартные тарифы по прайсу</li>
+                    <li>Если есть долги у приставов → цена по тарифу увеличивается на <span class="important">50%</span></li>
+                    <li>Если стаж менее 3х лет → еще <span class="important">+25%</span></li>
+                    <li><strong>Важно:</strong> Если какой-то один из факторов, проценты применяются по отдельности</li>
+                </ul>
+                <a href="https://fssp.gov.ru/iss/ip" target="_blank" class="btn-fssp">
+                    🔍 Проверить клиента на сайте ФССП (обязательно!)
+                </a>
+            </div>
+
+            <!-- ЭТАП 4: Сообщение стоимости -->
+            <div class="process-step">
+                <h4><span class="step-number">4</span> Сообщение стоимости</h4>
+                <ul>
+                    <li>Сообщить клиенту стоимость в чате <strong>(Стоимость желательно озвучивать после проверки пункта 3)</strong></li>
+                    <li>Или пригласить в офис и озвучить на месте</li>
+                    <li>Озвучить варианты страховок</li>
+                    <li>Уточнить, нужен ли доп. водитель</li>
+                    <li>Уточнить по поводу мойки у клиента</li>
+                </ul>
+            </div>
+
+            <!-- ЭТАП 5: Предоплата -->
+            <div class="process-step">
+                <h4><span class="step-number">5</span> Предоплата</h4>
+                <ul>
+                    <li>Если по телефону или в Chat2Desk отправить сообщение (если не отправилось автоматически) внести предоплату <span class="important">1000 рублей</span> за услуги по бронированию за ним автомобиля</li>
+                </ul>
+            </div>
+
+            <!-- ЭТАП 6: Программа "ОКНА" (новый клиент) -->
+            <div class="process-step">
+                <h4><span class="step-number">6</span> Программа «ОКНА» (новый клиент)</h4>
+                <div class="program-step">
+                    <strong>6.a.</strong> Кнопка «СЧЕТА»<br>
+                    <strong>6.b.</strong> Через + добавляем клиента<br>
+                    <strong>6.c.</strong> Вносим его данные: <span class="important">НОМЕР ТЕЛЕФОНА, ФИО</span> (если неизвестно ФИО, то номер телефона с 8 потом Имя)<br>
+                    <strong>6.d.</strong> В РАСПИСАНИИ создаем запись на автомобиль, указываем номер счета. Ставим статус <span class="highlight">ЗАПЛАНИРОВАН</span><br>
+                    <strong>6.e.</strong> КЛИЕНТУ СИСТЕМА ОТПРАВИТ СМС (если не отправит, пишем сами текст)
+                </div>
+                <div class="reminder">
+                    <strong>Текст СМС:</strong> «Спасибо, что выбрали арендычавто.рф. Вами забронирован: [автомобиль, госномер, цвет], срок аренды: с [дата, время] по [дата, время]. Забрать Вы сможете ТС по адресу: г. Вологда, ул. Северная 42. Пожалуйста, для подтверждения бронирования отправьте ДА»
+                </div>
+                <div class="program-step">
+                    <strong>6.f.</strong> ПОСЛЕ ОПЛАТЫ БРОНИ в счете заходим в ОПЛАТА → ДОБАВЛЯЕМ «ОПЛАТА БРОНИРОВАНИЯ»<br>
+                    <strong>6.g.</strong> ПРОСТАВЛЯЕМ ЭТАП KPI<br>
+                    <strong>6.h.</strong> МЕНЯЕМ СТАТУС НА <span class="highlight">ЗАБРОНИРОВАН</span><br>
+                    <strong>6.i.</strong> ВНОСИМ ОПЛАТУ БРОНИ В <span class="highlight">Google Таблицу</span>
+                </div>
+            </div>
+
+            <!-- ЭТАП 7: Программа "ОКНА" (клиент в офисе/выдача) -->
+            <div class="process-step">
+                <h4><span class="step-number">7</span> Программа «ОКНА» (клиент в офисе / выдача)</h4>
+                <div class="program-step">
+                    <strong>ЕСЛИ КЛИЕНТ В ОФИСЕ:</strong><br>
+                    <strong>6.j.</strong> Открываем счета<br>
+                    <strong>6.k.</strong> Ставим его в расписание (забронирован), указываем номер счета. Если система не отправила сообщение автоматом, пишем САМИ<br>
+                    <strong>6.l.</strong> Вносим услуги, количество дней/часов, км, доп услуги<br>
+                    <strong>6.m.</strong> Принимаем оплату + <span class="important">Обеспечительный депозит</span> (нал/безнал) помечаем в разделе оплата<br>
+                    <strong>6.n.</strong> Делаем видеосъемку автомобиля, фото пробега, отправляем в чат в <span class="highlight">MAX</span> (чат по автомобилю), проверяем наличие <span class="important">незамерзайки</span><br>
+                    <strong>6.o.</strong> В программе вносим пробег и количество бензина в баке<br>
+                    <strong>6.p.</strong> Выбираем печать → расписание → указываем номер счёта → <span class="important">«договор одностор.+спец без водит»</span><br>
+                    <strong>6.q.</strong> Распечатываем договор<br>
+                    <strong>6.r.</strong> Ставим подписи, печати, выдаем документы и ключи<br>
+                    <strong>6.s.</strong> Этапы KPI (3 варианта: Сделана и опл бронь, Прием ТС, Заключен Договор), проставляем вариант, сумму и дату<br>
+                    <strong>6.t.</strong> Проставляем в <span class="highlight">Google Таблицу</span> внос обеспечительного депозита, оплату, способ оплаты
+                </div>
+                <div class="reminder">
+                    🔔 <strong>Примечание:</strong> При выдаче авто проверяем незамерзайку, количество бензина, чистоту автомобиля
+                </div>
+            </div>
+
+            <!-- ЭТАП 8: Программа "ОКНА" (старый клиент) -->
+            <div class="process-step">
+                <h4><span class="step-number">8</span> Программа «ОКНА» (старый клиент)</h4>
+                <div class="program-step">
+                    <strong>7.a.</strong> Кнопка «СЧЕТА»<br>
+                    <strong>7.b.</strong> + в поле «клиент»<br>
+                    <strong>7.c.</strong> Ищем клиента по фамилии<br>
+                    <strong>7.d.</strong> Открываем счета, добавляем услуги<br>
+                    <strong>7.e.</strong> Далее так же как и в пункте 6
+                </div>
+                <div class="reminder">
+                    🔔 <strong>Примечание:</strong> При выдаче авто проверяем незамерзайку, количество бензина, чистоту автомобиля
+                </div>
+            </div>
+
+            <!-- ЭТАП 9: Выдача автомобиля -->
+            <div class="process-step">
+                <h4><span class="step-number">9</span> Выдача автомобиля</h4>
+                <ul>
+                    <li><strong>8.a.</strong> Делаем видео</li>
+                    <li><strong>8.b.</strong> Делаем фото пробега и кол-во бензина (ДЛЯ СЕБЯ)</li>
+                    <li><strong>8.c.</strong> Отправляем видео в <span class="highlight">MAX</span> (чат с машиной)</li>
+                    <li><strong>8.d.</strong> Проверяем топливную карту и документы (СТС, страховка)</li>
+                    <li><strong>8.e.</strong> Проверяем наличие незамерзайки</li>
+                    <li><strong>8.f.</strong> При необходимости проводим краткий инструктаж</li>
+                    <li><strong>8.g.</strong> Меняем статус на <span class="highlight">Арендован</span></li>
+                </ul>
+            </div>
+
+            <!-- ЭТАП 10: Возврат автомобиля -->
+            <div class="process-step critical">
+                <h4><span class="step-number">10</span> Возврат автомобиля</h4>
+                <ul>
+                    <li><strong>9.a.</strong> Делаем видео</li>
+                    <li><strong>9.b.</strong> Делаем фото пробега и кол-во бензина (ДЛЯ СЕБЯ)</li>
+                    <li><strong>9.c.</strong> Отправляем его в <span class="highlight">MAX</span> (чат с машиной)</li>
+                    <li><strong>9.d.</strong> Проверяем топливную карту и документы</li>
+                    <li><strong>9.e.</strong> Проверяем штрафы по базе</li>
+                    <li><strong>9.f.</strong> Проверяем наличие незамерзайки</li>
+                    <li><strong>9.g.</strong> Проверяем заправки в Лукойл</li>
+                    <li><strong>9.h.</strong> Проверяем чистоту автомобиля, если не включена мойка (снаружи, внутри, запах сигарет)</li>
+                    <li><strong>9.i.</strong> Вносим в услуги</li>
+                    <li><strong>9.j.</strong> Просим клиента оплатить</li>
+                    <li><strong>9.k.</strong> <span class="important">ВСЕ ОПЛАТЫ СРАЗУ ВНОСЯТСЯ В GOOGLE ТАБЛИЦУ И ПРОГРАММУ В ТОТ ЖЕ МОМЕНТ</span></li>
+                    <li><strong>9.l.</strong> Сообщаем, что возврат задатка будет осуществлен <span class="important">ПО ИСТЕЧЕНИИ 24 часов</span></li>
+                </ul>
+                
+                <div class="program-step">
+                    <strong>Завершение в программе после оплаты:</strong><br>
+                    • В счете вносим все итоговые оплаты<br>
+                    • Если клиент полностью рассчитался, ставим <span class="important">дату и галочку «ОПЛАЧЕН»</span><br>
+                    • Меняем статус аренды на <span class="highlight">«ЗАВЕРШЕН»</span>
+                </div>
+                
+                <div class="reminder">
+                    🔔 <strong>Примечание:</strong> Для вноса ОБЕСПЕЧИТЕЛЬНОГО ДЕПОЗИТА можно брать наличными, и картой «предавторизация через терминал». В договоре клиент должен написать номер карты с какой была оплата (для возврата) или через 24 часа вернуться в офис и приложить карту (деньги вернуть можно через отмену авторизации)
+                </div>
+                <div class="reminder">
+                    🔔 <strong>Примечание:</strong> Для возврата (если безнал юр лица) нужно отправить в бухгалтерию письмо ПО ФОРМЕ «РАСПИСАНИЕ-СЧЕТА-ЗАЯВЛЕНИЕ НА ВОЗВРАТ»
+                </div>
+            </div>
+
+            <!-- ЭТАП 11: Возврат депозита -->
+            <div class="process-step critical">
+                <h4><span class="step-number">11</span> Возврат депозита</h4>
+                <div class="reminder">
+                    <strong>ВАЖНО:</strong> Возвращаем депозит <span class="important">ТОЛЬКО ПОСЛЕ УВЕДОМЛЕНИЯ ОТ СИСТЕМЫ</span> об отсутствии штрафов, через 24 часа.
+                </div>
+                
+                <div class="program-step">
+                    <strong>В программе «ОКНА»:</strong><br>
+                    • Заходим в <span class="highlight">«Состояние счетов»</span><br>
+                    • Находим клиента и <span class="important">ставим галочку</span> о возврате депозита<br>
+                    • Клиенту уйдет автоматическое уведомление
+                </div>
+                
+                <div class="program-step">
+                    <strong>В Google-таблице:</strong><br>
+                    • Вносим запись с возвратом депозита: <span class="important">«-» [СУММА ДЕПОЗИТА]</span>
+                </div>
+                
+                <div class="deposit-grid">
+                    <div class="deposit-item">
+                        <strong>А. Предавторизация по карте:</strong><br>
+                        • Операция «ОТМЕНА АВТОРИЗАЦИИ» на терминале<br>
+                        • Вводим номер карты, срок действия, RRN<br>
+                        • Чек прикрепляем к договору<br>
+                        • В программе: в «Оплате» добавляем «-» сумма, «Возврат депозита»
+                    </div>
+                    
+                    <div class="deposit-item">
+                        <strong>Б. Наличными:</strong><br>
+                        • Только при личном визите<br>
+                        • Выдаем из кассы, берем расписку<br>
+                        • В программе: «-» сумма, «Возврат депозита (наличные)»
+                    </div>
+                    
+                    <div class="deposit-item">
+                        <strong>В. Безнал (юрлицо):</strong><br>
+                        • Готовим пакет документов по форме<br>
+                        • Отправляем в бухгалтерию
+                    </div>
+                </div>
+            </div>
+
+            <!-- Дополнительно: Доставка -->
+            <div class="process-step">
+                <h4><span class="step-number">12</span> Доставка автомобиля до клиента</h4>
+                <ul>
+                    <li><strong>а.</strong> Подготавливаем документы в офисе</li>
+                    <li><strong>b.</strong> Привозим автомобиль</li>
+                    <li><strong>c.</strong> Получаем оплату</li>
+                    <li><strong>d.</strong> Вносим в таблицу на рабочем телефоне</li>
+                    <li><strong>e.</strong> При клиенте делаем видеообзор (+пробег)</li>
+                    <li><strong>f.</strong> Пробить чек на терминале эвотор (нал/безнал)</li>
+                    <li>Отправляем видео в <span class="highlight">MAX</span></li>
+                    <li>В чате с клиентом пишем внутренний комментарий: <code>#арендован [номер ТС]</code></li>
+                    <li>При получении у клиента автомобиля: <code>#выполнен [номер ТС]</code></li>
+                </ul>
+            </div>
         </div>
 
+        <!-- Работа в программе -->
         <div id="program" class="tab-content">
-            <!-- Содержимое программы -->
             <h2>💻 Подробная инструкция по работе в программе «ОКНА»</h2>
-            <!-- ... остальной контент ... -->
+            
+            <div class="info-box">
+                <strong>Статусы в программе:</strong>
+                <div style="margin-top: 8px;">
+                    <span class="status-indicator status-planned"></span> Запланирован - клиент только обратился<br>
+                    <span class="status-indicator status-booked"></span> Забронирован - оплатил бронирование<br>
+                    <span class="status-indicator status-rented"></span> Арендован - взял автомобиль<br>
+                    <span class="status-indicator status-completed"></span> Завершен - сдал автомобиль<br>
+                    <span class="status-indicator status-cancelled"></span> Отменен - передумал
+                </div>
+            </div>
+
+            <div class="process-step">
+                <h4>📌 Создание счета и внесение клиента</h4>
+                <div class="program-step">
+                    1. Заходим в <strong>«Счета»</strong> → нажимаем <strong>«+»</strong> (создается новый счет)<br>
+                    2. <strong>В поле «Клиент»:</strong><br>
+                    &nbsp;&nbsp;&nbsp;• <strong>Новый клиент:</strong> Нажимаем на <strong>три точки (...)</strong> → вносим номер телефона, затем имя (если ФИО неизвестно)<br>
+                    &nbsp;&nbsp;&nbsp;• <strong>Старый клиент:</strong> НЕ нажимаем три точки. Вводим фамилию в поле «Клиент» и выбираем из списка
+                </div>
+            </div>
+
+            <div class="process-step">
+                <h4>📌 Добавление услуг в счет</h4>
+                <div class="program-step">
+                    1. В окне счета нажимаем <strong>«+»</strong> (добавить строку)<br>
+                    2. В новой строке нажимаем на <strong>три точки</strong> в столбце «Артикул»<br>
+                    3. Выбираем услуги по порядку:<br>
+                    &nbsp;&nbsp;&nbsp;• <strong>Основная услуга:</strong> «Машины» → выбираем конкретный автомобиль<br>
+                    &nbsp;&nbsp;&nbsp;• <strong>Доп. услуги:</strong> Возвращаемся в выбор артикула → «Доп. услуги» / «Страховки»<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="important">ВАЖНО:</span> Для доп. услуг во втором столбце («Цвет») меняем номер машины на тот, который берет клиент
+                </div>
+            </div>
+
+            <div class="process-step">
+                <h4>📌 Работа с расписанием</h4>
+                <div class="program-step">
+                    1. Переходим в <strong>«Расписание»</strong><br>
+                    2. Выбираем дату аренды, находим столбец с нужным автомобилем<br>
+                    3. <strong>Дважды щелкаем</strong> по пустому месту в столбце на нужной строке времени<br>
+                    4. В открывшемся окне:<br>
+                    &nbsp;&nbsp;&nbsp;• Ставим время начала и окончания аренды<br>
+                    &nbsp;&nbsp;&nbsp;• <span class="important">ВВОДИМ НОМЕР СЧЕТА</span><br>
+                    &nbsp;&nbsp;&nbsp;• Выбираем <strong>СТАТУС</strong> (см. выше)<br>
+                    &nbsp;&nbsp;&nbsp;• Нажимаем <strong>ОК</strong>. Система автоматически отправит уведомление
+                </div>
+            </div>
+
+            <div class="process-step">
+                <h4>📌 Оплата и KPI</h4>
+                <div class="program-step">
+                    1. Во вкладке счета <strong>«Оплата»</strong> вносим все поступившие суммы:<br>
+                    &nbsp;&nbsp;&nbsp;• Нажимаем <strong>«+»</strong>, выбираем тип оплаты (нал/безнал)<br>
+                    &nbsp;&nbsp;&nbsp;• Указываем сумму и примечание («Бронирование», «Аренда», «Депозит»)<br>
+                    2. <strong>Обязательно проставляем Этапы KPI</strong> (во вкладке «Этапы КРП»):<br>
+                    &nbsp;&nbsp;&nbsp;• Варианты: «Сделана и опл. бронь», «Прием ТС», «Заключен Договор»<br>
+                    &nbsp;&nbsp;&nbsp;• Указываем сумму этапа и <strong>ДАТУ</strong><br>
+                    3. <span class="important">ВАЖНО:</span> После первичного создания счета и расписания <strong>ЗАКРЫВАЕМ СЧЕТ</strong> (чтобы система отправила уведомление). Через ~1 минуту можно снова открыть счет и продолжить работу
+                </div>
+            </div>
+
+            <div class="process-step">
+                <h4>📌 Печать договора</h4>
+                <div class="program-step">
+                    1. Нажимаем кнопку <strong>«Печать»</strong> → вкладка <strong>«Расписание»</strong><br>
+                    2. В поле «Номера счетов» вводим номер нашего счета<br>
+                    3. В списке шаблонов справа выбираем <strong>«Дог. одностор.+спец. без водителя»</strong> → <strong>«Просмотр»</strong><br>
+                    4. Проверяем, все ли данные корректно внесены<br>
+                    5. Нажимаем <strong>«Печать»</strong><br>
+                    6. <strong>Подписываем первые 7 страниц и отдаем клиенту.</strong> Остальные 8 страниц подписываем и просим подписать клиента. Эти страницы забираем себе, прикрепив к ним все чеки
+                </div>
+            </div>
+
+            <div class="process-step">
+                <h4>📌 Данные клиента и доп. водитель</h4>
+                <div class="program-step">
+                    1. <strong>Данные клиента</strong> вносятся в карточке клиента. В раздел <strong>«Доверенные лица»</strong> вносится серия и номер водительского удостоверения через <strong>№</strong><br>
+                    2. <strong>Если нужен второй водитель:</strong><br>
+                    &nbsp;&nbsp;&nbsp;• Добавляем услугу <strong>«Доп. водитель»</strong><br>
+                    &nbsp;&nbsp;&nbsp;• Просим клиента прислать паспорт, водительское и номер телефона второго водителя<br>
+                    &nbsp;&nbsp;&nbsp;• <strong>Проверяем второго водителя через ФССП</strong><br>
+                    &nbsp;&nbsp;&nbsp;• В поле <strong>«Доп. водитель»</strong> вносим данные в формате: <strong>ФИО, в/у [серия № номер], м.тел. [номер]</strong>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <h4>📌 Завершение аренды в программе</h4>
+                <div class="program-step">
+                    После приема автомобиля от клиента заходим в его счет:<br>
+                    1. Ставим <strong>конечный километраж</strong><br>
+                    2. Считаем перепробег, если есть, и добавляем соответствующую услугу<br>
+                    3. Добавляем услугу <strong>«Заправка топливом»</strong>, если клиент не вернул с полным баком<br>
+                    4. <strong>Вносим итоговую оплату</strong> во вкладке «Оплата»<br>
+                    5. <strong>Проставляем KPI</strong> этап «Завершен»<br>
+                    6. <strong>Ставим дату завершения аренды и галочку «Оплачен»</strong> (только после 100% оплаты)
+                </div>
+            </div>
+
+            <div class="process-step critical">
+                <h4>📌 Важные примечания по работе</h4>
+                <div class="program-step">
+                    • <strong>При озвучивании итоговой суммы клиенту:</strong> Если клиент оплачивал бронирование 1000 руб., итоговая сумма аренды озвучивается <span class="important">за минусом этих 1000 рублей</span><br>
+                    • <strong>Продление аренды:</strong> Если клиент хочет продлить, во вкладке <strong>«Этапы продления»</strong> добавляем два этапа. В счете указываем следующий этап и вносим услуги под его номером, не забывая внести оплату<br>
+                    • <strong>Подача/забор авто:</strong> При добавлении соответствующей услуги, в поле <strong>«Примечание»</strong> внизу пишем адрес через решетку: <code>адрес подачи # адрес возврата</code><br>
+                    • <strong>ВСЕ ОПЛАТЫ</strong> вносятся в Google-таблицу <span class="important">НЕМЕДЛЕННО</span> в момент проведения операции
+                </div>
+            </div>
         </div>
 
+        <!-- Калькулятор стоимости -->
         <div id="calculator" class="tab-content">
-            <!-- Калькулятор -->
             <h2>🧮 Калькулятор стоимости аренды</h2>
-            <!-- ... остальной контент ... -->
+            
+            <div class="calculator">
+                <div>
+                    <!-- Основные параметры -->
+                    <div class="input-group">
+                        <label for="car">Выберите автомобиль:</label>
+                        <select id="car" onchange="calculate()">
+                            <option value="chery">Chery Tiggo 4 Pro</option>
+                            <option value="lada">Lada Granta</option>
+                            <option value="vw">VW Caddy</option>
+                            <option value="jeep">Jeep Cherokee</option>
+                            <option value="range">Range Rover Sport</option>
+                            <option value="monjara">Geely Monjaro</option>
+                            <option value="voyah">Voyah Free</option>
+                            <option value="gazel">Газель Next</option>
+                            <option value="largus">Lada Largus фургон</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="days">Количество суток:</label>
+                        <input type="number" id="days" min="1" max="30" value="1" onchange="calculate()">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="mileage">Планируемый пробег в сутки (км):</label>
+                        <input type="number" id="mileage" min="1" value="200" onchange="calculate()">
+                    </div>
+
+                    <div class="section-title">Дополнительные коэффициенты</div>
+                    
+                    <div class="addon-group">
+                        <div class="addon-item">
+                            <input type="checkbox" id="debt" onchange="calculate()">
+                            <label for="debt">Долги у приставов (+50%)</label>
+                        </div>
+                        <div class="addon-item">
+                            <input type="checkbox" id="experience" onchange="calculate()">
+                            <label for="experience">Стаж менее 3 лет (+25%)</label>
+                        </div>
+                        <div class="addon-item">
+                            <input type="checkbox" id="region" onchange="calculate()">
+                            <label for="region">Выезд за область (+10%)</label>
+                        </div>
+                    </div>
+
+                    <div class="section-title">Дополнительные услуги</div>
+                    
+                    <div class="addon-group">
+                        <div class="addon-item">
+                            <input type="checkbox" id="insurance" onchange="calculate()">
+                            <label for="insurance">Расширенная страховка (+1500 ₽/сутки)</label>
+                        </div>
+                        <div class="addon-item">
+                            <input type="checkbox" id="extra_driver" onchange="calculate()">
+                            <label for="extra_driver">Доп. водитель (+500 ₽)</label>
+                        </div>
+                        <div class="addon-item">
+                            <input type="checkbox" id="washing" onchange="calculate()">
+                            <label for="washing">Мойка перед возвратом (+1000 ₽)</label>
+                        </div>
+                        <div class="addon-item">
+                            <input type="checkbox" id="child_seat" onchange="calculate()">
+                            <label for="child_seat">Детское кресло (+300 ₽)</label>
+                        </div>
+                    </div>
+
+                    <div class="section-title">Обеспечительный депозит</div>
+                    <div class="deposit-grid">
+                        <div class="deposit-item">Lada Granta: 5 000 ₽</div>
+                        <div class="deposit-item">VW Caddy: 5 000 ₽</div>
+                        <div class="deposit-item">Chery/Газель/Largus: 10 000 ₽</div>
+                        <div class="deposit-item">Jeep/Range: 15 000 ₽</div>
+                        <div class="deposit-item">Monjara: 20 000 ₽</div>
+                        <div class="deposit-item">Voyah: 25 000 ₽</div>
+                    </div>
+                    
+                    <button onclick="calculate()" class="btn-calculate">
+                        🔄 Пересчитать стоимость
+                    </button>
+                </div>
+                
+                <div>
+                    <div class="result-box">
+                        <h3>Итоговая стоимость:</h3>
+                        <div class="total-amount" id="total">0 ₽</div>
+                        
+                        <div id="calculation-details" style="text-align: left; margin: 15px 0; padding: 10px; background: rgba(255,255,255,0.7); border-radius: 6px; font-size: 0.9rem;">
+                            <strong>Детали расчета:</strong>
+                            <div id="details"></div>
+                        </div>
+                        
+                        <div class="client-phrase" id="phrase">
+                            <p>Здесь появится фраза для клиента...</p>
+                        </div>
+                        
+                        <div id="deposit-info" style="margin-top: 15px; padding: 10px; background: #e0f2fe; border-radius: 6px;">
+                            <strong>Обеспечительный депозит:</strong> <span id="deposit-amount">0 ₽</span>
+                        </div>
+                        
+                        <div class="save-section">
+                            <h4>📝 Фраза для клиента:</h4>
+                            <div class="input-group">
+                                <label for="client-name">Имя клиента:</label>
+                                <input type="text" id="client-name" placeholder="Введите имя клиента" onkeyup="updatePhrase()">
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="client-phone">Телефон клиента:</label>
+                                <input type="tel" id="client-phone" placeholder="+7 ...">
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="account-number">Номер счета в программе:</label>
+                                <input type="text" id="account-number" placeholder="Только цифры">
+                            </div>
+                            
+                            <button onclick="copyPhrase()" class="btn-calculate" style="background: #8b5cf6;">
+                                📋 Копировать фразу для клиента
+                            </button>
+                            
+                            <p id="copy-status" style="margin-top: 8px; font-size: 0.9rem; color: var(--success); display: none;">
+                                ✅ Скопировано в буфер обмена!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- НОВАЯ ВКЛАДКА: FAQ -->
+        <!-- Тарифы -->
+        <div id="tariffs" class="tab-content">
+            <h2>💰 Тарифы на аренду автомобилей</h2>
+            
+            <div class="info-box">
+                <strong>Примечание:</strong> Цены указаны в рублях. Базовый лимит пробега: 200 км в сутки. Перепробег: 12-28 руб/км (в зависимости от автомобиля).
+            </div>
+            
+            <div class="car-selector" id="tariff-car-selector">
+                <!-- Автомобили будут добавлены через JavaScript -->
+            </div>
+            
+            <div class="tariffs-container">
+                <table class="tariffs-table" id="tariffs-table">
+                    <!-- Таблица будет заполнена через JavaScript -->
+                </table>
+            </div>
+            
+            <div class="reminder">
+                <strong>Дополнительные услуги:</strong><br>
+                • Расширенная страховка: от 900 до 1700 ₽/сутки<br>
+                • Мойка автомобиля: 1000-1700 ₽<br>
+                • Доставка по городу: 700-800 ₽<br>
+                • Самокаты NineBot: от 400 ₽/час<br>
+                • Прицеп: 250 ₽/час, 700 ₽/сутки<br>
+                • Автобокс: 1400 ₽ (1-4 суток), 300 ₽/сутки (5+ суток)
+            </div>
+        </div>
+
+        <!-- FAQ -->
         <div id="faq" class="tab-content">
             <h2>❓ Часто задаваемые вопросы</h2>
             
@@ -284,9 +1127,11 @@
                         <option value="lada">Lada Granta</option>
                         <option value="vw">VW Caddy</option>
                         <option value="jeep">Jeep Cherokee</option>
-                        <option value="range">Range Rover</option>
-                        <option value="monjara">Monjara</option>
-                        <option value="voyah">Voyah</option>
+                        <option value="range">Range Rover Sport</option>
+                        <option value="monjara">Geely Monjaro</option>
+                        <option value="voyah">Voyah Free</option>
+                        <option value="gazel">Газель Next</option>
+                        <option value="largus">Lada Largus фургон</option>
                         <option value="general">Общие вопросы</option>
                     </select>
                 </div>
@@ -298,24 +1143,353 @@
             </div>
         </div>
 
+        <!-- Шаблоны и скрипты -->
         <div id="templates" class="tab-content">
-            <!-- Шаблоны -->
             <h2>📄 Шаблоны сообщений и скрипты</h2>
-            <!-- ... остальной контент ... -->
+            
+            <div class="process-step">
+                <h4>📱 Шаблон СМС для бронирования</h4>
+                <div class="program-step">
+                    <strong>Текст:</strong><br>
+                    «Спасибо, что выбрали арендычавто.рф! Вами забронирован: [марка авто, госномер, цвет]. Срок аренды: с [дата, день недели] [время] по [дата, день недели] [время]. Адрес выдачи: г. Вологда, ул. Северная, 42. Для подтверждения брони отправьте ДА. Предоплата 1000 руб.»
+                </div>
+                <button onclick="copySMS()" class="btn-calculate" style="margin-top: 10px; background: #10b981;">
+                    📋 Копировать шаблон СМС
+                </button>
+            </div>
+            
+            <div class="process-step">
+                <h4>💬 Скрипт для сообщения цены</h4>
+                <div class="program-step">
+                    <strong>Текст:</strong><br>
+                    «[Имя клиента], на основании ваших параметров ([даты, авто]) и наших условий, стоимость аренды составит [сумма] рублей. В эту сумму входит [перечислить: пакет км, ОСАГО, базовая страховка]. Доступны опции: [расширенная страховка, мойка]. Вас устраивают такие условия?»
+                </div>
+                <button onclick="copyPriceScript()" class="btn-calculate" style="margin-top: 10px; background: #f59e0b;">
+                    📋 Копировать скрипт
+                </button>
+            </div>
+            
+            <div class="process-step">
+                <h4>💰 Скрипт для предоплаты</h4>
+                <div class="program-step">
+                    <strong>Текст:</strong><br>
+                    «Чтобы закрепить за вами автомобиль на выбранные даты, необходимо внести предоплату 1000 рублей. После этого мы официально забронируем авто и вышлем вам подтверждение. Оплатить можно по ссылке: [ссылка]»
+                </div>
+                <button onclick="copyPrepaymentScript()" class="btn-calculate" style="margin-top: 10px; background: #3b82f6;">
+                    📋 Копировать скрипт
+                </button>
+            </div>
+            
+            <div class="process-step">
+                <h4>↩️ Скрипт для возврата депозита</h4>
+                <div class="program-step">
+                    <strong>Текст:</strong><br>
+                    «[Имя], благодарим за пользование нашим сервисом! Депозит в размере [сумма] будет возвращен вам в течение 24 часов тем же способом, которым вы его вносили (наличными/на карту). Мы отправим вам сообщение, когда операция будет проведена.»
+                </div>
+                <button onclick="copyDepositScript()" class="btn-calculate" style="margin-top: 10px; background: #8b5cf6;">
+                    📋 Копировать скрипт
+                </button>
+            </div>
+            
+            <div class="process-step">
+                <h4>🔗 Интеграция с Google Таблицами</h4>
+                <div class="script-instructions">
+                    <p><strong>Для настройки автоматического сохранения расчетов:</strong></p>
+                    
+                    <ol style="margin: 10px 0 10px 20px;">
+                        <li>Создайте Google Таблицу</li>
+                        <li>Откройте <strong>Расширения → Apps Script</strong></li>
+                        <li>Вставьте следующий код:</li>
+                    </ol>
+                    
+                    <pre>
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Лист1");
+    var data = JSON.parse(e.postData.contents);
+    
+    sheet.appendRow([
+      new Date(),
+      data.clientName || "",
+      data.phone || "",
+      data.car || "",
+      data.total || 0,
+      data.deposit || 0,
+      data.accountNumber || "",
+      "Новый расчет"
+    ]);
+    
+    return ContentService
+      .createTextOutput(JSON.stringify({success: true}))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch(error) {
+    return ContentService
+      .createTextOutput(JSON.stringify({error: error.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function doGet(e) {
+  return ContentService
+    .createTextOutput(JSON.stringify({status: "API работает"}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+                    </pre>
+                    
+                    <ol start="4" style="margin: 10px 0 10px 20px;">
+                        <li>Нажмите <strong>Развернуть → Новое развертывание</strong></li>
+                        <li>Выберите <strong>Веб-приложение</strong></li>
+                        <li>Доступ: <strong>Все, даже анонимные</strong></li>
+                        <li>Скопируйте URL веб-приложения</li>
+                        <li>Вставьте URL в поле ниже:</li>
+                    </ol>
+                    
+                    <div class="input-group">
+                        <label for="script-url">URL вашего Google Apps Script:</label>
+                        <input type="text" id="script-url" placeholder="https://script.google.com/macros/s/.../exec">
+                        <button onclick="saveScriptURL()" class="btn-calculate" style="margin-top: 8px;">
+                            💾 Сохранить URL
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <footer>
-            <p>Внутренний портал компании «Арендычавто.рф» • Версия 2.1 • Обновлено: 05.02.2026</p>
+            <p>Внутренний портал компании «Арендычавто.рф» • Версия 3.0 • Обновлено: 05.02.2026</p>
             <p style="margin-top: 5px; font-size: 0.8rem; color: var(--warning);">
-                ⚠️ Для корректной работы калькулятора обновите тарифы в соответствии с актуальными ценами
+                ⚠️ Все цены актуальны на 2026 год. Проверяйте обновления тарифов в Excel-файле.
             </p>
         </footer>
     </div>
 
     <script>
-        // Данные FAQ (вы будете их заполнять)
+        // Актуальные тарифы на основе Excel-файла (исправлен Voyah Free)
+        const tariffs = {
+            chery: { 
+                name: "Chery Tiggo 4 Pro",
+                base: 4300, 
+                deposit: 10000,
+                dailyRates: {
+                    '1-3': 4300,
+                    '4-7': 4100,
+                    '8-15': 3950,
+                    '16+': 3800
+                },
+                overmileage: 12
+            },
+            lada: { 
+                name: "Lada Granta",
+                base: 2500, 
+                deposit: 5000,
+                dailyRates: {
+                    '1-3': 2500,
+                    '4-7': 2400,
+                    '8-15': 2250,
+                    '16+': 2200
+                },
+                overmileage: 12
+            },
+            vw: { 
+                name: "VW Caddy",
+                base: 4400, 
+                deposit: 5000,
+                dailyRates: {
+                    '1-3': 4400,
+                    '4-7': 4100,
+                    '8-15': 3950,
+                    '16+': 3800
+                },
+                overmileage: 12
+            },
+            jeep: { 
+                name: "Jeep Cherokee",
+                base: 7850, 
+                deposit: 15000,
+                dailyRates: {
+                    '1-3': 7850,
+                    '4-7': 7700,
+                    '8-15': 7500,
+                    '16+': 7300
+                },
+                overmileage: 17
+            },
+            range: { 
+                name: "Range Rover Sport",
+                base: 6200, 
+                deposit: 15000,
+                dailyRates: {
+                    '1-3': 6200,
+                    '4-7': 5950,
+                    '8-15': 5750,
+                    '16+': 5400
+                },
+                overmileage: 17
+            },
+            monjara: { 
+                name: "Geely Monjaro",
+                base: 9000, 
+                deposit: 20000,
+                dailyRates: {
+                    '1-3': 9000,
+                    '4-7': 8500,
+                    '8-15': 8000,
+                    '16+': 7700
+                },
+                overmileage: 17
+            },
+            voyah: { 
+                name: "Voyah Free",
+                base: 11800,  // Исправлено с 14000 на 11800
+                deposit: 25000,
+                dailyRates: {
+                    '1-3': 11800,
+                    '4-7': 10650,
+                    '8-15': 9550,
+                    '16+': 8400
+                },
+                overmileage: 28
+            },
+            gazel: {
+                name: "Газель Next",
+                base: 6200,
+                deposit: 10000,
+                dailyRates: {
+                    '1-3': 6200,
+                    '4-7': 5950,
+                    '8-15': 5750,
+                    '16+': 5500
+                },
+                overmileage: 17
+            },
+            largus: {
+                name: "Lada Largus фургон",
+                base: 3600,
+                deposit: 10000,
+                dailyRates: {
+                    '1-3': 3600,
+                    '4-7': 3450,
+                    '8-15': 3300,
+                    '16+': 3050
+                },
+                overmileage: 12
+            }
+        };
+
+        // Данные для таблицы тарифов (из Excel)
+        const tariffData = {
+            chery: {
+                periods: {
+                    '4 часа': [2250, null, null, null, null],
+                    '8 часов': [null, 3400, 4000, 4500, 5600],
+                    '1-3 суток': [null, null, 4300, 4850, 6200],
+                    '4-7 суток': [null, null, 4100, 4650, 6000],
+                    '8-15 суток': [null, null, 3950, 4500, 5850],
+                    'от 16 суток': [null, null, 3800, 4350, 5700]
+                },
+                deposit: 10000,
+                overmileage: 12
+            },
+            lada: {
+                periods: {
+                    '4 часа': [1600, null, null, null, null],
+                    '8 часов': [null, 2000, 2250, 2500, null],
+                    '1-3 суток': [null, null, 2500, 2800, 3950],
+                    '4-7 суток': [null, null, 2400, 2700, 3850],
+                    '8-15 суток': [null, null, 2250, 2600, 3700],
+                    'от 16 суток': [null, null, 2200, 2500, 3600]
+                },
+                deposit: 5000,
+                overmileage: 12
+            },
+            jeep: {
+                periods: {
+                    '4 часа': [4500, null, null, null, null],
+                    '8 часов': [null, 6200, 6750, 7850, null],
+                    '1-3 суток': [null, null, 7850, 8650, 10100],
+                    '4-7 суток': [null, null, 7700, 8500, 9950],
+                    '8-15 суток': [null, null, 7500, 8100, 9700],
+                    'от 16 суток': [null, null, 7300, 7850, 9200]
+                },
+                deposit: 15000,
+                overmileage: 17
+            },
+            voyah: {
+                periods: {
+                    '4 часа': [6750, null, null, null, null],
+                    '8 часов': [null, 9000, 11200, 13450, null],
+                    '1-3 суток': [null, null, 11800, 14000, 16250],
+                    '4-7 суток': [null, null, 10650, 12350, 15150],
+                    '8-15 суток': [null, null, 9550, 11200, 14000],
+                    'от 16 суток': [null, null, 8400, 9550, 10640]
+                },
+                deposit: 25000,
+                overmileage: 28
+            },
+            gazel: {
+                periods: {
+                    '4 часа': [3400, null, null, null, null],
+                    '8 часов': [null, 4500, 5600, 6750, 9000],
+                    '1-3 суток': [null, null, 6200, 7300, 10100],
+                    '4-7 суток': [null, null, 5950, 7100, 9750],
+                    '8-15 суток': [null, null, 5750, 6850, 9550],
+                    'от 16 суток': [null, null, 5500, 6600, 9300]
+                },
+                deposit: 10000,
+                overmileage: 17
+            },
+            range: {
+                periods: {
+                    '4 часа': [3400, null, null, null, null],
+                    '8 часов': [null, 5050, 5600, 6750, null],
+                    '1-3 суток': [null, null, 6200, 7100, 7850],
+                    '4-7 суток': [null, null, 5950, 6850, 7650],
+                    '8-15 суток': [null, null, 5750, 6600, 7400],
+                    'от 16 суток': [null, null, 5400, 6300, 6750]
+                },
+                deposit: 15000,
+                overmileage: 17
+            },
+            monjara: {
+                periods: {
+                    '4 часа': [6200, null, null, null, null],
+                    '8 часов': [null, 7850, 8400, 9000, 10500],
+                    '1-3 суток': [null, null, 9000, 10100, 11200],
+                    '4-7 суток': [null, null, 8500, 9550, 10700],
+                    '8-15 суток': [null, null, 8000, 9000, 10100],
+                    'от 16 суток': [null, null, 7700, 8400, 9550]
+                },
+                deposit: 20000,
+                overmileage: 17
+            },
+            largus: {
+                periods: {
+                    '4 часа': [2000, null, null, null, null],
+                    '8 часов': [null, 2800, 3050, 3600, null],
+                    '1-3 суток': [null, null, 3600, 4150, 5300],
+                    '4-7 суток': [null, null, 3450, 4000, 5100],
+                    '8-15 суток': [null, null, 3300, 3800, 4950],
+                    'от 16 суток': [null, null, 3050, 3600, 4850]
+                },
+                deposit: 10000,
+                overmileage: 12
+            },
+            vw: {
+                periods: {
+                    '4 часа': [2250, null, null, null, null],
+                    '8 часов': [null, 3400, 4000, 4500, 5600],
+                    '1-3 суток': [null, null, 4400, 4850, 6200],
+                    '4-7 суток': [null, null, 4100, 4650, 6000],
+                    '8-15 суток': [null, null, 3950, 4500, 5850],
+                    'от 16 суток': [null, null, 3800, 4350, 5700]
+                },
+                deposit: 5000,
+                overmileage: 12
+            }
+        };
+
+        // Данные FAQ
         const faqData = {
-            // Общие вопросы
             general: [
                 {
                     question: "Какие документы нужны для аренды автомобиля?",
@@ -331,16 +1505,6 @@
                     question: "Что такое обеспечительный депозит и когда он возвращается?",
                     answer: "Обеспечительный депозит — это залоговая сумма, которая блокируется на карте или вносится наличными. Размер зависит от класса автомобиля (от 5000 до 25000 руб). Деопзит возвращается в течение 24 часов после сдачи авто при отсутствии штрафов и повреждений.",
                     tags: ["депозит", "залог"]
-                },
-                {
-                    question: "Можно ли выезжать за пределы Вологодской области?",
-                    answer: "Да, но необходимо предупредить менеджера при оформлении. При выезде за пределы области может применяться повышенный коэффициент к тарифу (+10%).",
-                    tags: ["выезд", "область"]
-                },
-                {
-                    question: "Что делать в случае ДТП?",
-                    answer: "1. Немедленно позвонить в офис по телефону +7 (8172) 00-00-00<br>2. Вызвать ГИБДД и оформить происшествие<br>3. Сделать фото/видео места ДТП<br>4. Не перемещать автомобиль до приезда сотрудников<br>5. Получить все документы от ГИББД",
-                    tags: ["ДТП", "авария", "страховка"]
                 }
             ],
             
@@ -350,12 +1514,7 @@
                     {
                         question: "Какой расход топлива у Chery Tiggo 4 Pro?",
                         answer: "Средний расход составляет 8-9 литров на 100 км по трассе и 10-11 литров в городском цикле. Автомобиль заправляется 92 или 95 бензином.",
-                        tags: ["расход", "топливо", "характеристики"]
-                    },
-                    {
-                        question: "Есть ли у Chery Tiggo 4 Pro климат-контроль?",
-                        answer: "Да, все автомобили Chery Tiggo 4 Pro в нашем парке оборудованы двухзонным климат-контролем, подогревом сидений и руля.",
-                        tags: ["комфорт", "опции"]
+                        tags: ["расход", "топливо"]
                     }
                 ],
                 
@@ -363,7 +1522,7 @@
                     {
                         question: "На сколько хватает полного бака у Lada Granta?",
                         answer: "Бак объемом 50 литров. При среднем расходе 7-8 л/100 км на одном баке можно проехать около 600 км.",
-                        tags: ["бак", "запас хода", "топливо"]
+                        tags: ["бак", "запас хода"]
                     }
                 ],
                 
@@ -377,15 +1536,272 @@
                 
                 range: [
                     {
-                        question: "Какое топливо использовать для Range Rover?",
-                        answer: "ТОЛЬКО 95 или 98 бензин. Категорически запрещено заправлять 92 бензином. В баке всегда должен быть запас не менее 10 литров.",
-                        tags: ["топливо", "требования", "премиум"]
+                        question: "Какое топливо использовать для Range Rover Sport?",
+                        answer: "ТОЛЬКО 95 или 98 бензин. Категорически запрещено заправлять 92 бензином.",
+                        tags: ["топливо", "премиум"]
                     }
                 ]
             }
         };
 
-        // Функция для отображения FAQ
+        // Глобальные переменные
+        let googleScriptURL = localStorage.getItem('googleScriptURL') || '';
+        let selectedCarForTariffs = 'chery';
+
+        // Расчет стоимости
+        function calculate() {
+            const carKey = document.getElementById('car').value;
+            const car = tariffs[carKey];
+            const days = parseInt(document.getElementById('days').value) || 1;
+            const mileage = parseInt(document.getElementById('mileage').value) || 200;
+            
+            // Определяем период для выбора цены
+            let periodKey = '1-3';
+            if (days >= 4 && days <= 7) periodKey = '4-7';
+            else if (days >= 8 && days <= 15) periodKey = '8-15';
+            else if (days >= 16) periodKey = '16+';
+            
+            // Базовая стоимость
+            const pricePerDay = car.dailyRates[periodKey] || car.base;
+            let total = pricePerDay * days;
+            let details = [`${car.name}: ${pricePerDay.toLocaleString()} ₽ × ${days} суток = ${(pricePerDay * days).toLocaleString()} ₽`];
+            
+            // Доплата за перепробег (свыше 200 км/сутки)
+            if (mileage > 200) {
+                const extraKmPerDay = mileage - 200;
+                const extraKmTotal = extraKmPerDay * days;
+                const overmileageCost = extraKmTotal * car.overmileage;
+                total += overmileageCost;
+                details.push(`Перепробег: ${extraKmTotal} км × ${car.overmileage} ₽/км = ${overmileageCost.toLocaleString()} ₽`);
+            }
+            
+            // Коэффициенты
+            let coefficients = [];
+            if (document.getElementById('debt').checked) {
+                total *= 1.5;
+                coefficients.push('+50% за долги');
+            }
+            if (document.getElementById('experience').checked) {
+                total *= 1.25;
+                coefficients.push('+25% за стаж < 3 лет');
+            }
+            if (document.getElementById('region').checked) {
+                total *= 1.1;
+                coefficients.push('+10% за выезд из области');
+            }
+            
+            if (coefficients.length > 0) {
+                details.push(`Коэффициенты: ${coefficients.join(', ')}`);
+            }
+            
+            // Дополнительные услуги
+            const extras = [];
+            if (document.getElementById('insurance').checked) {
+                const insuranceCost = 1500 * days;
+                total += insuranceCost;
+                extras.push(`Страховка: ${insuranceCost.toLocaleString()} ₽`);
+            }
+            if (document.getElementById('extra_driver').checked) {
+                total += 500;
+                extras.push('Доп. водитель: 500 ₽');
+            }
+            if (document.getElementById('washing').checked) {
+                total += 1000;
+                extras.push('Мойка: 1000 ₽');
+            }
+            if (document.getElementById('child_seat').checked) {
+                total += 300;
+                extras.push('Детское кресло: 300 ₽');
+            }
+            
+            if (extras.length > 0) {
+                details.push(`Доп. услуги: ${extras.join(', ')}`);
+            }
+            
+            // Итог
+            total = Math.round(total);
+            details.push(`<strong>ИТОГО: ${total.toLocaleString()} ₽</strong>`);
+            
+            // Отображение результатов
+            document.getElementById('total').textContent = total.toLocaleString() + ' ₽';
+            document.getElementById('details').innerHTML = details.join('<br>');
+            
+            // Депозит
+            document.getElementById('deposit-amount').textContent = car.deposit.toLocaleString() + ' ₽';
+            
+            // Обновление фразы
+            updatePhrase();
+        }
+        
+        // Обновление фразы для клиента
+        function updatePhrase() {
+            const clientName = document.getElementById('client-name').value || 'Имя клиента';
+            const total = document.getElementById('total').textContent;
+            const deposit = document.getElementById('deposit-amount').textContent;
+            const carSelect = document.getElementById('car');
+            const carName = carSelect.options[carSelect.selectedIndex].text;
+            const days = document.getElementById('days').value;
+            const mileage = document.getElementById('mileage').value;
+            
+            let phrase = `«${clientName}, стоимость аренды ${carName} на ${days} суток`;
+            
+            if (mileage > 200) {
+                phrase += ` с пробегом ${mileage} км/сутки`;
+            }
+            
+            phrase += ` составит ${total}. Обеспечительный депозит — ${deposit}. `;
+            
+            // Добавляем информацию о коэффициентах
+            const extraNotes = [];
+            if (document.getElementById('debt').checked) extraNotes.push('долги у приставов');
+            if (document.getElementById('experience').checked) extraNotes.push('стаж менее 3 лет');
+            if (document.getElementById('region').checked) extraNotes.push('выезд за область');
+            
+            if (extraNotes.length > 0) {
+                phrase += `Учтены коэффициенты: ${extraNotes.join(', ')}. `;
+            }
+            
+            phrase += `Депозит возвращается в течение 24 часов после проверки автомобиля.»`;
+            
+            document.getElementById('phrase').innerHTML = `<p>${phrase}</p>`;
+        }
+        
+        // Копирование фразы для клиента
+        function copyPhrase() {
+            const phrase = document.getElementById('phrase').textContent;
+            navigator.clipboard.writeText(phrase).then(() => {
+                const status = document.getElementById('copy-status');
+                status.style.display = 'block';
+                setTimeout(() => {
+                    status.style.display = 'none';
+                }, 3000);
+            });
+        }
+        
+        // Копирование шаблонов
+        function copySMS() {
+            const text = `Спасибо, что выбрали арендычавто.рф! Вами забронирован: [марка авто, госномер, цвет]. Срок аренды: с [дата, день недели] [время] по [дата, день недели] [время]. Адрес выдачи: г. Вологда, ул. Северная, 42. Для подтверждения брони отправьте ДА. Предоплата 1000 руб.`;
+            navigator.clipboard.writeText(text);
+            alert('✅ Шаблон СМС скопирован!');
+        }
+        
+        function copyPriceScript() {
+            const text = `[Имя клиента], на основании ваших параметров ([даты, авто]) и наших условий, стоимость аренды составит [сумма] рублей. В эту сумму входит [перечислить: пакет км, ОСАГО, базовая страховка]. Доступны опции: [расширенная страховка, мойка]. Вас устраивают такие условия?`;
+            navigator.clipboard.writeText(text);
+            alert('✅ Скрипт скопирован!');
+        }
+        
+        function copyPrepaymentScript() {
+            const text = `Чтобы закрепить за вами автомобиль на выбранные даты, необходимо внести предоплату 1000 рублей. После этого мы официально забронируем авто и вышлем вам подтверждение. Оплатить можно по ссылке: [ссылка]`;
+            navigator.clipboard.writeText(text);
+            alert('✅ Скрипт скопирован!');
+        }
+        
+        function copyDepositScript() {
+            const text = `[Имя], благодарим за пользование нашим сервисом! Депозит в размере [сумма] будет возвращен вам в течение 24 часов тем же способом, которым вы его вносили (наличными/на карту). Мы отправим вам сообщение, когда операция будет проведена.`;
+            navigator.clipboard.writeText(text);
+            alert('✅ Скрипт скопирован!');
+        }
+        
+        // Сохранение URL Apps Script
+        function saveScriptURL() {
+            const url = document.getElementById('script-url').value.trim();
+            if (url && url.startsWith('https://script.google.com/macros/s/')) {
+                localStorage.setItem('googleScriptURL', url);
+                googleScriptURL = url;
+                alert('✅ URL успешно сохранен!');
+            } else {
+                alert('❌ Неверный формат URL!\nURL должен начинаться с "https://script.google.com/macros/s/"');
+            }
+        }
+        
+        // Создание таблицы тарифов
+        function createTariffsTable(carKey) {
+            const car = tariffData[carKey];
+            const carName = tariffs[carKey].name;
+            
+            let html = `
+                <thead>
+                    <tr>
+                        <th colspan="6" class="car-header">${carName} • Депозит: ${car.deposit.toLocaleString()} ₽ • Перепробег: ${car.overmileage} ₽/км</th>
+                    </tr>
+                    <tr>
+                        <th>Период аренды</th>
+                        <th class="mileage-header">50 км</th>
+                        <th class="mileage-header">100 км</th>
+                        <th class="mileage-header">200 км</th>
+                        <th class="mileage-header">300 км</th>
+                        <th class="mileage-header">500 км</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+            
+            // Добавляем строки для каждого периода
+            const periods = ['4 часа', '8 часов', '1-3 суток', '4-7 суток', '8-15 суток', 'от 16 суток'];
+            
+            periods.forEach(period => {
+                const prices = car.periods[period];
+                if (prices) {
+                    html += `<tr class="period-row">`;
+                    html += `<td>${period}</td>`;
+                    
+                    prices.forEach(price => {
+                        if (price === null) {
+                            html += `<td>-</td>`;
+                        } else {
+                            html += `<td class="car-price">${price.toLocaleString()} ₽</td>`;
+                        }
+                    });
+                    
+                    html += `</tr>`;
+                }
+            });
+            
+            // Дополнительная информация
+            html += `
+                <tr>
+                    <td colspan="6" class="note-cell">
+                        <strong>Примечания:</strong><br>
+                        • Базовый лимит пробега: 200 км в сутки<br>
+                        • Перепробег: ${car.overmileage} руб/км<br>
+                        • Обеспечительный депозит: ${car.deposit.toLocaleString()} ₽<br>
+                        • При аренде от 16 суток применяются специальные тарифы
+                    </td>
+                </tr>
+            </tbody>`;
+            
+            document.getElementById('tariffs-table').innerHTML = html;
+        }
+        
+        // Создание селектора автомобилей для тарифов
+        function createCarSelector() {
+            const container = document.getElementById('tariff-car-selector');
+            let html = '';
+            
+            Object.keys(tariffData).forEach(key => {
+                const carName = tariffs[key].name;
+                const icon = '🚗';
+                const isActive = key === selectedCarForTariffs ? 'active' : '';
+                
+                html += `
+                    <div class="car-option ${isActive}" onclick="selectCarForTariffs('${key}')">
+                        <div class="car-icon">${icon}</div>
+                        <div>${carName}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Выбор автомобиля для отображения тарифов
+        function selectCarForTariffs(carKey) {
+            selectedCarForTariffs = carKey;
+            createCarSelector();
+            createTariffsTable(carKey);
+        }
+        
+        // FAQ функции
         function renderFAQ(filterCar = 'all', searchText = '') {
             const container = document.getElementById('faq-container');
             let html = '';
@@ -413,7 +1829,7 @@
                                 <div class="faq-answer">
                                     ${item.answer}
                                     ${item.tags ? `<div style="margin-top: 10px;"><small>Теги: ${item.tags.map(tag => `<span class="script-tag">${tag}</span>`).join(' ')}</small></div>` : ''}
-                                    <button class="copy-btn" onclick="copyToClipboard('${item.question}', '${item.answer.replace(/'/g, "\\'").replace(/<br>/g, '\n')}')">
+                                    <button class="copy-btn" onclick="copyToClipboard('${item.question.replace(/'/g, "\\'")}', '${item.answer.replace(/'/g, "\\'").replace(/<br>/g, '\n')}')">
                                         📋 Копировать ответ
                                     </button>
                                 </div>
@@ -426,7 +1842,7 @@
             // Вопросы по автомобилям
             if (filterCar === 'all' || filterCar !== 'general') {
                 Object.keys(faqData.cars).forEach(carKey => {
-                    const carName = getCarName(carKey);
+                    const carName = tariffs[carKey]?.name || carKey;
                     const questions = faqData.cars[carKey].filter(item => {
                         const matchesSearch = searchText === '' || 
                             item.question.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -449,7 +1865,7 @@
                                         <div class="faq-answer">
                                             ${item.answer}
                                             ${item.tags ? `<div style="margin-top: 10px;"><small>Теги: ${item.tags.map(tag => `<span class="script-tag">${tag}</span>`).join(' ')}</small></div>` : ''}
-                                            <button class="copy-btn" onclick="copyToClipboard('${item.question}', '${item.answer.replace(/'/g, "\\'").replace(/<br>/g, '\n')}')">
+                                            <button class="copy-btn" onclick="copyToClipboard('${item.question.replace(/'/g, "\\'")}', '${item.answer.replace(/'/g, "\\'").replace(/<br>/g, '\n')}')">
                                                 📋 Копировать ответ
                                             </button>
                                         </div>
@@ -469,23 +1885,10 @@
             container.innerHTML = html;
         }
         
-        // Функция для получения имени автомобиля по ключу
-        function getCarName(key) {
-            const carNames = {
-                chery: 'Chery Tiggo 4 Pro',
-                lada: 'Lada Granta',
-                vw: 'VW Caddy',
-                jeep: 'Jeep Cherokee',
-                range: 'Range Rover',
-                monjara: 'Monjara',
-                voyah: 'Voyah'
-            };
-            return carNames[key] || key;
-        }
-        
-        // Функция переключения видимости ответа
         function toggleFAQ(id) {
             const item = document.querySelector(`[data-id="${id}"]`);
+            if (!item) return;
+            
             const question = item.querySelector('.faq-question');
             const answer = item.querySelector('.faq-answer');
             
@@ -493,14 +1896,12 @@
             answer.classList.toggle('active');
         }
         
-        // Функция фильтрации FAQ
         function filterFAQ() {
             const carFilter = document.getElementById('car-filter').value;
             const searchText = document.getElementById('faq-search').value;
             renderFAQ(carFilter, searchText);
         }
         
-        // Функция копирования ответа в буфер обмена
         function copyToClipboard(question, answer) {
             const text = `Вопрос: ${question}\n\nОтвет: ${answer}\n\n(Арендычавто.рф)`;
             
@@ -508,7 +1909,7 @@
                 alert('✅ Ответ скопирован в буфер обмена!');
             }).catch(err => {
                 console.error('Ошибка копирования: ', err);
-                // Альтернативный метод для старых браузеров
+                // Альтернативный метод
                 const textArea = document.createElement('textarea');
                 textArea.value = text;
                 document.body.appendChild(textArea);
@@ -519,17 +1920,7 @@
             });
         }
         
-        // Функция для добавления нового вопроса (для админа)
-        function addFAQ(category, question, answer, tags = []) {
-            if (category === 'general') {
-                faqData.general.push({ question, answer, tags });
-            } else if (faqData.cars[category]) {
-                faqData.cars[category].push({ question, answer, tags });
-            }
-            renderFAQ();
-        }
-        
-        // Переключение вкладок (остается как было)
+        // Переключение вкладок
         function openTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(el => {
                 el.classList.remove('active');
@@ -537,7 +1928,13 @@
             
             document.getElementById(tabName).classList.add('active');
             
-            // При открытии FAQ - загружаем вопросы
+            if (tabName === 'tariffs') {
+                setTimeout(() => {
+                    createCarSelector();
+                    createTariffsTable(selectedCarForTariffs);
+                }, 100);
+            }
+            
             if (tabName === 'faq') {
                 setTimeout(() => {
                     const carFilter = document.getElementById('car-filter').value;
@@ -545,20 +1942,44 @@
                     renderFAQ(carFilter, searchText);
                 }, 100);
             }
+            
+            if (tabName === 'templates' && googleScriptURL) {
+                document.getElementById('script-url').value = googleScriptURL;
+            }
         }
         
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
-            // Загружаем FAQ при первой загрузке страницы
+            calculate(); // Первоначальный расчет
+            
+            // Автозагрузка сохраненного URL
+            if (googleScriptURL) {
+                document.getElementById('script-url').value = googleScriptURL;
+            }
+            
+            // Инициализация FAQ если открыта вкладка
             if (document.getElementById('faq').classList.contains('active')) {
                 renderFAQ();
             }
             
-            // Остальная инициализация...
+            // Инициализация тарифов если открыта вкладка
+            if (document.getElementById('tariffs').classList.contains('active')) {
+                createCarSelector();
+                createTariffsTable(selectedCarForTariffs);
+            }
         });
         
-        // Экспортируем функцию добавления FAQ для консоли (для админов)
-        window.addFAQ = addFAQ;
+        // Функция для добавления FAQ (для админов)
+        window.addFAQ = function(category, question, answer, tags = []) {
+            if (category === 'general') {
+                faqData.general.push({ question, answer, tags });
+            } else if (faqData.cars[category]) {
+                faqData.cars[category].push({ question, answer, tags });
+            } else {
+                faqData.cars[category] = [{ question, answer, tags }];
+            }
+            renderFAQ();
+        };
     </script>
 </body>
 </html>
