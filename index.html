@@ -73,7 +73,7 @@
             min-width: 120px;
             white-space: nowrap;
         }
-        .tab-btn:hover {
+        .tab-btn:hover, .tab-btn.active {
             background: var(--secondary);
         }
         .tab-content {
@@ -578,6 +578,30 @@
             font-size: 0.9rem;
             color: var(--dark);
         }
+        
+        /* Кнопки вкладок */
+        .tab-buttons-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab-button {
+            padding: 12px 24px;
+            background: #e2e8f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .tab-button:hover {
+            background: #cbd5e1;
+        }
+        .tab-button.active {
+            background: var(--primary);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -587,13 +611,13 @@
             <p class="subtitle">Обучение менеджеров | Внутренний портал</p>
         </header>
 
-        <div class="tabs">
-            <button class="tab-btn" onclick="openTab('checklist')">📋 Чек-лист</button>
-            <button class="tab-btn" onclick="openTab('program')">💻 Программа</button>
-            <button class="tab-btn" onclick="openTab('calculator')">🧮 Калькулятор</button>
-            <button class="tab-btn" onclick="openTab('tariffs')">💰 Тарифы</button>
-            <button class="tab-btn" onclick="openTab('faq')">❓ FAQ</button>
-            <button class="tab-btn" onclick="openTab('templates')">📄 Шаблоны</button>
+        <div class="tab-buttons-container">
+            <button class="tab-button active" data-tab="checklist">📋 Чек-лист</button>
+            <button class="tab-button" data-tab="program">💻 Программа</button>
+            <button class="tab-button" data-tab="calculator">🧮 Калькулятор</button>
+            <button class="tab-button" data-tab="tariffs">💰 Тарифы</button>
+            <button class="tab-button" data-tab="faq">❓ FAQ</button>
+            <button class="tab-button" data-tab="templates">📄 Шаблоны</button>
         </div>
 
         <!-- Чек-лист процессов -->
@@ -801,7 +825,7 @@
                     <div class="deposit-item">
                         <strong>А. Предавторизация по карте:</strong><br>
                         • Операция «ОТМЕНА АВТОРИЗАЦИИ» на терминале<br>
-                        • Вводим номер карты, срок действия, RRN<br>
+                        • Вводим номер карта, срок действия, RRN<br>
                         • Чек прикрепляем к договору<br>
                         • В программе: в «Оплате» добавляем «-» сумма, «Возврат депозита»
                     </div>
@@ -894,7 +918,7 @@
                 <div class="program-step">
                     1. Во вкладке счета <strong>«Оплата»</strong> вносим все поступившие суммы:<br>
                     &nbsp;&nbsp;&nbsp;• Нажимаем <strong>«+»</strong>, выбираем тип оплаты (нал/безнал)<br>
-                    &nbsp;&nbsp;&nbsp;• Указываем сумму и примечание («Бронирование», «Аренда», «Депозит»)<br>
+                    &nbsp;&nbsp;&nbsp;• Указываем сумма и примечание («Бронирование», «Аренда», «Депозит»)<br>
                     2. <strong>Обязательно проставляем Этапы KPI</strong> (во вкладке «Этапы КРП»):<br>
                     &nbsp;&nbsp;&nbsp;• Варианты: «Сделана и опл. бронь», «Прием ТС», «Заключен Договор»<br>
                     &nbsp;&nbsp;&nbsp;• Указываем сумму этапа и <strong>ДАТУ</strong><br>
@@ -959,7 +983,7 @@
                     <!-- Основные параметры -->
                     <div class="input-group">
                         <label for="car">Выберите автомобиль:</label>
-                        <select id="car" onchange="calculate()">
+                        <select id="car">
                             <option value="chery">Chery Tiggo 4 Pro</option>
                             <option value="lada">Lada Granta</option>
                             <option value="vw">VW Caddy</option>
@@ -974,27 +998,27 @@
                     
                     <div class="input-group">
                         <label for="days">Количество суток:</label>
-                        <input type="number" id="days" min="1" max="30" value="1" onchange="calculate()">
+                        <input type="number" id="days" min="1" max="30" value="1">
                     </div>
                     
                     <div class="input-group">
                         <label for="mileage">Планируемый пробег в сутки (км):</label>
-                        <input type="number" id="mileage" min="1" value="200" onchange="calculate()">
+                        <input type="number" id="mileage" min="1" value="200">
                     </div>
 
                     <div class="section-title">Дополнительные коэффициенты</div>
                     
                     <div class="addon-group">
                         <div class="addon-item">
-                            <input type="checkbox" id="debt" onchange="calculate()">
+                            <input type="checkbox" id="debt">
                             <label for="debt">Долги у приставов (+50%)</label>
                         </div>
                         <div class="addon-item">
-                            <input type="checkbox" id="experience" onchange="calculate()">
+                            <input type="checkbox" id="experience">
                             <label for="experience">Стаж менее 3 лет (+25%)</label>
                         </div>
                         <div class="addon-item">
-                            <input type="checkbox" id="region" onchange="calculate()">
+                            <input type="checkbox" id="region">
                             <label for="region">Выезд за область (+10%)</label>
                         </div>
                     </div>
@@ -1003,19 +1027,19 @@
                     
                     <div class="addon-group">
                         <div class="addon-item">
-                            <input type="checkbox" id="insurance" onchange="calculate()">
+                            <input type="checkbox" id="insurance">
                             <label for="insurance">Расширенная страховка (+1500 ₽/сутки)</label>
                         </div>
                         <div class="addon-item">
-                            <input type="checkbox" id="extra_driver" onchange="calculate()">
+                            <input type="checkbox" id="extra_driver">
                             <label for="extra_driver">Доп. водитель (+500 ₽)</label>
                         </div>
                         <div class="addon-item">
-                            <input type="checkbox" id="washing" onchange="calculate()">
+                            <input type="checkbox" id="washing">
                             <label for="washing">Мойка перед возвратом (+1000 ₽)</label>
                         </div>
                         <div class="addon-item">
-                            <input type="checkbox" id="child_seat" onchange="calculate()">
+                            <input type="checkbox" id="child_seat">
                             <label for="child_seat">Детское кресло (+300 ₽)</label>
                         </div>
                     </div>
@@ -1030,7 +1054,7 @@
                         <div class="deposit-item">Voyah: 25 000 ₽</div>
                     </div>
                     
-                    <button onclick="calculate()" class="btn-calculate">
+                    <button id="calculate-btn" class="btn-calculate">
                         🔄 Пересчитать стоимость
                     </button>
                 </div>
@@ -1057,7 +1081,7 @@
                             <h4>📝 Фраза для клиента:</h4>
                             <div class="input-group">
                                 <label for="client-name">Имя клиента:</label>
-                                <input type="text" id="client-name" placeholder="Введите имя клиента" onkeyup="updatePhrase()">
+                                <input type="text" id="client-name" placeholder="Введите имя клиента">
                             </div>
                             
                             <div class="input-group">
@@ -1070,7 +1094,7 @@
                                 <input type="text" id="account-number" placeholder="Только цифры">
                             </div>
                             
-                            <button onclick="copyPhrase()" class="btn-calculate" style="background: #8b5cf6;">
+                            <button id="copy-phrase-btn" class="btn-calculate" style="background: #8b5cf6;">
                                 📋 Копировать фразу для клиента
                             </button>
                             
@@ -1118,10 +1142,10 @@
             
             <div class="faq-filter">
                 <div class="faq-search">
-                    <input type="text" id="faq-search" placeholder="🔍 Поиск по вопросам..." onkeyup="filterFAQ()">
+                    <input type="text" id="faq-search" placeholder="🔍 Поиск по вопросам...">
                 </div>
                 <div class="faq-car-select">
-                    <select id="car-filter" onchange="filterFAQ()">
+                    <select id="car-filter">
                         <option value="all">Все автомобили</option>
                         <option value="chery">Chery Tiggo 4 Pro</option>
                         <option value="lada">Lada Granta</option>
@@ -1138,7 +1162,6 @@
             </div>
 
             <div id="faq-container">
-                <!-- FAQ будет загружаться динамически через JavaScript -->
                 <div class="no-results">Загрузка вопросов...</div>
             </div>
         </div>
@@ -1153,7 +1176,7 @@
                     <strong>Текст:</strong><br>
                     «Спасибо, что выбрали арендычавто.рф! Вами забронирован: [марка авто, госномер, цвет]. Срок аренды: с [дата, день недели] [время] по [дата, день недели] [время]. Адрес выдачи: г. Вологда, ул. Северная, 42. Для подтверждения брони отправьте ДА. Предоплата 1000 руб.»
                 </div>
-                <button onclick="copySMS()" class="btn-calculate" style="margin-top: 10px; background: #10b981;">
+                <button id="copy-sms-btn" class="btn-calculate" style="margin-top: 10px; background: #10b981;">
                     📋 Копировать шаблон СМС
                 </button>
             </div>
@@ -1164,7 +1187,7 @@
                     <strong>Текст:</strong><br>
                     «[Имя клиента], на основании ваших параметров ([даты, авто]) и наших условий, стоимость аренды составит [сумма] рублей. В эту сумму входит [перечислить: пакет км, ОСАГО, базовая страховка]. Доступны опции: [расширенная страховка, мойка]. Вас устраивают такие условия?»
                 </div>
-                <button onclick="copyPriceScript()" class="btn-calculate" style="margin-top: 10px; background: #f59e0b;">
+                <button id="copy-price-btn" class="btn-calculate" style="margin-top: 10px; background: #f59e0b;">
                     📋 Копировать скрипт
                 </button>
             </div>
@@ -1175,7 +1198,7 @@
                     <strong>Текст:</strong><br>
                     «Чтобы закрепить за вами автомобиль на выбранные даты, необходимо внести предоплату 1000 рублей. После этого мы официально забронируем авто и вышлем вам подтверждение. Оплатить можно по ссылке: [ссылка]»
                 </div>
-                <button onclick="copyPrepaymentScript()" class="btn-calculate" style="margin-top: 10px; background: #3b82f6;">
+                <button id="copy-prepayment-btn" class="btn-calculate" style="margin-top: 10px; background: #3b82f6;">
                     📋 Копировать скрипт
                 </button>
             </div>
@@ -1186,7 +1209,7 @@
                     <strong>Текст:</strong><br>
                     «[Имя], благодарим за пользование нашим сервисом! Депозит в размере [сумма] будет возвращен вам в течение 24 часов тем же способом, которым вы его вносили (наличными/на карту). Мы отправим вам сообщение, когда операция будет проведена.»
                 </div>
-                <button onclick="copyDepositScript()" class="btn-calculate" style="margin-top: 10px; background: #8b5cf6;">
+                <button id="copy-deposit-btn" class="btn-calculate" style="margin-top: 10px; background: #8b5cf6;">
                     📋 Копировать скрипт
                 </button>
             </div>
@@ -1247,7 +1270,7 @@ function doGet(e) {
                     <div class="input-group">
                         <label for="script-url">URL вашего Google Apps Script:</label>
                         <input type="text" id="script-url" placeholder="https://script.google.com/macros/s/.../exec">
-                        <button onclick="saveScriptURL()" class="btn-calculate" style="margin-top: 8px;">
+                        <button id="save-script-btn" class="btn-calculate" style="margin-top: 8px;">
                             💾 Сохранить URL
                         </button>
                     </div>
@@ -1340,7 +1363,7 @@ function doGet(e) {
             },
             voyah: { 
                 name: "Voyah Free",
-                base: 11800,  // Исправлено с 14000 на 11800
+                base: 11800,
                 deposit: 25000,
                 dailyRates: {
                     '1-3': 11800,
@@ -1493,7 +1516,7 @@ function doGet(e) {
             general: [
                 {
                     question: "Какие документы нужны для аренды автомобиля?",
-                    answer: "Для аренды необходим паспорт гражданина РФ и действующее водительское удостоверение категории B.,
+                    answer: "Для аренды необходим паспорт гражданина РФ и действующее водительское удостоверение категории B. Стаж вождения должен быть не менее 3 лет, возраст от 21 года.",
                     tags: ["документы", "требования"]
                 },
                 {
@@ -1503,7 +1526,7 @@ function doGet(e) {
                 },
                 {
                     question: "Что такое обеспечительный депозит и когда он возвращается?",
-                    answer: "Обеспечительный депозит — это залоговая сумма, которая блокируется на карте или вносится наличными. Размер зависит от класса автомобиля (от 5000 до 25000 руб). Депозит возвращается по истечению 24 часов после сдачи авто ",
+                    answer: "Обеспечительный депозит — это залоговая сумма, которая блокируется на карте или вносится наличными. Размер зависит от класса автомобиля (от 5000 до 25000 руб). Деопзит возвращается в течение 24 часов после сдачи авто при отсутствии штрафов и повреждений.",
                     tags: ["депозит", "залог"]
                 }
             ],
@@ -1513,7 +1536,7 @@ function doGet(e) {
                 chery: [
                     {
                         question: "Какой расход топлива у Chery Tiggo 4 Pro?",
-                        answer: "Средний расход составляет 6-7 литров на 100 км по трассе и 8-9 литров в городском цикле.",
+                        answer: "Средний расход составляет 8-9 литров на 100 км по трассе и 10-11 литров в городском цикле. Автомобиль заправляется 92 или 95 бензином.",
                         tags: ["расход", "топливо"]
                     }
                 ],
@@ -1537,7 +1560,7 @@ function doGet(e) {
                 range: [
                     {
                         question: "Какое топливо использовать для Range Rover Sport?",
-                        answer: "ТОЛЬКО 95 или 100 бензин. Категорически запрещено заправлять 92 бензином.",
+                        answer: "ТОЛЬКО 95 или 98 бензин. Категорически запрещено заправлять 92 бензином.",
                         tags: ["топливо", "премиум"]
                     }
                 ]
@@ -1547,6 +1570,43 @@ function doGet(e) {
         // Глобальные переменные
         let googleScriptURL = localStorage.getItem('googleScriptURL') || '';
         let selectedCarForTariffs = 'chery';
+
+        // ========== ОСНОВНЫЕ ФУНКЦИИ ==========
+
+        // Переключение вкладок
+        function initTabs() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Убираем активный класс у всех кнопок
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем активный класс текущей кнопке
+                    this.classList.add('active');
+                    
+                    // Скрываем все вкладки
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    // Показываем выбранную вкладку
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Инициализация конкретной вкладки
+                    if (tabId === 'tariffs') {
+                        setTimeout(initTariffsTab, 100);
+                    } else if (tabId === 'faq') {
+                        setTimeout(initFaqTab, 100);
+                    } else if (tabId === 'calculator') {
+                        setTimeout(calculate, 100);
+                    } else if (tabId === 'templates') {
+                        if (googleScriptURL) {
+                            document.getElementById('script-url').value = googleScriptURL;
+                        }
+                    }
+                });
+            });
+        }
 
         // Расчет стоимости
         function calculate() {
@@ -1632,7 +1692,7 @@ function doGet(e) {
             // Обновление фразы
             updatePhrase();
         }
-        
+
         // Обновление фразы для клиента
         function updatePhrase() {
             const clientName = document.getElementById('client-name').value || 'Имя клиента';
@@ -1661,60 +1721,17 @@ function doGet(e) {
                 phrase += `Учтены коэффициенты: ${extraNotes.join(', ')}. `;
             }
             
-            phrase += `Обеспечительный депозит возвращается по истечению 24 часов после завершения аренды и сдачи автомобиля»`;
+            phrase += `Депозит возвращается в течение 24 часов после проверки автомобиля.»`;
             
             document.getElementById('phrase').innerHTML = `<p>${phrase}</p>`;
         }
-        
-        // Копирование фразы для клиента
-        function copyPhrase() {
-            const phrase = document.getElementById('phrase').textContent;
-            navigator.clipboard.writeText(phrase).then(() => {
-                const status = document.getElementById('copy-status');
-                status.style.display = 'block';
-                setTimeout(() => {
-                    status.style.display = 'none';
-                }, 3000);
-            });
+
+        // Инициализация вкладки тарифов
+        function initTariffsTab() {
+            createCarSelector();
+            createTariffsTable(selectedCarForTariffs);
         }
-        
-        // Копирование шаблонов
-        function copySMS() {
-            const text = `Спасибо, что выбрали арендычавто.рф! Вами забронирован: [марка авто, госномер, цвет]. Срок аренды: с [дата, день недели] [время] по [дата, день недели] [время]. Адрес выдачи: г. Вологда, ул. Северная, 42. Для подтверждения брони отправьте ДА. Предоплата 1000 руб.`;
-            navigator.clipboard.writeText(text);
-            alert('✅ Шаблон СМС скопирован!');
-        }
-        
-        function copyPriceScript() {
-            const text = `[Имя клиента], на основании ваших параметров ([даты, авто]) и наших условий, стоимость аренды составит [сумма] рублей. В эту сумму входит [перечислить: пакет км, ОСАГО, базовая страховка]. Доступны опции: [расширенная страховка, мойка]. Вас устраивают такие условия?`;
-            navigator.clipboard.writeText(text);
-            alert('✅ Скрипт скопирован!');
-        }
-        
-        function copyPrepaymentScript() {
-            const text = `Чтобы закрепить за вами автомобиль на выбранные даты, необходимо указать контактный номер телефона привязанный в телеграм. После этого мы забронируем авто и вышлем вам подтверждение. ;
-            navigator.clipboard.writeText(text);
-            alert('✅ Скрипт скопирован!');
-        }
-        
-        function copyDepositScript() {
-            const text = `[Имя], благодарим за пользование нашим сервисом! Депозит в размере [сумма] будет возвращен вам по истечению 24 часов тем же способом, которым вы его вносили (наличными/отменой авторизации). Мы отправим вам сообщение, когда операция будет проведена.`;
-            navigator.clipboard.writeText(text);
-            alert('✅ Скрипт скопирован!');
-        }
-        
-        // Сохранение URL Apps Script
-        function saveScriptURL() {
-            const url = document.getElementById('script-url').value.trim();
-            if (url && url.startsWith('https://script.google.com/macros/s/')) {
-                localStorage.setItem('googleScriptURL', url);
-                googleScriptURL = url;
-                alert('✅ URL успешно сохранен!');
-            } else {
-                alert('❌ Неверный формат URL!\nURL должен начинаться с "https://script.google.com/macros/s/"');
-            }
-        }
-        
+
         // Создание таблицы тарифов
         function createTariffsTable(carKey) {
             const car = tariffData[carKey];
@@ -1772,7 +1789,7 @@ function doGet(e) {
             
             document.getElementById('tariffs-table').innerHTML = html;
         }
-        
+
         // Создание селектора автомобилей для тарифов
         function createCarSelector() {
             const container = document.getElementById('tariff-car-selector');
@@ -1784,7 +1801,7 @@ function doGet(e) {
                 const isActive = key === selectedCarForTariffs ? 'active' : '';
                 
                 html += `
-                    <div class="car-option ${isActive}" onclick="selectCarForTariffs('${key}')">
+                    <div class="car-option ${isActive}" data-car="${key}">
                         <div class="car-icon">${icon}</div>
                         <div>${carName}</div>
                     </div>
@@ -1792,16 +1809,38 @@ function doGet(e) {
             });
             
             container.innerHTML = html;
+            
+            // Добавляем обработчики событий
+            document.querySelectorAll('.car-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const carKey = this.getAttribute('data-car');
+                    selectedCarForTariffs = carKey;
+                    
+                    // Обновляем активный класс
+                    document.querySelectorAll('.car-option').forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Обновляем таблицу
+                    createTariffsTable(carKey);
+                });
+            });
         }
-        
-        // Выбор автомобиля для отображения тарифов
-        function selectCarForTariffs(carKey) {
-            selectedCarForTariffs = carKey;
-            createCarSelector();
-            createTariffsTable(carKey);
+
+        // Инициализация вкладки FAQ
+        function initFaqTab() {
+            renderFAQ();
+            
+            // Добавляем обработчики событий для поиска и фильтра
+            document.getElementById('faq-search').addEventListener('input', function() {
+                filterFAQ();
+            });
+            
+            document.getElementById('car-filter').addEventListener('change', function() {
+                filterFAQ();
+            });
         }
-        
-        // FAQ функции
+
+        // Отображение FAQ
         function renderFAQ(filterCar = 'all', searchText = '') {
             const container = document.getElementById('faq-container');
             let html = '';
@@ -1822,14 +1861,14 @@ function doGet(e) {
                         <h3><span class="category-icon">📋</span> Общие вопросы</h3>
                         ${generalQuestions.map((item, index) => `
                             <div class="faq-item" data-id="general-${index}">
-                                <div class="faq-question" onclick="toggleFAQ('general-${index}')">
+                                <div class="faq-question">
                                     ${item.question}
                                     <span>+</span>
                                 </div>
                                 <div class="faq-answer">
                                     ${item.answer}
                                     ${item.tags ? `<div style="margin-top: 10px;"><small>Теги: ${item.tags.map(tag => `<span class="script-tag">${tag}</span>`).join(' ')}</small></div>` : ''}
-                                    <button class="copy-btn" onclick="copyToClipboard('${item.question.replace(/'/g, "\\'")}', '${item.answer.replace(/'/g, "\\'").replace(/<br>/g, '\n')}')">
+                                    <button class="copy-btn" data-question="${item.question.replace(/"/g, '&quot;')}" data-answer="${item.answer.replace(/"/g, '&quot;').replace(/<br>/g, '\n')}">
                                         📋 Копировать ответ
                                     </button>
                                 </div>
@@ -1858,14 +1897,14 @@ function doGet(e) {
                                 <h3><span class="category-icon">🚗</span> ${carName} <span class="car-badge">${questions.length} вопросов</span></h3>
                                 ${questions.map((item, index) => `
                                     <div class="faq-item" data-id="${carKey}-${index}">
-                                        <div class="faq-question" onclick="toggleFAQ('${carKey}-${index}')">
+                                        <div class="faq-question">
                                             ${item.question}
                                             <span>+</span>
                                         </div>
                                         <div class="faq-answer">
                                             ${item.answer}
                                             ${item.tags ? `<div style="margin-top: 10px;"><small>Теги: ${item.tags.map(tag => `<span class="script-tag">${tag}</span>`).join(' ')}</small></div>` : ''}
-                                            <button class="copy-btn" onclick="copyToClipboard('${item.question.replace(/'/g, "\\'")}', '${item.answer.replace(/'/g, "\\'").replace(/<br>/g, '\n')}')">
+                                            <button class="copy-btn" data-question="${item.question.replace(/"/g, '&quot;')}" data-answer="${item.answer.replace(/"/g, '&quot;').replace(/<br>/g, '\n')}">
                                                 📋 Копировать ответ
                                             </button>
                                         </div>
@@ -1883,25 +1922,41 @@ function doGet(e) {
             }
             
             container.innerHTML = html;
-        }
-        
-        function toggleFAQ(id) {
-            const item = document.querySelector(`[data-id="${id}"]`);
-            if (!item) return;
             
-            const question = item.querySelector('.faq-question');
-            const answer = item.querySelector('.faq-answer');
+            // Добавляем обработчики событий для вопросов
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', function() {
+                    const item = this.closest('.faq-item');
+                    const answer = item.querySelector('.faq-answer');
+                    
+                    this.classList.toggle('active');
+                    answer.classList.toggle('active');
+                    
+                    // Поворачиваем значок + на ×
+                    const icon = this.querySelector('span');
+                    icon.style.transform = this.classList.contains('active') ? 'rotate(45deg)' : 'rotate(0deg)';
+                });
+            });
             
-            question.classList.toggle('active');
-            answer.classList.toggle('active');
+            // Добавляем обработчики для кнопок копирования
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const question = this.getAttribute('data-question');
+                    const answer = this.getAttribute('data-answer');
+                    copyToClipboard(question, answer);
+                });
+            });
         }
-        
+
+        // Фильтрация FAQ
         function filterFAQ() {
             const carFilter = document.getElementById('car-filter').value;
             const searchText = document.getElementById('faq-search').value;
             renderFAQ(carFilter, searchText);
         }
-        
+
+        // Копирование в буфер обмена
         function copyToClipboard(question, answer) {
             const text = `Вопрос: ${question}\n\nОтвет: ${answer}\n\n(Арендычавто.рф)`;
             
@@ -1909,7 +1964,7 @@ function doGet(e) {
                 alert('✅ Ответ скопирован в буфер обмена!');
             }).catch(err => {
                 console.error('Ошибка копирования: ', err);
-                // Альтернативный метод
+                // Альтернативный метод для старых браузеров
                 const textArea = document.createElement('textarea');
                 textArea.value = text;
                 document.body.appendChild(textArea);
@@ -1919,67 +1974,98 @@ function doGet(e) {
                 alert('✅ Ответ скопирован!');
             });
         }
-        
-        // Переключение вкладок
-        function openTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(el => {
-                el.classList.remove('active');
-            });
-            
-            document.getElementById(tabName).classList.add('active');
-            
-            if (tabName === 'tariffs') {
-                setTimeout(() => {
-                    createCarSelector();
-                    createTariffsTable(selectedCarForTariffs);
-                }, 100);
-            }
-            
-            if (tabName === 'faq') {
-                setTimeout(() => {
-                    const carFilter = document.getElementById('car-filter').value;
-                    const searchText = document.getElementById('faq-search').value;
-                    renderFAQ(carFilter, searchText);
-                }, 100);
-            }
-            
-            if (tabName === 'templates' && googleScriptURL) {
-                document.getElementById('script-url').value = googleScriptURL;
+
+        // Сохранение URL Google Script
+        function saveScriptURL() {
+            const url = document.getElementById('script-url').value.trim();
+            if (url && url.startsWith('https://script.google.com/macros/s/')) {
+                localStorage.setItem('googleScriptURL', url);
+                googleScriptURL = url;
+                alert('✅ URL успешно сохранен!');
+            } else {
+                alert('❌ Неверный формат URL!\nURL должен начинаться с "https://script.google.com/macros/s/"');
             }
         }
-        
-        // Инициализация
+
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
+
         document.addEventListener('DOMContentLoaded', function() {
-            calculate(); // Первоначальный расчет
+            // Инициализация вкладок
+            initTabs();
+            
+            // Инициализация калькулятора
+            calculate();
+            
+            // Добавляем обработчики событий для калькулятора
+            document.getElementById('calculate-btn').addEventListener('click', calculate);
+            document.getElementById('car').addEventListener('change', calculate);
+            document.getElementById('days').addEventListener('input', calculate);
+            document.getElementById('mileage').addEventListener('input', calculate);
+            document.getElementById('debt').addEventListener('change', calculate);
+            document.getElementById('experience').addEventListener('change', calculate);
+            document.getElementById('region').addEventListener('change', calculate);
+            document.getElementById('insurance').addEventListener('change', calculate);
+            document.getElementById('extra_driver').addEventListener('change', calculate);
+            document.getElementById('washing').addEventListener('change', calculate);
+            document.getElementById('child_seat').addEventListener('change', calculate);
+            
+            // Обновление фразы при изменении имени
+            document.getElementById('client-name').addEventListener('input', updatePhrase);
+            
+            // Копирование фразы для клиента
+            document.getElementById('copy-phrase-btn').addEventListener('click', function() {
+                const phrase = document.getElementById('phrase').textContent;
+                navigator.clipboard.writeText(phrase).then(() => {
+                    const status = document.getElementById('copy-status');
+                    status.style.display = 'block';
+                    setTimeout(() => {
+                        status.style.display = 'none';
+                    }, 3000);
+                });
+            });
+            
+            // Копирование шаблонов
+            document.getElementById('copy-sms-btn').addEventListener('click', function() {
+                const text = `Спасибо, что выбрали арендычавто.рф! Вами забронирован: [марка авто, госномер, цвет]. Срок аренды: с [дата, день недели] [время] по [дата, день недели] [время]. Адрес выдачи: г. Вологда, ул. Северная, 42. Для подтверждения брони отправьте ДА. Предоплата 1000 руб.`;
+                navigator.clipboard.writeText(text);
+                alert('✅ Шаблон СМС скопирован!');
+            });
+            
+            document.getElementById('copy-price-btn').addEventListener('click', function() {
+                const text = `[Имя клиента], на основании ваших параметров ([даты, авто]) и наших условий, стоимость аренды составит [сумма] рублей. В эту сумму входит [перечислить: пакет км, ОСАГО, базовая страховка]. Доступны опции: [расширенная страховка, мойка]. Вас устраивают такие условия?`;
+                navigator.clipboard.writeText(text);
+                alert('✅ Скрипт скопирован!');
+            });
+            
+            document.getElementById('copy-prepayment-btn').addEventListener('click', function() {
+                const text = `Чтобы закрепить за вами автомобиль на выбранные даты, необходимо внести предоплату 1000 рублей. После этого мы официально забронируем авто и вышлем вам подтверждение. Оплатить можно по ссылке: [ссылка]`;
+                navigator.clipboard.writeText(text);
+                alert('✅ Скрипт скопирован!');
+            });
+            
+            document.getElementById('copy-deposit-btn').addEventListener('click', function() {
+                const text = `[Имя], благодарим за пользование нашим сервисом! Депозит в размере [сумма] будет возвращен вам в течение 24 часов тем же способом, которым вы его вносили (наличными/на карту). Мы отправим вам сообщение, когда операция будет проведена.`;
+                navigator.clipboard.writeText(text);
+                alert('✅ Скрипт скопирован!');
+            });
+            
+            // Сохранение URL Google Script
+            document.getElementById('save-script-btn').addEventListener('click', saveScriptURL);
             
             // Автозагрузка сохраненного URL
             if (googleScriptURL) {
                 document.getElementById('script-url').value = googleScriptURL;
             }
             
-            // Инициализация FAQ если открыта вкладка
-            if (document.getElementById('faq').classList.contains('active')) {
-                renderFAQ();
+            // Инициализация тарифов и FAQ если их вкладки активны
+            if (document.getElementById('tariffs').classList.contains('active')) {
+                initTariffsTab();
             }
             
-            // Инициализация тарифов если открыта вкладка
-            if (document.getElementById('tariffs').classList.contains('active')) {
-                createCarSelector();
-                createTariffsTable(selectedCarForTariffs);
+            if (document.getElementById('faq').classList.contains('active')) {
+                initFaqTab();
             }
         });
-        
-        // Функция для добавления FAQ (для админов)
-        window.addFAQ = function(category, question, answer, tags = []) {
-            if (category === 'general') {
-                faqData.general.push({ question, answer, tags });
-            } else if (faqData.cars[category]) {
-                faqData.cars[category].push({ question, answer, tags });
-            } else {
-                faqData.cars[category] = [{ question, answer, tags }];
-            }
-            renderFAQ();
-        };
     </script>
 </body>
 </html>
