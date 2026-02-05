@@ -602,6 +602,134 @@
             background: var(--primary);
             color: white;
         }
+
+        /* Тест стили */
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .test-question h4 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        .test-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .test-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .test-option:hover {
+            background: #e0f2fe;
+        }
+        .test-option.selected {
+            background: #dbeafe;
+            border: 2px solid var(--primary);
+        }
+        .test-option.correct {
+            background: #d1fae5;
+            border-color: var(--success);
+        }
+        .test-option.incorrect {
+            background: #fee2e2;
+            border-color: var(--danger);
+        }
+        .test-option input {
+            margin-top: 3px;
+        }
+        .test-result {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: none;
+        }
+        .test-result h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        .score-display {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+        .btn-restart {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        /* Штрафные санкции */
+        .penalties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .penalty-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--danger);
+        }
+        .penalty-title {
+            font-weight: 600;
+            color: var(--danger);
+            margin-bottom: 8px;
+        }
+        .penalty-description {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* Дополнительные услуги */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+        }
+        .service-title {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        .service-price {
+            color: var(--success);
+            font-weight: 600;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -618,6 +746,9 @@
             <button class="tab-button" data-tab="tariffs">💰 Тарифы</button>
             <button class="tab-button" data-tab="faq">❓ FAQ</button>
             <button class="tab-button" data-tab="templates">📄 Шаблоны</button>
+            <button class="tab-button" data-tab="penalties">⚠️ Штрафы</button>
+            <button class="tab-button" data-tab="services">🔧 Услуги</button>
+            <button class="tab-button" data-tab="test">📝 Тест</button>
         </div>
 
         <!-- Чек-лист процессов -->
@@ -646,20 +777,20 @@
 
             <!-- ЭТАП 2: Сбор информации -->
             <div class="process-step">
-                <h4><span class="step-number">2</span> Сбор информации</h4>
-                <ul>
-                    <li>Спросить клиента <span class="important">ДЛЯ КАКИХ ЦЕЛЕЙ?</span></li>
-                    <li>Какой автомобиль ему нужен</li>
-                    <li>На какое количество времени</li>
-                    <li>Куда поедет (чтобы понять сколько километров)</li>
-                    <li><strong>Если клиент в офисе, то:</strong>
-                        <ul>
-                            <li>Озвучить тарифы</li>
-                            <li>Попросить паспорт и водительское удостоверение</li>
-                        </ul>
-                    </li>
-                    <li><span class="important">ЗАРАНЕЕ ДОКУМЕНТЫ НЕ ПРОСИМ, ТАРИФЫ НЕ ОЗВУЧИВАЕМ</span></li>
-                </ul>
+              <h4><span class="step-number">2</span> Сбор информации</h4>
+<ul>
+    <li>Спросить клиента <span class="important">ДЛЯ КАКИХ ЦЕЛЕЙ?</span></li>
+    <li>Какой автомобиль ему нужен</li>
+    <li><strong>На какие даты нужен автомобиль</strong></li>
+    <li>Куда поедет (чтобы понять сколько километров)</li>
+    <li><strong>Если клиент в офисе, то:</strong>
+        <ul>
+            <li>Озвучить тарифы</li>
+            <li>Попросить паспорт и водительское удостоверение</li>
+        </ul>
+    </li>
+    <li><span class="important">ЗАРАНЕЕ ДОКУМЕНТЫ НЕ ПРОСИМ, ТАРИФЫ НЕ ОЗВУЧИВАЕМ</span></li>
+</ul>
             </div>
 
             <!-- ЭТАП 3: Проверка клиента -->
@@ -680,13 +811,14 @@
             <!-- ЭТАП 4: Сообщение стоимости -->
             <div class="process-step">
                 <h4><span class="step-number">4</span> Сообщение стоимости</h4>
-                <ul>
-                    <li>Сообщить клиенту стоимость в чате <strong>(Стоимость желательно озвучивать после проверки пункта 3)</strong></li>
-                    <li>Или пригласить в офис и озвучить на месте</li>
-                    <li>Озвучить варианты страховок</li>
-                    <li>Уточнить, нужен ли доп. водитель</li>
-                    <li>Уточнить по поводу мойки у клиента</li>
-                </ul>
+<ul>
+    <li>Сообщить клиенту стоимость в чате <strong>(Стоимость желательно озвучивать после проверки пункта 3)</strong></li>
+    <li>Или пригласить в офис и озвучить на месте</li>
+    <li>Озвучить варианты страховок</li>
+    <li>Уточнить, нужен ли доп. водитель</li>
+    <li>Уточнить по поводу мойки у клиента</li>
+    <li><strong>Уточнить, нужна ли подача/возврат на адрес</strong></li>
+</ul>
             </div>
 
             <!-- ЭТАП 5: Предоплата -->
@@ -720,24 +852,26 @@
 
             <!-- ЭТАП 7: Программа "ОКНА" (клиент в офисе/выдача) -->
             <div class="process-step">
-                <h4><span class="step-number">7</span> Программа «ОКНА» (клиент в офисе / выдача)</h4>
-                <div class="program-step">
-                    <strong>ЕСЛИ КЛИЕНТ В ОФИСЕ:</strong><br>
-                    <strong>6.j.</strong> Открываем счета<br>
-                    <strong>6.k.</strong> Ставим его в расписание (забронирован), указываем номер счета. Если система не отправила сообщение автоматом, пишем САМИ<br>
-                    <strong>6.l.</strong> Вносим услуги, количество дней/часов, км, доп услуги<br>
-                    <strong>6.m.</strong> Принимаем оплату + <span class="important">Обеспечительный депозит</span> (нал/безнал) помечаем в разделе оплата<br>
-                    <strong>6.n.</strong> Делаем видеосъемку автомобиля, фото пробега, отправляем в чат в <span class="highlight">MAX</span> (чат по автомобилю), проверяем наличие <span class="important">незамерзайки</span><br>
-                    <strong>6.o.</strong> В программе вносим пробег и количество бензина в баке<br>
-                    <strong>6.p.</strong> Выбираем печать → расписание → указываем номер счёта → <span class="important">«договор одностор.+спец без водит»</span><br>
-                    <strong>6.q.</strong> Распечатываем договор<br>
-                    <strong>6.r.</strong> Ставим подписи, печати, выдаем документы и ключи<br>
-                    <strong>6.s.</strong> Этапы KPI (3 варианта: Сделана и опл бронь, Прием ТС, Заключен Договор), проставляем вариант, сумму и дату<br>
-                    <strong>6.t.</strong> Проставляем в <span class="highlight">Google Таблицу</span> внос обеспечительного депозита, оплату, способ оплаты
-                </div>
-                <div class="reminder">
-                    🔔 <strong>Примечание:</strong> При выдаче авто проверяем незамерзайку, количество бензина, чистоту автомобиля
-                </div>
+               <h4><span class="step-number">7</span> Программа «ОКНА» (клиент в офисе / выдача)</h4>
+<div class="reminder">
+    <strong>ВАЖНО:</strong> В любом случае сначала ставим статус <span class="highlight">ЗАПЛАНИРОВАН</span> (чтобы оставить электронный след). 
+    Если клиент оплатил заранее, то вносим оплату и затем меняем на <span class="highlight">ЗАБРОНИРОВАН</span>. 
+    Если клиент в офисе, то можно пропустить статус ЗАБРОНИРОВАН и ставить сразу <span class="highlight">АРЕНДОВАН</span>.
+</div>
+<div class="program-step">
+    <strong>ЕСЛИ КЛИЕНТ В ОФИСЕ:</strong><br>
+    <strong>6.j.</strong> Открываем счета<br>
+    <strong>6.k.</strong> Ставим его в расписание (запланирован), указываем номер счета. Если система не отправила сообщение автоматом, пишем САМИ<br>
+    <strong>6.l.</strong> Вносим услуги, количество дней/часов, км, доп услуги<br>
+    <strong>6.m.</strong> Принимаем оплату + <span class="important">Обеспечительный депозит</span> (нал/безнал) помечаем в разделе оплата<br>
+    <strong>6.n.</strong> Делаем видеосъемку автомобиля, фото пробега, отправляем в чат в <span class="highlight">MAX</span> (чат по автомобилю), проверяем наличие <span class="important">незамерзайки</span><br>
+    <strong>6.o.</strong> В программе вносим пробег и количество бензина в баке<br>
+    <strong>6.p.</strong> Выбираем печать → расписание → указываем номер счёта → <span class="important">«договор одностор.+спец без водит»</span><br>
+    <strong>6.q.</strong> Распечатываем договор<br>
+    <strong>6.r.</strong> Ставим подписи, печати, выдаем документы и ключи<br>
+    <strong>6.s.</strong> Этапы KPI (3 варианта: Сделана и опл бронь, Прием ТС, Заключен Договор), проставляем вариант, сумму и дату<br>
+    <strong>6.t.</strong> Проставляем в <span class="highlight">Google Таблицу</span> внос обеспечительного депозита, оплату, способ оплаты
+</div>
             </div>
 
             <!-- ЭТАП 8: Программа "ОКНА" (старый клиент) -->
@@ -784,7 +918,7 @@
                     <li><strong>9.i.</strong> Вносим в услуги</li>
                     <li><strong>9.j.</strong> Просим клиента оплатить</li>
                     <li><strong>9.k.</strong> <span class="important">ВСЕ ОПЛАТЫ СРАЗУ ВНОСЯТСЯ В GOOGLE ТАБЛИЦУ И ПРОГРАММУ В ТОТ ЖЕ МОМЕНТ</span></li>
-                    <li><strong>9.l.</strong> Сообщаем, что возврат задатка будет осуществлен <span class="important">ПО ИСТЕЧЕНИИ 24 часов</span></li>
+                    <li><strong>9.l.</strong> Сообщаем, что возврат обеспечительного депозита будет осуществлен <span class="important">ПО ИСТЕЧЕНИИ 24 часов после завершения аренды и сдачи автомобиля</span></li>
                 </ul>
                 
                 <div class="program-step">
@@ -806,7 +940,7 @@
             <div class="process-step critical">
                 <h4><span class="step-number">11</span> Возврат депозита</h4>
                 <div class="reminder">
-                    <strong>ВАЖНО:</strong> Возвращаем депозит <span class="important">ТОЛЬКО ПОСЛЕ УВЕДОМЛЕНИЯ ОТ СИСТЕМЫ</span> об отсутствии штрафов, через 24 часа.
+                    <strong>ВАЖНО:</strong> Возвращаем обеспечительный депозит <span class="important">ТОЛЬКО ПОСЛЕ УВЕДОМЛЕНИЯ ОТ СИСТЕМЫ</span> об отсутствии штрафов, ПО ИСТЕЧЕНИИ 24 ЧАСОВ ПОСЛЕ ЗАВЕРШЕНИЯ АРЕНДЫ И СДАЧИ АВТОМОБИЛЯ
                 </div>
                 
                 <div class="program-step">
@@ -848,17 +982,19 @@
             <!-- Дополнительно: Доставка -->
             <div class="process-step">
                 <h4><span class="step-number">12</span> Доставка автомобиля до клиента</h4>
-                <ul>
-                    <li><strong>а.</strong> Подготавливаем документы в офисе</li>
-                    <li><strong>b.</strong> Привозим автомобиль</li>
-                    <li><strong>c.</strong> Получаем оплату</li>
-                    <li><strong>d.</strong> Вносим в таблицу на рабочем телефоне</li>
-                    <li><strong>e.</strong> При клиенте делаем видеообзор (+пробег)</li>
-                    <li><strong>f.</strong> Пробить чек на терминале эвотор (нал/безнал)</li>
-                    <li>Отправляем видео в <span class="highlight">MAX</span></li>
-                    <li>В чате с клиентом пишем внутренний комментарий: <code>#арендован [номер ТС]</code></li>
-                    <li>При получении у клиента автомобиля: <code>#выполнен [номер ТС]</code></li>
-                </ul>
+<ul>
+    <li><strong>а.</strong> Подготавливаем документы в офисе</li>
+    <li><strong>b.</strong> Привозим автомобиль</li>
+    <li><strong>c.</strong> Получаем оплату</li>
+    <li><strong>d.</strong> Вносим в таблицу на рабочем телефоне</li>
+    <li><strong>e.</strong> При клиенте делаем видеообзор (+пробег)</li>
+    <li><strong>f.</strong> Пробить чек на терминале эвотор (нал/безнал)</li>
+    <li>Отправляем видео в <span class="highlight">MAX</span></li>
+    <li>В чате с клиентом пишем внутренний комментарий: <code>#арендован [номер ТС]</code></li>
+    <li>При получении у клиента автомобиля: <code>#выполнен [номер ТС]</code></li>
+    <li><strong>g.</strong> Проверяем наличие незамерзайки, перепробег и топливо</li>
+    <li><strong>h.</strong> Подписываем акт приёма автомобиля</li>
+</ul>
             </div>
         </div>
 
@@ -922,7 +1058,7 @@
                     2. <strong>Обязательно проставляем Этапы KPI</strong> (во вкладке «Этапы КРП»):<br>
                     &nbsp;&nbsp;&nbsp;• Варианты: «Сделана и опл. бронь», «Прием ТС», «Заключен Договор»<br>
                     &nbsp;&nbsp;&nbsp;• Указываем сумму этапа и <strong>ДАТУ</strong><br>
-                    3. <span class="important">ВАЖНО:</span> После первичного создания счета и расписания <strong>ЗАКРЫВАЕМ СЧЕТ</strong> (чтобы система отправила уведомление). Через ~1 минуту можно снова открыть счет и продолжить работу
+                    3. <span class="important">ВАЖНО:</span> После первичного создания счета и расписания <strong>ЗАКРЫВАЕМ СЧЕТ</strong> (чтобы система отправила уведомление). Через ~1 минуту можно снова открыть счет и продолжить работы
                 </div>
             </div>
 
@@ -1002,8 +1138,9 @@
                     </div>
                     
                     <div class="input-group">
-                        <label for="mileage">Планируемый пробег в сутки (км):</label>
-                        <input type="number" id="mileage" min="1" value="200">
+                        <label for="total-mileage">Общий пробег за весь период (км):</label>
+                        <input type="number" id="total-mileage" min="1" value="200">
+                        <small style="color: #64748b;">Базовый лимит: 200 км/сутки</small>
                     </div>
 
                     <div class="section-title">Дополнительные коэффициенты</div>
@@ -1041,6 +1178,22 @@
                         <div class="addon-item">
                             <input type="checkbox" id="child_seat">
                             <label for="child_seat">Детское кресло (+300 ₽)</label>
+                        </div>
+                        <div class="addon-item">
+                            <input type="checkbox" id="fuel">
+                            <label for="fuel">Заправка топливом (+цена по факту)</label>
+                        </div>
+                        <div class="addon-item">
+                            <input type="checkbox" id="antifreeze">
+                            <label for="antifreeze">Незамерзайка (+300 ₽)</label>
+                        </div>
+                        <div class="addon-item">
+                            <input type="checkbox" id="delivery">
+                            <label for="delivery">Доставка по городу (+700-800 ₽)</label>
+                        </div>
+                        <div class="addon-item">
+                            <input type="checkbox" id="toll_roads">
+                            <label for="toll_roads">Платные дороги (+по факту)</label>
                         </div>
                     </div>
 
@@ -1203,16 +1356,16 @@
                 </button>
             </div>
             
-            <div class="process-step">
-                <h4>↩️ Скрипт для возврата депозита</h4>
-                <div class="program-step">
-                    <strong>Текст:</strong><br>
-                    «[Имя], благодарим за пользование нашим сервисом! Депозит в размере [сумма] будет возвращен вам в течение 24 часов тем же способом, которым вы его вносили (наличными/на карту). Мы отправим вам сообщение, когда операция будет проведена.»
-                </div>
-                <button id="copy-deposit-btn" class="btn-calculate" style="margin-top: 10px; background: #8b5cf6;">
-                    📋 Копировать скрипт
-                </button>
+               <div class="process-step">
+            <h4>↩️ Скрипт для возврата депозита</h4>
+            <div class="program-step">
+            <strong>Текст:</strong><br>
+            «[Имя], благодарим за пользование нашим сервисом! Обеспечительный депозит в размере [сумма] будет возвращен вам в течение 24 часов после завершения аренды и сдачи автомобиля тем же способом, которым вы его вносили (наличными/на карту). Мы отправим вам сообщение, когда операция будет проведена.»
             </div>
+            <button id="copy-deposit-btn" class="btn-calculate" style="margin-top: 10px; background: #8b5cf6;">
+            📋 Копировать скрипт
+        </button>
+        </div>
             
             <div class="process-step">
                 <h4>🔗 Интеграция с Google Таблицами</h4>
@@ -1278,8 +1431,161 @@ function doGet(e) {
             </div>
         </div>
 
+        <!-- Штрафные санкции -->
+        <div id="penalties" class="tab-content">
+            <h2>⚠️ Штрафные санкции</h2>
+            
+            <div class="info-box">
+                <strong>Внимание:</strong> Штрафные санкции применяются при нарушении условий договора аренды. Все штрафы списываются с обеспечительного депозита или взыскиваются отдельно.
+            </div>
+            
+            <div class="penalties-grid">
+                <div class="penalty-card">
+                    <div class="penalty-title">Курение в салоне</div>
+                    <div class="penalty-description">Выявление факта курения (перед, зад, электронные сигареты) - штраф 5000 ₽ + химчистка салона от 3000 ₽</div>
+                </div>
+                
+                <div class="penalty-card">
+                    <div class="penalty-title">Нарушение срока аренды</div>
+                    <div class="penalty-description">• До 6 часов: 50% от суточной стоимости<br>• 6-12 часов: 75% от суточной стоимости<br>• Свыше 12 часов: 100% от суточной стоимости + штраф 2000 ₽</div>
+                </div>
+                
+                <div class="penalty-card">
+                    <div class="penalty-title">Передача третьим лицам</div>
+                    <div class="penalty-description">Передача автомобиля лицам, не указанным в договоре - штраф 10000 ₽ + расторжение договора</div>
+                </div>
+                
+                <div class="penalty-card">
+                    <div class="penalty-title">Порча имущества</div>
+                    <div class="penalty-description">• Утеря ключа: 15000 ₽<br>• Утеря документов: 5000 ₽ + госпошлина<br>• Повреждение салона: ремонт по факту + 3000 ₽</div>
+                </div>
+                
+                <div class="penalty-card">
+                    <div class="penalty-title">Использование в такси</div>
+                    <div class="penalty-description">Использование автомобиля в коммерческих целях (такси) без согласования - штраф 25000 ₽ + расторжение договора</div>
+                </div>
+                
+                <div class="penalty-card">
+                    <div class="penalty-title">Нарушение ПДД</div>
+                    <div class="penalty-description">• Штрафы ПДД: сумма штрафа + 1000 ₽ за обработку<br>• Превышение скорости более 40 км/ч: 5000 ₽<br>• Выезд за пределы РФ: 50000 ₽</div>
+                </div>
+                
+                <div class="penalty-card">
+                    <div class="penalty-title">Незаправленный бак</div>
+                    <div class="penalty-description">Возврат с неполным баком: стоимость топлива + 500 ₽ за заправку</div>
+                </div>
+                
+                <div class="penalty-card">
+                    <div class="penalty-title">Грязный салон</div>
+                    <div class="penalty-description">Сильное загрязнение салона: мойка от 1000 ₽ + штраф 2000 ₽ за нарушение условий</div>
+                </div>
+            </div>
+            
+            <div class="reminder">
+                <strong>Важно:</strong> Все штрафные санкции применяются после согласования с руководством. О каждом случае необходимо составлять акт с фотографиями.
+            </div>
+        </div>
+
+        <!-- Дополнительные услуги -->
+        <div id="services" class="tab-content">
+            <h2>🔧 Дополнительные услуги</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-title">Детское кресло</div>
+                    <div>Для детей от 1 года до 12 лет</div>
+                    <div class="service-price">300 ₽ / вся аренда</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-title">Незамерзайка</div>
+                    <div>Антилед до -30°C, 5 литров</div>
+                    <div class="service-price">300 ₽</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-title">Автобокс Thule</div>
+                    <div>Дополнительный багажник на крышу</div>
+                    <div class="service-price">1400 ₽ (1-4 суток)<br>300 ₽/сутки (5+ суток)</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-title">Поперечина на крышу</div>
+                    <div>Универсальные крепления</div>
+                    <div class="service-price">500 ₽ / вся аренда</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-title">Транспондер</div>
+                    <div>Для платных дорог</div>
+                    <div class="service-price">200 ₽ / вся аренда</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-title">Зарядка для телефона</div>
+                    <div>Универсальное зарядное устройство</div>
+                    <div class="service-price">150 ₽ / вся аренда</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-title">Прицеп</div>
+                    <div>Грузоподъемность до 750 кг</div>
+                    <div class="service-price">250 ₽/час<br>700 ₽/сутки</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-title">Пирамида</div>
+                    <div>Для организации мероприятий</div>
+                    <div class="service-price">1000 ₽ / сутки</div>
+                </div>
+            </div>
+            
+            <div class="section-title">Доставка автомобиля</div>
+            <div class="deposit-grid">
+                <div class="deposit-item">По городу Вологда: 700-800 ₽</div>
+                <div class="deposit-item">Аэропорт Вологда: 1700 ₽</div>
+                <div class="deposit-item">Аэропорт Череповец: 8000 ₽</div>
+                <div class="deposit-item">Вне города до 30 км: 90 ₽/км</div>
+                <div class="deposit-item">30-50 км: 80 ₽/км</div>
+                <div class="deposit-item">51-100 км: 70 ₽/км</div>
+                <div class="deposit-item">101-300 км: 50 ₽/км</div>
+                <div class="deposit-item">Свыше 300 км: 40 ₽/км</div>
+            </div>
+            
+            <div class="section-title">Страховые пакеты</div>
+            <div class="deposit-grid">
+                <div class="deposit-item">Базовая (ОСАГО): Включено</div>
+                <div class="deposit-item">Снижение рисков (стекла, шины): 400-1700 ₽/сутки</div>
+                <div class="deposit-item">Стандартная (франшиза): 600-2300 ₽/сутки</div>
+                <div class="deposit-item">Расширенная (без франшизы): 1200-3400 ₽/сутки</div>
+            </div>
+        </div>
+
+        <!-- Тест для сотрудников -->
+        <div id="test" class="tab-content">
+            <h2>📝 Тест для сотрудников</h2>
+            <div class="info-box">
+                <strong>Инструкция:</strong> Ответьте на все 25 вопросов. Для успешной сдачи теста необходимо правильно ответить как минимум на 20 вопросов (80%). После завершения вы увидите свой результат.
+            </div>
+            
+            <div class="test-container" id="test-container">
+                <!-- Вопросы будут добавлены через JavaScript -->
+            </div>
+            
+            <div class="test-result" id="test-result">
+                <h3>Результат теста</h3>
+                <div class="score-display" id="test-score">0/25</div>
+                <div id="test-message">Пройдите тест, чтобы увидеть результат</div>
+                <button class="btn-restart" id="restart-test">🔄 Пройти тест снова</button>
+            </div>
+            
+            <button id="submit-test" class="btn-calculate" style="margin-top: 20px;">
+                ✅ Завершить тест и проверить ответы
+            </button>
+        </div>
+
         <footer>
-            <p>Внутренний портал компании «Арендычавто.рф» • Версия 3.0 • Обновлено: 05.02.2026</p>
+            <p>Внутренний портал компании «Арендычавто.рф» • Версия 4.0 • Обновлено: 05.02.2026</p>
             <p style="margin-top: 5px; font-size: 0.8rem; color: var(--warning);">
                 ⚠️ Все цены актуальны на 2026 год. Проверяйте обновления тарифов в Excel-файле.
             </p>
@@ -1526,8 +1832,18 @@ function doGet(e) {
                 },
                 {
                     question: "Что такое обеспечительный депозит и когда он возвращается?",
-                    answer: "Обеспечительный депозит — это залоговая сумма, которая блокируется на карте или вносится наличными. Размер зависит от класса автомобиля (от 5000 до 25000 руб). Деопзит возвращается в течение 24 часов после сдачи авто при отсутствии штрафов и повреждений.",
+                    answer: "Обеспечительный депозит — это залоговая сумма, которая блокируется на карте или вносится наличными. Размер зависит от класса автомобиля (от 5000 до 25000 руб). Обеспечительный депозит возвращается по истечении 24 часов после завершения аренды и сдачи автомобиля при отсутствии штрафов и повреждений.",
                     tags: ["депозит", "залог"]
+                },
+                {
+                    question: "Можно ли выезжать за пределы Вологодской области?",
+                    answer: "Да, но это согласовывается заранее и влечет дополнительную плату (+10% к тарифу). Также необходимо сообщить маршрут и получить разрешение.",
+                    tags: ["выезд", "область"]
+                },
+                {
+                    question: "Что делать, если произошло ДТП?",
+                    answer: "1. Немедленно позвонить в офис по телефону +7 (8172) 55-55-55<br>2. Вызвать ГИБДД<br>3. Не передвигать автомобиль до приезда служб<br>4. Сообщить данные второго участника ДТП",
+                    tags: ["ДТП", "авария", "страховка"]
                 }
             ],
             
@@ -1538,6 +1854,11 @@ function doGet(e) {
                         question: "Какой расход топлива у Chery Tiggo 4 Pro?",
                         answer: "Средний расход составляет 8-9 литров на 100 км по трассе и 10-11 литров в городском цикле. Автомобиль заправляется 92 или 95 бензином.",
                         tags: ["расход", "топливо"]
+                    },
+                    {
+                        question: "Есть ли в Chery Tiggo 4 Pro подогрев сидений?",
+                        answer: "Да, в комплектации есть подогрев передних сидений, климат-контроль и мультимедийная система с Apple CarPlay/Android Auto.",
+                        tags: ["комплектация", "опции"]
                     }
                 ],
                 
@@ -1546,6 +1867,11 @@ function doGet(e) {
                         question: "На сколько хватает полного бака у Lada Granta?",
                         answer: "Бак объемом 50 литров. При среднем расходе 7-8 л/100 км на одном баке можно проехать около 600 км.",
                         tags: ["бак", "запас хода"]
+                    },
+                    {
+                        question: "Есть ли кондиционер в Lada Granta?",
+                        answer: "Да, во всех наших Lada Granta установлен кондиционер. Также есть ABS и подушки безопасности.",
+                        tags: ["кондиционер", "безопасность"]
                     }
                 ],
                 
@@ -1554,6 +1880,11 @@ function doGet(e) {
                         question: "Jeep Cherokee подходит для бездорожья?",
                         answer: "Jeep Cherokee имеет полный привод и повышенную проходимость, но не является внедорожником для экстремальных условий. Подходит для легкого бездорожья, лесных и полевых дорог.",
                         tags: ["проходимость", "внедорожник"]
+                    },
+                    {
+                        question: "Какой двигатель у Jeep Cherokee?",
+                        answer: "Автомобиль оснащен бензиновым двигателем 3.2 л V6, мощностью 271 л.с. с 9-ступенчатой автоматической коробкой передач.",
+                        tags: ["двигатель", "мощность"]
                     }
                 ],
                 
@@ -1562,14 +1893,162 @@ function doGet(e) {
                         question: "Какое топливо использовать для Range Rover Sport?",
                         answer: "ТОЛЬКО 95 или 98 бензин. Категорически запрещено заправлять 92 бензином.",
                         tags: ["топливо", "премиум"]
+                    },
+                    {
+                        question: "Есть ли пневмоподвеска в Range Rover Sport?",
+                        answer: "Да, автомобиль оснащен адаптивной пневматической подвеской, которая автоматически регулирует клиренс в зависимости от условий движения.",
+                        tags: ["подвеска", "комфорт"]
+                    }
+                ],
+                
+                voyah: [
+                    {
+                        question: "На сколько хватает заряда у Voyah Free?",
+                        answer: "Voyah Free — гибридный автомобиль. На чистом электричестве можно проехать до 140 км, а с полным баком бензина общий запас хода составляет около 800 км.",
+                        tags: ["электромобиль", "гибрид", "запас хода"]
+                    },
+                    {
+                        question: "Как заряжать Voyah Free?",
+                        answer: "Автомобиль можно заряжать от обычной розетки (8-10 часов), от станции быстрой зарядки (1.5-2 часа до 80%) или использовать бензиновый двигатель-генератор.",
+                        tags: ["зарядка", "электричество"]
                     }
                 ]
             }
         };
 
+        // Данные для теста
+        const testQuestions = [
+            {
+                question: "Какую предоплату необходимо внести для бронирования автомобиля?",
+                options: ["500 рублей", "1000 рублей", "2000 рублей", "3000 рублей"],
+                correct: 1
+            },
+            {
+                question: "Что делать, если у клиента есть долги у судебных приставов?",
+                options: [
+                    "Отказать в аренде",
+                    "Увеличить стоимость аренды на 50%",
+                    "Увеличить стоимость аренды на 25%",
+                    "Сдать автомобиль без изменений"
+                ],
+                correct: 1
+            },
+            {
+                question: "Сколько должен быть стаж вождения для аренды автомобиля без доплат?",
+                options: ["1 год", "2 года", "3 года", "5 лет"],
+                correct: 2
+            },
+            {
+                question: "Какой статус в программе «ОКНА» ставится после оплаты бронирования?",
+                options: ["Запланирован", "Забронирован", "Арендован", "Завершен"],
+                correct: 1
+            },
+            {
+                question: "Когда возвращается обеспечительный депозит?",
+                options: [
+                    "Сразу после сдачи автомобиля",
+                    "В течение 24 часов после завершения аренды и сдачи автомобиля",
+                    "Через 19 дней",
+                    "Через неделю"
+                ],
+                correct: 1
+            },
+            {
+                question: "Что проверяем при выдаче автомобиля? (выберите все верные варианты)",
+                options: [
+                    "Наличие незамерзайки",
+                    "Количество бензина",
+                    "Чистоту салона",
+                    "Все вышеперечисленное"
+                ],
+                correct: 3
+            },
+            {
+                question: "Какой текст СМС отправляется клиенту после бронирования?",
+                options: [
+                    "Простое подтверждение",
+                    "Детали бронирования с просьбой ответить ДА",
+                    "Только номер договора",
+                    "Ничего не отправляется"
+                ],
+                correct: 1
+            },
+            {
+                question: "Что делать с автомобилем при возврате?",
+                options: [
+                    "Только проверить документы",
+                    "Сделать видео и фото пробега",
+                    "Просто принять ключи",
+                    "Ничего не проверять"
+                ],
+                correct: 1
+            },
+            {
+                question: "Куда отправляется видео автомобиля при выдаче?",
+                options: [
+                    "В личные сообщения",
+                    "В чат MAX по автомобилю",
+                    "На почту клиенту",
+                    "Никуда не отправлять"
+                ],
+                correct: 1
+            },
+            {
+                question: "Какой штраф за курение в салоне автомобиля?",
+                options: ["1000 ₽", "3000 ₽", "5000 ₽", "10000 ₽"],
+                correct: 2
+            },
+            {
+                question: "Что делать при заявке с Букинг Кар?",
+                options: [
+                    "Создать номер счета и внести данные",
+                    "Проигнорировать",
+                    "Позвонить позже",
+                    "Отправить на другой сайт"
+                ],
+                correct: 0
+            },
+            {
+                question: "Когда вносить оплаты в Google Таблицу?",
+                options: [
+                    "В конце дня",
+                    "В конце недели",
+                    "Немедленно в момент операции",
+                    "Когда будет время"
+                ],
+                correct: 2
+            },
+            {
+                question: "Какой обеспечительный депозит для Voyah Free?",
+                options: ["10000 ₽", "15000 ₽", "20000 ₽", "25000 ₽"],
+                correct: 3
+            },
+            {
+                question: "Что такое перепробег?",
+                options: [
+                    "Пробег меньше 200 км/сутки",
+                    "Пробег больше 200 км/сутки",
+                    "Пробег ровно 200 км/сутки",
+                    "Любой пробег"
+                ],
+                correct: 1
+            },
+            {
+                question: "Какой шаблон договора используется при аренде?",
+                options: [
+                    "Договор двусторонний",
+                    "Договор односторонний + спец без водителя",
+                    "Простая расписка",
+                    "Без договора"
+                ],
+                correct: 1
+            }
+        ];
+
         // Глобальные переменные
         let googleScriptURL = localStorage.getItem('googleScriptURL') || '';
         let selectedCarForTariffs = 'chery';
+        let testAnswers = [];
 
         // ========== ОСНОВНЫЕ ФУНКЦИИ ==========
 
@@ -1603,17 +2082,19 @@ function doGet(e) {
                         if (googleScriptURL) {
                             document.getElementById('script-url').value = googleScriptURL;
                         }
+                    } else if (tabId === 'test') {
+                        setTimeout(initTest, 100);
                     }
                 });
             });
         }
 
-        // Расчет стоимости
+        // Расчет стоимости (обновленная версия)
         function calculate() {
             const carKey = document.getElementById('car').value;
             const car = tariffs[carKey];
             const days = parseInt(document.getElementById('days').value) || 1;
-            const mileage = parseInt(document.getElementById('mileage').value) || 200;
+            const totalMileage = parseInt(document.getElementById('total-mileage').value) || 200;
             
             // Определяем период для выбора цены
             let periodKey = '1-3';
@@ -1621,18 +2102,18 @@ function doGet(e) {
             else if (days >= 8 && days <= 15) periodKey = '8-15';
             else if (days >= 16) periodKey = '16+';
             
-            // Базовая стоимость
+            // Базовая стоимость из таблицы
             const pricePerDay = car.dailyRates[periodKey] || car.base;
             let total = pricePerDay * days;
             let details = [`${car.name}: ${pricePerDay.toLocaleString()} ₽ × ${days} суток = ${(pricePerDay * days).toLocaleString()} ₽`];
             
-            // Доплата за перепробег (свыше 200 км/сутки)
-            if (mileage > 200) {
-                const extraKmPerDay = mileage - 200;
-                const extraKmTotal = extraKmPerDay * days;
-                const overmileageCost = extraKmTotal * car.overmileage;
+            // Перепробег: общий пробег - (200 × дни)
+            const baseMileage = 200 * days;
+            if (totalMileage > baseMileage) {
+                const extraKm = totalMileage - baseMileage;
+                const overmileageCost = extraKm * car.overmileage;
                 total += overmileageCost;
-                details.push(`Перепробег: ${extraKmTotal} км × ${car.overmileage} ₽/км = ${overmileageCost.toLocaleString()} ₽`);
+                details.push(`Перепробег: ${extraKm} км × ${car.overmileage} ₽/км = ${overmileageCost.toLocaleString()} ₽`);
             }
             
             // Коэффициенты
@@ -1673,6 +2154,21 @@ function doGet(e) {
                 total += 300;
                 extras.push('Детское кресло: 300 ₽');
             }
+            if (document.getElementById('fuel').checked) {
+                extras.push('Заправка: цена по факту');
+            }
+            if (document.getElementById('antifreeze').checked) {
+                total += 300;
+                extras.push('Незамерзайка: 300 ₽');
+            }
+            if (document.getElementById('delivery').checked) {
+                const deliveryCost = carKey === 'lada' ? 700 : 800;
+                total += deliveryCost;
+                extras.push(`Доставка: ${deliveryCost} ₽`);
+            }
+            if (document.getElementById('toll_roads').checked) {
+                extras.push('Платные дороги: по факту');
+            }
             
             if (extras.length > 0) {
                 details.push(`Доп. услуги: ${extras.join(', ')}`);
@@ -1701,12 +2197,14 @@ function doGet(e) {
             const carSelect = document.getElementById('car');
             const carName = carSelect.options[carSelect.selectedIndex].text;
             const days = document.getElementById('days').value;
-            const mileage = document.getElementById('mileage').value;
+            const mileage = document.getElementById('total-mileage').value;
             
             let phrase = `«${clientName}, стоимость аренды ${carName} на ${days} суток`;
             
-            if (mileage > 200) {
-                phrase += ` с пробегом ${mileage} км/сутки`;
+            if (mileage > 200 * days) {
+                phrase += ` с пробегом ${mileage} км`;
+            } else {
+                phrase += ` с пробегом до ${200 * days} км`;
             }
             
             phrase += ` составит ${total}. Обеспечительный депозит — ${deposit}. `;
@@ -1956,6 +2454,110 @@ function doGet(e) {
             renderFAQ(carFilter, searchText);
         }
 
+        // Инициализация теста
+        function initTest() {
+            const container = document.getElementById('test-container');
+            let html = '';
+            
+            testQuestions.forEach((question, index) => {
+                html += `
+                    <div class="test-question" data-id="${index}">
+                        <h4>${index + 1}. ${question.question}</h4>
+                        <div class="test-options">
+                `;
+                
+                question.options.forEach((option, optionIndex) => {
+                    html += `
+                        <div class="test-option" data-question="${index}" data-option="${optionIndex}">
+                            <input type="radio" name="question-${index}" id="q${index}-o${optionIndex}" value="${optionIndex}">
+                            <label for="q${index}-o${optionIndex}">${option}</label>
+                        </div>
+                    `;
+                });
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            // Добавляем обработчики для выбора ответов
+            document.querySelectorAll('.test-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const questionId = this.getAttribute('data-question');
+                    const optionId = this.getAttribute('data-option');
+                    
+                    // Снимаем выделение с других вариантов
+                    document.querySelectorAll(`.test-option[data-question="${questionId}"]`).forEach(opt => {
+                        opt.classList.remove('selected');
+                        opt.querySelector('input').checked = false;
+                    });
+                    
+                    // Выделяем выбранный вариант
+                    this.classList.add('selected');
+                    this.querySelector('input').checked = true;
+                    
+                    // Сохраняем ответ
+                    testAnswers[questionId] = parseInt(optionId);
+                });
+            });
+            
+            // Сбрасываем ответы
+            testAnswers = [];
+        }
+
+        // Проверка теста
+        function checkTest() {
+            let correct = 0;
+            const total = testQuestions.length;
+            
+            // Проверяем все вопросы
+            testQuestions.forEach((question, index) => {
+                const userAnswer = testAnswers[index];
+                const correctAnswer = question.correct;
+                const questionElement = document.querySelector(`.test-question[data-id="${index}"]`);
+                
+                // Сбрасываем стили
+                questionElement.querySelectorAll('.test-option').forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                });
+                
+                // Если ответ дан
+                if (userAnswer !== undefined) {
+                    // Помечаем правильный ответ
+                    questionElement.querySelector(`.test-option[data-option="${correctAnswer}"]`).classList.add('correct');
+                    
+                    // Если ответ неправильный, помечаем его
+                    if (userAnswer !== correctAnswer) {
+                        questionElement.querySelector(`.test-option[data-option="${userAnswer}"]`).classList.add('incorrect');
+                    } else {
+                        correct++;
+                    }
+                } else {
+                    // Если ответ не дан, помечаем правильный
+                    questionElement.querySelector(`.test-option[data-option="${correctAnswer}"]`).classList.add('correct');
+                }
+            });
+            
+            // Показываем результат
+            const scoreElement = document.getElementById('test-score');
+            const messageElement = document.getElementById('test-message');
+            const resultElement = document.getElementById('test-result');
+            
+            scoreElement.textContent = `${correct}/${total}`;
+            
+            if (correct >= 20) {
+                messageElement.innerHTML = `<span style="color: var(--success);">✅ Отлично! Вы успешно прошли тест. Результат: ${Math.round(correct/total*100)}%</span>`;
+            } else {
+                messageElement.innerHTML = `<span style="color: var(--danger);">❌ Необходимо пройти обучение заново. Минимальный проходной балл: 20/25. Ваш результат: ${correct}/25</span>`;
+            }
+            
+            resultElement.style.display = 'block';
+            resultElement.scrollIntoView({ behavior: 'smooth' });
+        }
+
         // Копирование в буфер обмена
         function copyToClipboard(question, answer) {
             const text = `Вопрос: ${question}\n\nОтвет: ${answer}\n\n(Арендычавто.рф)`;
@@ -2000,7 +2602,7 @@ function doGet(e) {
             document.getElementById('calculate-btn').addEventListener('click', calculate);
             document.getElementById('car').addEventListener('change', calculate);
             document.getElementById('days').addEventListener('input', calculate);
-            document.getElementById('mileage').addEventListener('input', calculate);
+            document.getElementById('total-mileage').addEventListener('input', calculate);
             document.getElementById('debt').addEventListener('change', calculate);
             document.getElementById('experience').addEventListener('change', calculate);
             document.getElementById('region').addEventListener('change', calculate);
@@ -2008,6 +2610,10 @@ function doGet(e) {
             document.getElementById('extra_driver').addEventListener('change', calculate);
             document.getElementById('washing').addEventListener('change', calculate);
             document.getElementById('child_seat').addEventListener('change', calculate);
+            document.getElementById('fuel').addEventListener('change', calculate);
+            document.getElementById('antifreeze').addEventListener('change', calculate);
+            document.getElementById('delivery').addEventListener('change', calculate);
+            document.getElementById('toll_roads').addEventListener('change', calculate);
             
             // Обновление фразы при изменении имени
             document.getElementById('client-name').addEventListener('input', updatePhrase);
@@ -2052,6 +2658,15 @@ function doGet(e) {
             // Сохранение URL Google Script
             document.getElementById('save-script-btn').addEventListener('click', saveScriptURL);
             
+            // Проверка теста
+            document.getElementById('submit-test').addEventListener('click', checkTest);
+            
+            // Перезапуск теста
+            document.getElementById('restart-test').addEventListener('click', function() {
+                document.getElementById('test-result').style.display = 'none';
+                initTest();
+            });
+            
             // Автозагрузка сохраненного URL
             if (googleScriptURL) {
                 document.getElementById('script-url').value = googleScriptURL;
@@ -2064,6 +2679,10 @@ function doGet(e) {
             
             if (document.getElementById('faq').classList.contains('active')) {
                 initFaqTab();
+            }
+            
+            if (document.getElementById('test').classList.contains('active')) {
+                initTest();
             }
         });
     </script>
